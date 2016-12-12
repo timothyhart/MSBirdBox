@@ -1,0 +1,265 @@
+.level-complete-view {
+
+}
+
+.level-complete-view .score-container {
+    height: 80px;
+    padding: 40px;
+    text-align: center;
+    font-size: 72px;
+    font-weight: 900;
+    color: #1B5320;
+    text-transform: uppercase;
+}
+
+.level-complete-view .score-container .score-value {
+    color: #eee;
+}
+
+.level-complete-view hr {
+    display: block;
+    width: 600px;
+    margin: 0 auto;
+    padding: 0;
+    border: 0;
+    border-bottom: 2px solid #1B5320;
+}
+
+.level-complete-view .unlock-list {
+    display: block;
+    height: 320px;
+    padding: 30px;
+    text-align: center;
+}
+
+.level-complete-view .unlock-list .card {
+    display: inline-block;
+    width: 400px;
+    height: 320px;
+    cursor: pointer;
+}
+
+.level-complete-view .unlock-list .card .card-title {
+    display: block;
+    font-size: 36px;
+    font-weight: 900;
+    color: #1B5320;
+    text-transform: uppercase;
+}
+
+.level-complete-view .unlock-list .card img {
+    display: block;
+    object-fit: contain;
+    height: 150px;
+    margin: 0 auto;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+.level-complete-view .unlock-list .card .action {
+    display: block;
+    font-size: 30px;
+    font-weight: 900;
+    color: #1B5320;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.level-complete-view .share-button {
+    border: 0;
+    background-color: transparent;
+    background-image: url(../media/level-complete/share-button.png);
+    background-size: 100% 100%;
+}
+
+.level-complete-view .buttons {
+    padding: 30px;
+    text-align: center;
+}
+
+.level-complete-view .buttons .share-button {
+    width: 250px;
+    height: 81px;
+    margin-bottom: 10px;
+}
+
+.level-complete-view .buttons .home-button,
+.level-complete-view .buttons .level-select-button,
+.level-complete-view .buttons .go-again-button {
+    width: 200px;
+    height: 85px;
+    margin: 10px;
+}
+
+.level-complete-view .level-complete-modal .modal-content {
+    width: 1100px;
+    height: 800px;
+    margin: 0 auto;
+}
+
+.level-complete-view .level-complete-modal .close-button {
+    width: 140px;
+    height: 60px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-left: 90px;
+}
+
+.level-complete-view .level-complete-modal > .modal-content > .modal-title {
+    width: 650px;
+    height: 120px;
+    margin: 0 auto;
+    padding: 30px;
+    font-size: 52px;
+    font-weight: 900;
+    text-transform: uppercase;
+    text-align: center;
+    color: #1B5320;
+}
+
+.level-complete-view .unlocked-birds-modal .scroll-container {
+    display: block;
+    margin: 0 20px;
+    height: 450px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.level-complete-view .unlocked-birds-modal .cards-container {
+    width: 1880px;
+    height: 400px;
+    padding: 10px 20px;
+    margin: 0 auto;
+}
+
+.level-complete-view .increased-skill-modal .cards-container {
+    text-align: center;
+    height: 400px;
+    padding: 10px 20px;
+    margin: 0 auto;
+}
+
+.level-complete-view .level-complete-modal .cards-container .card {
+    display: inline-block;
+    width: 230px;
+    height: 360px;
+    border: 8px solid black;
+    border-radius: 25px;
+    margin: 10px 28px;
+    padding: 5px;
+    background: linear-gradient(#1B5320, #4CAF50);
+    position: relative;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.level-complete-view .level-complete-modal .cards-container .active {
+    background: #FFC107;
+    border-color: #FFC107;
+}
+
+.level-complete-view .level-complete-modal .card .inner {
+    background-color: #A6CC7D;
+    width: 230px;
+    height: 360px;
+    border: 0;
+    border-radius: 15px;
+}
+
+.level-complete-view .level-complete-modal .card .card-title {
+    height: 35px;
+    margin-bottom: 5px;
+    padding: 5px;
+    background-color: white;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    color: black;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 900;
+    text-align: center;
+}
+
+.level-complete-view .level-complete-modal .card .image {
+    width: 200px;
+    height: 110px;
+    margin: 0px 10px 5px 10px;
+    padding: 5px;
+    background: linear-gradient(#1B5320, #4CAF50);
+}
+
+.level-complete-view .level-complete-modal .card .image img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0 auto;
+    object-fit: contain;
+}
+
+.level-complete-view .level-complete-modal .card .waveform {
+    width: 210px;
+    height: 60px;
+    margin: 0px 10px 5px 10px;
+    background-color: white;
+}
+
+.level-complete-view .level-complete-modal .card .spectrogram {
+    width: 210px;
+    height: 60px;
+    margin: 0px 10px 5px 10px;
+    background-color: black;
+}
+
+.level-complete-view .level-complete-modal .card .spectrogram img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.level-complete-view .level-complete-modal .card .play-button {
+    display: block;
+    margin: 0 auto;
+    width: 45px;
+    height: 45px;
+}
+
+.level-complete-view .unlocked-birds-modal .view-collection-button {
+    display: block;
+    width: 600px;
+    height: 80px;
+    margin: 30px auto;
+    font-size: 42px;
+    font-weight: 900;
+    text-transform: uppercase;
+    background-color: #FFC107;
+    border: 0;
+    border-radius: 10px;
+    color: black;
+}
+
+.level-complete-view .increased-skill-modal .skill-gauge {
+    position: relative;
+    width: 550px;
+    height: 95px;
+    margin: 20px auto;
+    background-image: url(../media/level-complete/skill-gauge.png);
+    background-size: 100% 100%;
+}
+
+.level-complete-view .increased-skill-modal .skill-gauge .value {
+    position: absolute;
+    top: 32px;
+    left: 240px;
+    font-size: 24px;
+    font-weight: 900;
+    color: white;
+}
+
+.level-complete-view .increased-skill-modal .skill-gauge .max-value {
+    position: absolute;
+    top: 32px;
+    right: 30px;
+    font-size: 24px;
+    font-weight: 900;
+    color: white;
+}

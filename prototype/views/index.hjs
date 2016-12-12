@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Recorder</title>
+        <link rel="stylesheet" href="css/style.css" />
+     </head>
+    <body>
+        <h1>Recorder</h1>
+        <p>Click <a href="segment/">here</a> for most recent segment</p>
+    </body>
+</html>

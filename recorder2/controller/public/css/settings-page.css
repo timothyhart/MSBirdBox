@@ -1,0 +1,16 @@
+#settings-page-view .schedule .times-table thead td {
+    text-align: center;
+    font-weight: bold;
+}
+
+#settings-page-view .schedule .times-table .hour {
+    width: 24px;
+    height: 24px;
+    background-color: #eee;
+    cursor: pointer;
+    border: 1px solid #333;
+}
+
+#settings-page-view .schedule .times-table .hour.active {
+    background-color: #292;
+}

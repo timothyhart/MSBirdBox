@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>B4 Recording Box</title>
+        <link href="css/ext/bootstrap.min.css" rel="stylesheet">
+        <link href="css/ext/toastr.min.css" rel="stylesheet">
+        <link href="css/ext/font-awesome.min.css" rel="stylesheet">
+        <link href="css/view.css" rel="stylesheet">
+        <script src="js/ext/jquery-2.2.0.min.js"></script>
+        <script src="js/ext/bootstrap.min.js"></script>
+        <script src="js/ext/bootbox.min.js"></script>
+        <script src="js/ext/moment-with-locales.min.js"></script>
+        <script src="js/ext/moment-duration-format.js"></script>
+        <script src="js/ext/toastr.min.js"></script>
+        <script src="js/ext/wavesurfer.min.js"></script>
+        <script src="js/config.js"></script>
+        <script src="js/view.js"></script>
+
+        <link href="css/recording-viewer.css" rel="stylesheet">
+        <link href="css/database-page.css" rel="stylesheet">
+        <link href="css/settings-page.css" rel="stylesheet">
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a id="nav-status-page" class="navbar-brand" href="#status-page">B<sup>4</sup></a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li id="nav-recording-list"><a href="#recording-list">Recording List</a></li>
+                        <li id="nav-recording-viewer"><a href="#recording-viewer">Recording Viewer</a></li>
+                        <li id="nav-database-page"><a href="#database">Database</a></li>
+                        <li id="nav-settings-page"><a href="#settings/tab=recording">Settings</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="page-container">
+            <!-- Status page view -->
+            <div id="status-page-view" class="view">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="summary">
+                                <div class="status-perfect">
+                                    Your B<sup>4</sup> box is <strong>currently recording.</strong>
+                                </div>
+                                
+                                <div class="status-reduced">
+                                    Your B<sup>4</sup> box is <strong>currently idle.</strong> There is a recording scheduled, however.
+                                </div>
+                                
+                                <div class="status-critical">
+                                    Your B<sup>4</sup> box is <strong>currently idle.</strong> There is no schedule defined, so no recording will occur unless manually initiated.<br>
+                                    You can change this by altering the <a href="#settings/tab=schedule">schedule</a>.
+                                </div>
+                            </div>
+                            
+                            <div class="panel panel-primary current-recording">
+                                <div class="panel-heading">Current Recording</div>
+                                <div class="panel-body">
+                                    <strong>Recording Start Time: </strong><span class="start-time"></span><br>
+                                    <strong>Recording End Time: </strong><span class="end-time"></span><br>
+                                    <strong>Recording Elapsed Time: </strong><span class="elapsed-time"></span><br>
+                                    <strong>Recording Remaining Time: </strong><span class="remaining-time"></span><br>
+                                    <div class="sm-top-margin">
+                                        <button class="btn btn-sm btn-danger stop-recording">Stop Recording</button>
+                                        <button class="btn btn-sm btn-warning extend-recording">Extend Recording</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="panel panel-primary next-recording">
+                                <div class="panel-heading">Next Recording</div>
+                                <div class="panel-body">
+                                    Your next recording will occur at <strong class="next-time"></strong>, and will run for <strong class="next-duration"></strong>.<br>
+                                    You can change this by altering the <a href="#settings/tab=schedule">schedule</a>.
+                                </div>
+                            </div>
+                            
+                            <div class="panel panel-default manual-recording">
+                                <div class="panel-heading">Manual Recording</div>
+                                <div class="panel-body">
+                                    <div class="sm-bottom-margin">
+                                        <strong>NOTE: </strong>Starting a manual recording will take precedence over any scheduled recordings.<br>
+                                        Any missed scheduled recordings will start automatically after the manual recording completes.<br>
+                                    </div>
+                                    <div class="form-horizontal">
+                                        <div class="form-group">
+                                            <div class="col-md-1"><label class="control-label">Title:</label></div>
+                                            <div class="col-md-5"><input type="text" class="form-control recording-title" /></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-1"><label class="control-label">Hours:</label></div>
+                                            <div class="col-md-1"><input type="number" min="0" max="6" step="1" class="form-control duration-hours" value="0" /></div>
+                                            <div class="col-md-1"><label class="control-label">Minutes:</label></div>
+                                            <div class="col-md-1"><input type="number" min="0" max="60" step="1" class="form-control duration-minutes" value="10" /></div>
+                                            <div class="col-md-1"><label class="control-label">Seconds:</label></div>
+                                            <div class="col-md-1"><input type="number" min="0" max="60" step="1" class="form-control duration-seconds" value="0" /></div>
+                                        </div>
+                                        <div class="form-group xs-bottom-margin">
+                                            <div class="col-md-10 col-md-offset-1"><button class="btn btn-sm btn-primary start-recording">Start Recording</button></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="panel panel-default recent-recordings">
+                                <div class="panel-heading">Recent Recordings</div>
+                                <div class="panel-body">
+                                    <table class="recording-list-table table table-striped">
+                                        <colgroup>
+                                            <col class="col-md-5" />
+                                            <col class="col-md-4" />
+                                            <col class="col-md-2" />
+                                            <col class="col-md-1" />
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th>Date/Time</th>
+                                                <th>Title</th>
+                                                <th>Length</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <div class="update-status">
+                                <div class="text-right">
+                                    <div class="sm-bottom-margin">
+                                        <strong>Last refreshed: </strong><span class="refresh-time"></span>
+                                    </div>
+                                    <button class="btn btn-sm btn-success refresh-button"><i class="glyphicon glyphicon-refresh xs-right-margin"></i>Refresh</button>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div> <!-- col-md-12 -->
+                    </div> <!-- row -->
+                </div> <!-- container -->
+            </div> <!-- status-page-view -->                                
+            
+            <!-- Recording list view -->
+            <div id="recording-list-view" class="view">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="no-top-margin">
+                                Recording List
+                                <span class="header-buttons">
+                                    <button class="btn btn-sm btn-success refresh-button"><i class="glyphicon glyphicon-refresh xs-right-margin"></i>Refresh</button>
+                                </span>
+                            </h2>
+                            <table class="recording-list-table table table-striped">
+                                <colgroup>
+                                    <col class="col-md-4" />
+                                    <col class="col-md-2" />
+                                    <col class="col-md-2" />
+                                    <col class="col-md-1" />
+                                    <col class="col-md-3" />
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th>Date/Time</th>
+                                        <th>File Name</th>
+                                        <th>Title</th>
+                                        <th>Length</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recording viewer view -->
+            <div id="recording-viewer-view" class="view">
+                <div class="container">
+                    <div class="row">
+                        <!-- Left hand side -->
+                        <div class="col-xs-12 col-sm-12 col-md-6" style="position: relative;">
+                            <!-- Title -->
+                            <h2 class="no-top-margin recording-name"></h4>
+                            
+                            <!-- Recording metadata/info -->
+                            <div class="recording-info sm-bottom-margin"></div>
+                            
+                            <!-- Navigation/segment selector -->
+                            <div class="navigation-info-popup"></div>
+                            <div>
+                                <div class="navigation-container sm-bottom-margin">
+                                    <img class="navigation-image" ondragstart="return false;" />
+                                    <div class="selection-bar" ondragstart="return false;"></div>
+                                    <div class="highlight-bar" ondragstart="return false;"></div>
+                                </div>
+                                <div class="text-center">
+                                    <button class="navigation-previous-tagged-segment btn btn-default btn-sm"><i class="glyphicon glyphicon-chevron-left xs-right-margin"></i>Previous Active Segment</button>
+                                    <button class="navigation-zoom-in btn btn-default btn-sm"><i class="glyphicon glyphicon-zoom-in xs-right-margin"></i>Zoom In</button>
+                                    <button class="navigation-zoom-out btn btn-default btn-sm"><i class="glyphicon glyphicon-zoom-out xs-right-margin"></i>Zoom Out</button>
+                                    <button class="navigation-next-tagged-segment btn btn-default btn-sm"><i class="glyphicon glyphicon-chevron-right xs-right-margin"></i>Next Active Segment</button>
+                                </div>
+                                <div class="sm-bottom-margin"></div>
+                            </div>
+                            
+                            <!-- Selection info -->
+                            <div class="segment-info-container">
+                                <h4>Segment Information</h4>
+                                <div class="row">
+                                    <div class="segment-info col-sm-6"></div>
+                                    <div class="col-sm-6 text-right">
+                                        <button class="download-segment btn btn-default btn-sm" style="width: 160px;"><i class="glyphicon glyphicon-download xs-right-margin"></i>Download Segment</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Clip info -->
+                            <div class="clip-info-container">
+                                <h4>Clip Information</h4>
+                                <div class="clip-info sm-bottom-margin"></div>
+                                <div class="text-center sm-bottom-margin">
+                                    <button class="play-pause btn btn-primary btn-sm sm-right-margin" style="width: 160px;"><i class="glyphicon glyphicon-play xs-right-margin"></i>Play</button>
+                                    <button class="replay-selection btn btn-default btn-sm sm-right-margin" style="width: 160px;"><i class="glyphicon glyphicon-fast-backward xs-right-margin"></i>Replay Selection</button>
+                                </div>
+                                <div class="text-center sm-bottom-margin">
+                                    <button class="identify-selection btn btn-default btn-sm sm-right-margin" style="width: 160px;"><i class="glyphicon glyphicon-list xs-right-margin"></i>Identify Selection</button>
+                                    <button class="compare-selection btn btn-default btn-sm sm-right-margin" style="width: 160px;"><i class="glyphicon glyphicon-eye-open xs-right-margin"></i>Compare Selection</button>
+                                </div>
+                                <div class="text-center sm-bottom-margin">
+                                    <button class="save-selection btn btn-default btn-sm sm-right-margin" style="width: 160px;"><i class="glyphicon glyphicon-save xs-right-margin"></i>Save Selection</button>
+                                    <button class="download-selection btn btn-default btn-sm sm-right-margin" style="width: 160px;"><i class="glyphicon glyphicon-download xs-right-margin"></i>Download Selection</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Right hand side -->
+                        <div class="col-xs-12 col-sm-12 col-md-6">
+                            <div class="player">
+
+                                <!-- Spectrogram display -->
+                                <img class="spectrogram" ondragstart="return false;" />
+                                <div class="spectrogram-selection-bar" ondragstart="return false;"></div>
+                                <div class="spectrogram-play-bar" ondragstart="return false;"></div>
+                                
+                                <!-- Audio clip/wavesurfer/waveform -->
+                                <div class="waveform" ondragstart="return false;"></div>
+                                <div class="waveform-selection-bar" ondragstart="return false;"></div>
+                                <div class="waveform-play-bar" ondragstart="return false;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Database view -->
+            <div id="database-page-view" class="view">
+                <div class="container">
+                    <div class="row">
+                        <!-- LHS -->
+                        <div class="col-sm-3 bird-list-container">
+                            <h4><strong>Region: </strong>Brisbane</h4>
+                            <div class="list-group bird-list"></div>
+                        </div>
+                        
+                        <!-- RHS -->
+                        <div class="col-sm-9 bird-info-container">
+                            <div class="name"></div>
+                            <div class="species-name"></div>
+                            
+                            <div id="database-image-carousel" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                </ol>
+                                <div class="carousel-inner">
+                                </div>
+                                
+                                <a class="left carousel-control" href="#database-image-carousel" role="button" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="right carousel-control" href="#database-image-carousel" role="button" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                            
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12 sm-bottom-margin">
+                                        <div class="description"></div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h4>Audio Clip</h4>
+                                        <select class="form-control" class="audio-selection">
+                                            <option>Trophy Call</option>
+                                        </select>
+                                        
+                                        <div class="audio sm-top-margin sm-bottom-margin"></div>
+                                        <button class="btn btn-sm btn-primary play-button"><i class="glyphicon glyphicon-play xs-right-margin"></i>Play</button>
+                                        
+                                        <h4>Tags</h4>
+                                        <ul class="tags"></ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <img class="spectrogram" />
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h4>Sources</h4>
+                                        <ul class="sources"></ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- end database view -->
+            
+            <!-- Settings view -->
+            <div id="settings-page-view" class="view">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="no-top-margin md-bottom-margin">
+                                Settings
+                                <!--<span class="header-buttons">
+                                    <button class="btn btn-sm btn-primary save-button"><i class="glyphicon glyphicon-floppy-disk xs-right-margin"></i>Save</button>
+                                </span>-->
+                            </h2>
+                            <div>
+                                <ul class="nav nav-tabs md-bottom-margin">
+                                    <li class="active" data-tab-name="recording"><a href="#settings/tab=recording">Recording Settings</a></li>
+                                    <li class="" data-tab-name="schedule"><a href="#settings/tab=schedule">Recording Schedule</a></li>
+                                    <li class="" data-tab-name="advanced"><a href="#settings/tab=advanced">Advanced Settings</a></li>
+                                </ul>
+                                
+                                <div class="tab-content">
+                                    <!-- Recording settings tab -->
+                                    <div class="tab-pane active recording">
+                                        <h5>These options control the behavior of the B<sup>4</sup> box when it is recording audio.</h5>
+                                        
+                                        <div class="form-horizontal">
+                                            <div class="form-group sm-bottom-margin">
+                                                <div class="col-md-12">
+                                                    <label class="control-label">Recording Device:</label><br>
+                                                    This is a list of available recording devices for your box. TODO: Some info here about which is the best choice.<br>
+                                                    <select class="form-control auto-width recording-device"></select>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group sm-bottom-margin">
+                                                <div class="col-md-12">
+                                                    <label class="control-label">Volume Boost:</label><br>
+                                                    This value controls a value in dB that will be applied to all recorded audio. Set when you are using a quiet microphone.<br>
+                                                    <input class="form-control auto-width volume-boost" type="number" min="0" max="30" value="0" step="0.1" />
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group sm-bottom-margin">
+                                                <div class="col-md-12">
+                                                    <label class="control-label">Segment Duration:</label><br>
+                                                    This value controls the duration of a segment, in seconds, which is the smallest unit you can view at one time.<br>
+                                                    Smaller values will allow higher seek granuality in the recording viewer.<br>
+                                                    <input class="form-control auto-width segment-length" type="number" min="10" max="60" value="0" />
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group sm-bottom-margin">
+                                                <div class="col-md-12">
+                                                    <label class="control-label">Overlap Duration:</label><br>
+                                                    This value controls how many seconds of audio are duplicated from the previous segment when performing analysis.<br>
+                                                    Larger values can potentially allow longer "interesting" noises to be identified.<br>
+                                                    Set to zero to disable the overlap/duplicating of audio completely.<br>
+                                                    <input class="form-control auto-width overlap-length" type="number" min="0" max="30" value="0" />
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group sm-bottom-margin">
+                                                <div class="col-md-12">
+                                                    <label class="control-label">RMS Period:</label><br>
+                                                    This value controls how many milliseconds of audio are used to calculate the volume levels of a recording.<br>
+                                                    Smaller values will make shorter noises have more impact on volume numbers.<br>
+                                                    <input class="form-control auto-width rms-period" type="number" min="100" max="1000" value="100" />                                                   
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group sm-bottom-margin">
+                                                <div class="col-md-12">
+                                                    <label class="control-label">Noise Threshold:</label><br>
+                                                    Determines the volume relative to 0dBFS that is considered "noise", and will add a flag to the segment.<br>
+                                                    The lower this value, the louder a sound will have to be for it to register as noise.<br> 
+                                                    <input class="form-control auto-width noise-threshold pull-left" type="number" min="-180" max="0" value="-30" step="0.1" />
+                                                    <button class="btn btn-sm btn-success pull-left sm-left-margin calibrate-noise-threshold">Calibrate</button> 
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group md-top-margin md-bottom-margin">
+                                                <div class="col-md-12">                                            
+                                                    <button class="btn btn-sm btn-primary save-button"><i class="glyphicon glyphicon-floppy-disk xs-right-margin"></i>Save Changes</button>
+                                                </div>
+                                            </div>
+                                        </div>                                       
+                                    </div> <!-- end recording tab -->
+                                    
+                                    <!-- Schedule tab -->
+                                    <div class="tab-pane schedule">
+                                        <h5>The table below determines when your bird box will automatically create recordings.</h5>
+                                        <p>A green box in the table indicates that the box will be active during this hour, and a grey box indicates inactivity.</p>
+                                        <p>Recording will begin when the time overlaps with a green box, and end when it overlaps with a grey box.</p> 
+                                        
+                                        <table class="times-table sm-top-margin sm-bottom-margin">
+                                            <thead></thead>
+                                            <tbody></tbody>
+                                        </table>
+                                        
+                                        <button class="btn btn-sm btn-primary save-button"><i class="glyphicon glyphicon-floppy-disk xs-right-margin"></i>Save Changes</button>
+                                    </div> <!-- end scheduler tab -->
+                                    
+                                    <!-- Advanced tab -->
+                                    <div class="tab-pane advanced">
+                                        <h5>These options control advanced behavior of the B<sup>4</sup> box. Do not change unless you are sure what you are doing.</h5>
+                                        
+                                        <div class="form-horizontal">                                           
+                                            <div class="form-group sm-bottom-margin">
+                                                <div class="col-md-12">
+                                                    <label class="control-label">Base Data Directory:</label><br>
+                                                    <input class="form-control data-path" type="text" />
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group sm-bottom-margin">
+                                                <div class="col-md-12">
+                                                    <label class="control-label">Recordings Directory:</label><br>
+                                                    <input class="form-control recordings-path" type="text" />
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group sm-bottom-margin">
+                                                <div class="col-md-12">
+                                                    <label class="control-label">Recorder Program Path:</label><br>
+                                                    <input class="form-control recorder-program-path" type="text" />
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group sm-bottom-margin">
+                                                <div class="col-md-12">
+                                                    <label class="control-label">Analyser Program Path:</label><br>
+                                                    <input class="form-control analyser-program-path" type="text" />
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group sm-bottom-margin">
+                                                <div class="col-md-12">
+                                                    <label class="control-label">Splitter Program Path:</label><br>
+                                                    <input class="form-control splitter-program-path" type="text" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group md-top-margin md-bottom-margin">
+                                                <div class="col-md-12">                                            
+                                                    <button class="btn btn-sm btn-primary save-button"><i class="glyphicon glyphicon-floppy-disk xs-right-margin"></i>Save Changes</button>
+                                                </div>
+                                            </div>
+                                        </div>                                       
+                                    </div> <!-- advanced tab -->
+                                    
+                                    <div class="sm-top-margin" style="border-bottom: 1px solid #ddd;"></div>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- page-container -->
+        
+        <div class="loading-modal"></div>
+        
+        <div id="recording-viewer-compare-modal" class="modal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Compare Clip</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-6 left">
+                                    <div class="header">Current Selection</div>
+                                    
+                                    <img class="spectrogram" />
+                                    <div class="waveform"></div>
+                                    <div class="text-center">
+                                        <button class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-play xs-right-margin"></i>Play</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 right">
+                                    <div class="header">
+                                        <select class="form-control database-selection"></select>
+                                    </div>
+                                    
+                                    <img class="spectrogram" />
+                                    <div class="waveform"></div>
+                                    <div class="text-center">
+                                        <button class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-play xs-right-margin"></i>Play</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="js/database.js"></script>
+        <script src="js/status-page.js"></script>
+        <script src="js/recording-list.js"></script>
+        <script src="js/recording-viewer.js"></script>
+        <script src="js/database-page.js"></script>
+        <script src="js/settings-page.js"></script>
+        
+        <script>
+            // TEMPORARY: Force moment locale
+            moment.locale("en-AU");
+        </script>
+
+        <script>
+            // Create modules
+            var g_hashTracker = new LocationHashTracker();
+            var g_database = new Database();
+            var g_statusPage = new StatusPage($("#status-page-view"), $("#nav-status-page"), g_hashTracker);
+            var g_recordingList = new RecordingList($("#recording-list-view"), $("#nav-recording-list"), g_hashTracker);
+            var g_recordingViewer = new RecordingViewer($("#recording-viewer-view"), $("#nav-recording-viewer"), g_hashTracker, g_database);
+            var g_databasePage = new DatabasePage($("#database-page-view"), $("#nav-database-page"), g_hashTracker, g_database);
+            var g_settingsPage = new SettingsPage($("#settings-page-view"), $("#nav-settings-page"), g_hashTracker);
+                                  
+            // Trigger hash event (if any)
+            if (!g_hashTracker.onHashChangeEvent()) {
+                // No hash or invalid hash, so display the recording list by default.
+                switchView(g_statusPage);
+            }                
+        </script>
+    </body>
+</html>
+

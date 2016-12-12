@@ -1,0 +1,245 @@
+/* Custom pure_css styles */
+
+@import url(//fonts.googleapis.com/css?family=Open+Sans);
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
+
+body {    
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family:'Open Sans', arial, sans-serif;
+}
+
+/* Icon styles */
+i {
+    font-size: 30px !important;
+    padding-right: 25px;
+    vertical-align: middle
+}
+
+/* Customized menu module */
+.home-menu {
+    background: #FFC107;
+    height: 65px;
+    box-shadow: 0 1px 1px rgba(0,0,0, 0.10);
+}
+
+.home-menu .pure-menu-list {
+    background: #4CAF50;
+    height: 100%;
+    width: 100%;
+}
+
+.pure-menu-item-alternate {
+    background: #8BC34A;
+}
+
+.home-menu .pure-menu-heading {
+    width: 12%;
+    color: white;
+    font-weight: 400;
+    font-size: 120%;
+}
+
+.home-menu .pure-menu-item {
+    min-width: 22%;
+}
+
+.home-menu .pure-menu-link {
+    color: white;
+    text-align: center;
+    line-height: 65px;
+    font-weight: 400;
+    font-size: 120%;
+    padding: 0;
+}
+
+.home-menu .pure-menu-link:hover {
+    background: #1B5320;
+}
+
+.home-menu .pure-menu-selected a {
+    background: #E74C3C;
+}
+
+.home-menu .pure-menu-heading:hover {
+    background: #FF9933;
+}
+
+.home-menu .pure-menu-children {
+    background: #4CAF50;
+    width: 100%;
+}
+
+.pure-menu {
+    font-weight: lighter;
+}
+.pure-menu.pure-menu-fixed {
+    position: fixed;
+}
+
+body {
+    color: #777;
+}
+
+.pure-img-responsive {
+    max-width: 100%;
+    height: auto;
+}
+
+/*
+Add transition to containers so they can push in and out.
+*/
+#layout
+ {
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    -ms-transition: all 0.2s ease-out;
+    -o-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+}
+
+/*
+This is the parent `<div>` that contains the menu and the content area.
+*/
+#layout {
+    position: relative;
+    padding-left: 0;
+    margin-top: 50px;
+}
+    #layout.active {
+        left: 150px;
+        width: 150px;
+    }
+
+    #layout.active {
+        left: 150px;
+    }
+
+    #layout i {
+        font-size: 100% !important;
+        padding-right: 0px;
+        vertical-align: none;
+    }
+/*
+The content `<div>` is where all your content goes.
+*/
+.content {
+    margin: 0 auto;
+    padding: 0 2em;
+    max-width: auto;
+    margin-bottom: 50px;
+    line-height: 1.6em;
+}
+
+.header {
+     margin: 0;
+     color: #333;
+     text-align: center;
+     padding: 2.5em 2em 0;
+     border-bottom: 1px solid #eee;
+ }
+    .header h1 {
+        margin: 0.2em 0;
+        font-size: 3em;
+        font-weight: 300;
+    }
+     .header h2 {
+        font-weight: 300;
+        color: #ccc;
+        padding: 0;
+        margin-top: 0;
+    }
+
+    .header a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .header a:hover {
+        color: #ccc;
+        font-weight: 300;
+    }
+
+.content-subhead {
+    margin: 50px 0 20px 0;
+    font-weight: 300;
+    color: #888;
+}
+
+.page-end-img{
+    width: 125px;
+    height: 75px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.data-export-button {
+    background: #1B5320;
+    color: white;
+}
+
+.add-entry-button {
+    background: #FFC107;
+    color: white;
+}
+
+.delete-button {
+    background: #FF0033;
+    
+}
+
+.action-buttons {
+    margin: 1px;
+    width: 50px;
+}
+
+.pure-table {
+    width: 100%;
+}
+
+#editform {
+    margin-top: 20px;
+}
+
+#editform input, textarea {
+    width: 300px;
+    font-size: 11pt;
+}
+
+#editform textarea {
+    height: 150px;
+}
+
+.edit-submit-button {
+    width: 100px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+/* -- Responsive Styles (Media Queries) ------------------------------------- */
+
+/*
+Hides the menu at `48em`, but modify this based on your app's needs.
+*/
+@media (min-width: 48em) {
+
+    .header,
+    .content {
+        padding-left: 2em;
+        padding-right: 2em;
+    }
+
+}
+
+@media (max-width: 48em) {
+    /* Only apply this when the window is small. Otherwise, the following
+    case results in extra padding on the left:
+        * Make the window small.
+        * Tap the menu to trigger the active state.
+        * Make the window large again.
+    */
+    #layout.active {
+        position: relative;
+    }
+}

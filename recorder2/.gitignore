@@ -1,0 +1,42 @@
+# osx annoyances
+.DS_Store
+
+# binaries folder
+/Binaries
+/bin32/*
+/bin32-debug/*
+/bin64/*
+/bin64-debug/*
+/Build/*
+
+# vs stuff
+.vs
+ipch
+ipch/*
+*.opensdf
+*.sdf
+*.suo
+*.vcxproj.user
+*.VC.opendb
+
+# cmake stuff
+CMakeCache.txt
+CMakeFiles
+Makefile
+cmake_install.cmake
+install_manifest.txt
+
+# unix intermediate files
+*.o
+*.a
+*.so
+*.dylib
+
+# qt creator
+CMakeLists.txt.user
+
+# intermediate output files when building in-tree
+/src/recorder/recorder
+/src/analyser/analyser
+/src/splitter/splitter
+

@@ -1,0 +1,8 @@
+bin/*
+obj/*
+*.csproj.user
+.vs/*
+
+# ignore local database for now
+database/*
+

@@ -1,0 +1,241 @@
+<style>
+    .comparand .source {
+    }
+
+    .comparand .spectrogram {
+        height: 260px;
+        padding: 10px;
+        vertical-align: middle;
+        text-align: center;
+    }
+    .comparand .spectrogram img {
+        /* todo: fix vertical align */
+        display: inline-block;
+        width: 320px;
+    }
+
+    .comparand .waveform {
+        width: 320px;
+        height: 64px;
+        margin: 10px auto;
+    }
+
+    .comparand .controls {
+        text-align: center;
+    }
+
+</style>
+
+div id="layout">
+<br><br>
+    <div id="main">
+    <div class="header">
+        <h1> Compare </h1>
+    </div>
+    <br><br><br>
+    <div id="content">
+<div class="container">
+
+    <div class="row">
+        <!-- LHS -->
+        <div class="col-xs-6 comparand" style="padding-left: 0;">
+
+            <select id="lhsSource" class="form-control source">
+            </select>
+
+            <div id="lhsSpectrogram" class="spectrogram">
+                <img src="/images/no-image-available.png" alt="spectrogram image" />
+            </div>
+
+            <div id="lhsWaveform" class="waveform">
+            </div>
+
+            <div class="controls">
+                <button type="button" id="lhsPlay" class="btn btn-primary"><span class="glyphicon glyphicon-play"></span>&nbsp;Play</button>
+                <button type="button" id="lhsView" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right"></span>&nbsp;View</button>
+            </div>
+
+        </div>
+
+        <!-- RHS -->
+        <div class="col-xs-6 comparand" style="padding-right: 0">
+
+            <select id="rhsSource" class="form-control source">
+            </select>
+
+            <div id="rhsSpectrogram" class="spectrogram">
+                <img src="/images/no-image-available.png" alt="spectrogram image" />
+            </div>
+
+            <div id="rhsWaveform" class="waveform">
+            </div>
+
+            <div class="controls">
+                <button type="button" id="rhsPlay" class="btn btn-primary"><span class="glyphicon glyphicon-play"></span>&nbsp;Play</button>
+                <button type="button" id="rhsView" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right"></span>&nbsp;View</button>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+</div>
+</div>
+</div>
+
+<script src="/js/wavesurfer.min.js"></script>
+<script>
+    var g_entries = [];
+    var g_lhsSelection = -1;
+    var g_rhsSelection = -1;
+    var g_lhsWaveSurfer = WaveSurfer.create({
+        container: "#lhsWaveform",
+        height: 64,
+        waveColor: "#337ab7"
+    });
+    var g_rhsWaveSurfer = WaveSurfer.create({
+        container: "#rhsWaveform",
+        height: 64,
+        waveColor: "#337ab7"
+    });
+
+    function setLHS(index) {
+        if (g_lhsSelection == index)
+            return;
+
+        var entry = g_entries[index];
+        g_lhsSelection = index;
+        $("#lhsSource").val(index);
+        $("#lhsSpectrogram img").attr("src", entry.spectrogramURL);
+        if (g_lhsWaveSurfer.isPlaying()) {
+            g_lhsWaveSurfer.pause();
+        }
+        g_lhsWaveSurfer.load(entry.clipURL);
+    }
+
+    function setRHS(index) {
+        if (g_rhsSelection == index)
+            return;
+
+        var entry = g_entries[index];
+        g_rhsSelection = index;
+        $("#rhsSource").val(index);
+        $("#rhsSpectrogram img").attr("src", entry.spectrogramURL);
+        if (g_rhsWaveSurfer.isPlaying()) {
+            g_rhsWaveSurfer.pause();
+        }
+        g_rhsWaveSurfer.load(entry.clipURL);
+   }
+
+   function populateLists() {
+        var databaseOptions = $("<optgroup>").attr("label", "Database");
+        var recordingOptions = $("<optgroup>").attr("label", "Recording");
+        for (var i = 0; i < g_entries.length; i++) {
+            var option = $("<option>").attr("value", i).text(g_entries[i].title);
+            if (g_entries[i].isRecording) {
+                recordingOptions.append(option);
+            } else {
+                databaseOptions.append(option);
+            }
+        }
+        $("#lhsSource").empty();
+        $("#lhsSource").append(databaseOptions);
+        $("#lhsSource").append(recordingOptions);
+        $("#rhsSource").empty();
+        $("#rhsSource").append(databaseOptions.clone());
+        $("#rhsSource").append(recordingOptions.clone());
+
+        // set selection if none has been selected yet
+        if (g_lhsSelection < 0) {
+            setLHS(0);
+        }
+        if (g_rhsSelection < 0) {
+            setRHS(0);
+        }
+    }
+
+    function openEntry(index) {
+        var entry = g_entries[index];
+        window.location = entry.openURL;
+    }
+
+    function loadDatabaseEntries() {
+        $.getJSON("/database/main.json", function(entries) {
+            entries.sort(function(lhs, rhs) {
+                return lhs.name.localeCompare(rhs.name);
+            });
+            for (var i = 0; i < entries.length; i++) {
+                g_entries.push({
+                    title: entries[i].name,
+                    clipURL: "/database/clips/" + entries[i].clip,
+                    spectrogramURL: "/database/spectrograms/" + entries[i].clip + ".png",
+                    openURL: "/database/#index" + i,
+                    isRecording: false
+                });
+            }
+            populateLists();
+        });
+    }
+
+    function loadRecordingEntries() {
+        $.getJSON("/list", function(entries) {
+            entries.sort(function(lhs, rhs) {
+                return lhs.name.localeCompare(rhs.name);
+            });
+            for (var i = 0; i < entries.length; i++) {
+                g_entries.push({
+                    title: entries[i].shortTime,
+                    clipURL: "/raw/" + entries[i].name + ".wav",
+                    spectrogramURL: "/spectrogram/" + entries[i].name,
+                    openURL: "/segment/" + entries[i].name,
+                    isRecording: true
+                });
+            }
+            populateLists();
+        });
+    }
+
+    $(function() {
+        // load from source
+        loadDatabaseEntries();
+        loadRecordingEntries();
+
+        // hook event handlers
+        // lhs
+        $("#lhsSource").change(function(e) {
+            setLHS(parseInt(e.target.value));
+        });
+        $("#lhsPlay").click(function(e) {
+            g_lhsWaveSurfer.playPause();
+        });
+        $("#lhsView").click(function(e) {
+            openEntry(g_lhsSelection);
+        });
+        g_lhsWaveSurfer.on("pause", function () {
+            $("#lhsPlay").html("<span class=\"glyphicon glyphicon-play\"></span>&nbsp;Play");
+        });
+        g_lhsWaveSurfer.on("play", function () {
+            $("#lhsPlay").html("<span class=\"glyphicon glyphicon-pause\"></span>&nbsp;Pause");
+        });
+
+        // rhs
+        $("#rhsSource").change(function(e) {
+            setRHS(parseInt(e.target.value));
+        });
+        $("#rhsPlay").click(function(e) {
+            g_rhsWaveSurfer.playPause();
+        });
+        $("#rhsView").click(function(e) {
+            openEntry(g_rhsSelection);
+        });
+        g_rhsWaveSurfer.on("pause", function () {
+            $("#rhsPlay").html("<span class=\"glyphicon glyphicon-play\"></span>&nbsp;Play");
+        });
+        g_rhsWaveSurfer.on("play", function () {
+            $("#rhsPlay").html("<span class=\"glyphicon glyphicon-pause\"></span>&nbsp;Pause");
+        });
+
+   });
+ 
+</script>
+

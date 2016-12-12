@@ -1,0 +1,71 @@
+.achievements-view {
+    
+}
+
+.achievements-view .completed {
+    display: block;
+    height: 40px;
+    padding-left: 100px;
+    padding-top: 50px;
+    font-size: 32px;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: white;
+}
+
+.achievements-view .list {
+    background-color: white;
+    width: 1050px;
+    height: 650px;
+    margin-top: 20px;
+    margin-left: 60px;
+    padding-left: 60px;
+    padding-right: 30px;
+    padding-top: 10px;
+    overflow-y: scroll;
+}
+
+.achievements-view .list .item .info {
+    display: inline-block;
+    width: 850px;
+    height: 140px;
+    vertical-align: top;
+}
+
+.achievements-view .list .item .info label {
+    font-size: 36px;
+    font-weight: 900;
+    color: #1B5320;
+    text-transform: uppercase;
+}
+
+.achievements-view .list .item .info .description {
+    font-size: 20px;
+    font-weight: normal;
+    color: #1B5320;
+}
+
+.achievements-view .list .item .status {
+    display: inline-block;
+    width: 72px;
+    height: 72px;
+    border: 0;
+    background-color: transparent;
+    background-image: url(../media/achievements/star-incomplete.png);
+    background-size: 100% 100%;
+}
+
+.achievements-view .list .item .status-completed {
+    background-image: url(../media/achievements/star-complete.png);
+}
+
+.achievements-view .list .item .share {
+    display: inline-block;
+    margin-left: 25px;
+    width: 72px;
+    height: 72px;
+    border: 0;
+    background-color: transparent;
+    background-image: url(../media/achievements/share.png);
+    background-size: 100% 100%;
+}

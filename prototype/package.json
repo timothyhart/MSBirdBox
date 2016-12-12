@@ -1,0 +1,22 @@
+{
+  "name": "application-name",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "~4.13.3",
+    "hjs": "*",
+    "sanitize-filename": "*",
+    "serve-favicon": "~2.3.0",
+    "method-override": "~2.3.5",
+    "morgan": "~1.6.1",
+    "express-session": "~1.12.1",
+    "errorhandler": "~1.4.2",
+    "body-parser": "~1.14.1",
+    "multer": "~1.1.0",
+    "jade": "~1.11.0",
+    "moment": "*"
+  }
+}

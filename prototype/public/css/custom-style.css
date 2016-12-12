@@ -1,0 +1,14 @@
+.resultsimg {
+	width: 100px;
+}
+
+.audioplayer {
+	width: 200px;
+}
+
+#addbirdbutton {
+	float: right;
+	position: relative;
+	bottom: 50px;
+	margin: 10px;
+}

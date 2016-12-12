@@ -1,0 +1,54 @@
+.title-view {
+    
+}
+
+.title-view .logo {
+    width: 100%;
+    height: 390px;
+    position: relative;
+    background-color: #8BC34A;
+}
+
+.title-view .logo img {
+    display: block;
+    position: absolute;
+    top: 125px;
+    left: 155px;
+    width: 985px;
+    height: 245px;
+}
+
+.title-view .menu {
+    width: 100%;
+    height: 570px;
+    position: relative;
+    background-color: #4CAF50;
+}
+
+.title-view .menu button {
+    display: block;
+    position: absolute;
+    width: 534px;
+    height: 100px;
+    background-color: #FFC107;
+    background-size: contain;
+    border: 0;
+}
+
+.title-view .menu .play-button {
+    left: 300px;
+    top: 100px;
+    background-image: url(../media/title/play-button.png);
+}
+
+.title-view .menu .my-birds-button {
+    left: 300px;
+    top: 215px;
+    background-image: url(../media/title/my-birds-button.png);
+}
+
+.title-view .menu .achievements-button {
+    left: 300px;
+    top: 330px;
+    background-image: url(../media/title/achievements-button.png);
+}

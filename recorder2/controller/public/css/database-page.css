@@ -1,0 +1,60 @@
+#database-page-view {
+    position: relative;
+}
+
+#database-page-view .bird-list-container {
+    overflow-y: auto;
+    max-height: 720px;
+}
+
+#database-page-view .bird-info-container {
+    overflow-y: auto;
+}
+
+#database-page-view .bird-info-container .name {
+    display: inline-block;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+#database-page-view .bird-info-container .species-name {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 24px;
+    font-style: italic;
+    vertical-align: bottom;
+}
+
+#database-page-view .bird-info-container .carousel {
+    background-color: #666;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#database-page-view .bird-info-container .carousel-inner > .item > img,
+#database-page-view .bird-info-container .carousel-inner > .item > a > img {
+    height: 300px;
+    display: block;
+    margin: 0 auto;
+}
+
+#database-page-view .bird-info-container .spectrogram {
+    width: 100%;
+}
+
+#database-page-view .bird-info-container .tags {
+    padding-left: 24px;
+}
+
+#database-page-view .bird-info-container .tags li {
+    font-size: 14px;
+}
+
+#database-page-view .bird-info-container .sources {
+    padding-left: 12px;
+    list-style-type: none;
+}
+
+#database-page-view .bird-info-container .sources li {
+    font-size: 12px;
+}

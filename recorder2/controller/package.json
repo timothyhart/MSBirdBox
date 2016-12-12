@@ -1,0 +1,22 @@
+{
+  "name": "birdbox-recorder-controller",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "nodejs ./server.js"
+  },
+  "dependencies": {
+    "express": "~4.13.4",
+    "static-favicon": "~1.0.2",
+    "morgan": "~1.7.0",
+    "cookie-parser": "~1.4.1",
+    "body-parser": "~1.15.0",
+    "debug": "~2.2.0",
+    "hjs": "~0.0.6",
+    "jquery": "~2.2.3",
+    "bootstrap": "~3.3.6",
+    "bootbox": "~4.4.0",
+    "moment": "~2.12.0",
+    "font-awesome": "~4.6.1"
+  }
+}

@@ -1,0 +1,306 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" view-content="initial-scale=1, maximum-scale=1">
+    <title>Bird Match</title>
+
+    <!-- stylesheets for nav bar -->
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+    <link rel="stylesheet" type="text/css" href="../prototype/Admin-panel/Stylesheets/purecss_custom.css">
+
+    <!-- Third-party libraries -->
+    <script src="js/ext/jquery-2.2.0.js"></script>
+    <script src="js/ext/wavesurfer.min.js"></script>
+
+    <!-- Include view stylesheets -->
+    <link href="css/base.css" type="text/css" rel="stylesheet" />
+    <link href="css/title.css" type="text/css" rel="stylesheet" />
+    <link href="css/library.css" type="text/css" rel="stylesheet" />
+    <link href="css/achievements.css" type="text/css" rel="stylesheet" />
+    <link href="css/level-select.css" type="text/css" rel="stylesheet" />
+    <link href="css/game.css" type="text/css" rel="stylesheet" />
+    <link href="css/level-complete.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Navigation bar -->
+    <nav class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
+      <a href="../prototype/Admin-panel/index.php" class="pure-menu-heading">B<sup>4</sup></a>
+      <ul class="pure-menu-list">
+            <li class="pure-menu-item"><a href="../prototype/Admin-panel/brisbanebirds.php" class="pure-menu-link">Administrate</a></li>
+            <li class="pure-menu-item pure-menu-item-alternate"><a href="" class="pure-menu-link">Record</a></li>
+            <li class="pure-menu-item"><a href="index.html" class="pure-menu-link">Learn</a></li>
+            <li class="pure-menu-item pure-menu-item-alternate"><a href="#" class="pure-menu-link">About</a></li>
+            
+            <li id="login-nav-box" class="pure-menu-item" style="display: none">
+                <span class="login-name">Login Name</span>
+                <a href="account/logout">Logout</a>
+            </li>
+            
+            <li id="nologin-nav-box" class="pure-menu-item" style="display: none">
+                <a href="account/login">Login</a>
+            </li>
+        </ul>
+    </nav>
+    <div style="height: 32px;"></div>
+    
+    <div class="base-container">
+
+        <!-- Title view-->
+        <div class="base-view title-view">
+            <div class="logo">
+                <img src="media/title/logo.png" alt="logo" />
+            </div>
+            <div class="menu">
+                <button class="play-button"></button>
+                <button class="my-birds-button"></button>
+                <button class="achievements-button"></button>
+            </div>
+        </div>
+
+        <!-- Library view -->
+        <div class="base-view library-view">
+            <div class="view-header">
+                <button class="left-button home-button"></button>
+                <div class="view-title">My Birds</div>
+                <div class="page-button-container">
+                    <!-- TODO: Populate this via javascript -->
+                    <button class="page-button" data-page="0">1</button>
+                    <button class="page-button" data-page="1">2</button>
+                    <button class="page-button" data-page="2">3</button>
+                    <button class="page-button" data-page="3">4</button>
+                </div>
+            </div>
+
+            <div class="view-content">
+                <div class="cards-container">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Library card popup -->
+        <div class="base-modal library-card-modal">
+            <button class="close-button"></button>
+            <div class="card">
+                <div class="inner">
+                    <div class="card-title"></div>
+                    <div class="image"><img /></div>
+                    <div class="page" data-page="0">
+                        <div class="waveform"></div>
+                        <div class="spectrogram"><img></div>
+                        <button class="play-button"></button>
+                    </div>
+                    <div class="page" data-page="1">
+                        <div class="description"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="score"></div>
+
+            <div class="page-buttons">
+                <button class="page" data-page="0"></button>
+                <button class="page" data-page="1"></button>
+            </div>
+        </div>
+
+        <!-- Achievements view -->
+        <div class="base-view achievements-view">
+            <div class="view-header">
+                <button class="left-button home-button"></button>
+                <div class="view-title">Achievements</div>
+            </div>
+
+            <div class="view-content">
+                <div class="completed">Completed: <span class="value">0</span>/<span class="total">0</span></div>
+                <div class="list">
+                    <!-- Hardcoded for now, replace with dynamic later -->
+                    <div class="item">
+                        <div class="info">
+                            <label>Bird Beginner</label>
+                            <div class="description">Discover 6 birds for your collection</div>
+                        </div>
+                        
+                        <button class="status status-completed"></button>
+                        <button class="share"></button>
+                    </div>
+
+                    <div class="item">
+                        <div class="info">
+                            <label>Bird Collector</label>
+                            <div class="description">Discover 12 birds for your collection</div>
+                        </div>
+
+                        <button class="status"></button>
+                        <button class="share"></button>
+                    </div>
+
+                    <div class="item">
+                        <div class="info">
+                            <label>Bird Expert</label>
+                            <div class="description">Discover 18 birds for your collection</div>
+                        </div>
+
+                        <button class="status"></button>
+                        <button class="share"></button>
+                    </div>
+
+                    <div class="item">
+                        <div class="info">
+                            <label>Sharing is caring</label>
+                            <div class="description">Share your score on Facebook</div>
+                        </div>
+
+                        <button class="status"></button>
+                        <button class="share"></button>
+                    </div>
+
+                    <div class="item">
+                        <div class="info">
+                            <label>Gold Plated</label>
+                            <div class="description">Unlock a Golden Bird Card</div>
+                        </div>
+
+                        <button class="status"></button>
+                        <button class="share"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level select view -->
+        <div class="base-view level-select-view">
+            <div class="view-header">
+                <button class="left-button home-button"></button>
+                <div class="view-title">Choose a level</div>
+                <div class="level-button-container">
+                    <!-- TODO: Populate this via javascript -->
+                    <button class="level-button" data-level="0">1</button>
+                    <button class="level-button" data-level="1">2</button>
+                    <button class="level-button" data-level="2">3</button>
+                    <button class="level-button" data-level="3">4</button>
+                </div>
+            </div>
+
+            <div class="view-content">
+                <div class="cards-container"></div>
+            </div>
+        </div>
+
+        <!-- Match game view -->
+        <div class="base-view game-view">
+            <div class="view-header">
+                <button class="left-button back-button"></button>
+                <div class="view-title">Match the pairs</div>
+                <button class="right-button library-button"></button>
+            </div>
+
+            <div class="view-content">
+                <div class="score-panel">
+                    Score: <span class="score"></span>
+                </div>
+
+                <div class="cards-container">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Level complete view -->
+        <div class="base-view level-complete-view">
+            <div class="view-header">
+                <div class="view-title">Complete</div>
+            </div>
+
+            <div class="view-content">
+                <div class="score-container">Score: <span class="score-value">0</span></div>
+                <hr />
+
+                <div class="unlock-list">
+                    <div class="card new-birds">
+                        <div class="card-title">New birds discovered!</div>
+                        <img src="media/level-complete/chest-icon.png" alt="chest icon" />
+                        <div class="action">Tap to view</div>
+                    </div>
+
+                    <div class="card bird-skill">
+                        <div class="card-title">Bird skill increased!</div>
+                        <img src="media/level-complete/gem-icon.png" alt="gem icon" />
+                        <div class="action">Tap to view</div>
+                    </div>
+                </div>
+                <hr />
+
+                <div class="buttons">
+                    <div>
+                        <button class="share-button"></button>
+                    </div>
+                    <div>
+                        <button class="home-button"></button>
+                        <button class="level-select-button"></button>
+                        <button class="go-again-button"></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Unlocked birds popup -->
+            <div class="base-modal level-complete-modal unlocked-birds-modal">
+                <button class="close-button"></button>
+                <div class="modal-content">
+                    <div class="modal-title">You have discovered <span class="bird-count">0</span> new birds</div>
+                    <div class="scroll-container">
+                        <div class="cards-container"></div>
+                    </div>
+                    <button class="view-collection-button">View in Collection</button>
+                </div>
+            </div>
+
+            <!-- Increased skills popup -->
+            <div class="base-modal level-complete-modal increased-skill-modal">
+                <button class="close-button"></button>
+                <div class="modal-content">
+                    <div class="modal-title">Your bird skill has increased</div>
+                    <div class="cards-container"></div>
+                    <div class="skill-gauge">
+                        <div class="value">30</div>
+                        <div class="max-value">30</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- View source files -->
+    <script src="js/database.js"></script>
+    <script src="js/stats.js"></script>
+    <script src="js/base.js"></script>
+    <script src="js/title.js"></script>
+    <script src="js/library.js"></script>
+    <script src="js/achievements.js"></script>
+    <script src="js/level-select.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/level-complete.js"></script>
+
+    <script>
+        // Change to the view you are working on when developing
+        switchView(g_views.titleView);
+        //setTimeout(function () { g_views.gameView.startGame(0, 0) }, 100);
+        //setTimeout(function () { g_views.libraryView.open(); }, 100);
+        //setTimeout(function () { g_views.libraryView.openPopup(g_database.getBirdList()[0]); }, 100);
+        //switchView(g_views.levelCompleteView);
+
+        /*setTimeout(function () {
+            g_views.levelCompleteView.unlockedBirds = g_database.getBirdsForLevel(1);
+            switchView(g_views.levelCompleteView);
+            g_views.levelCompleteView.openBirdsUnlockedPopup();
+        }, 100);*/
+
+        /*setTimeout(function () {
+            g_views.levelCompleteView.displaySummary(0, 0, 900, g_database.getBirdsForLevel(0).splice(0, 3));
+        }, 100);*/
+    </script>
+</body>
+</html>

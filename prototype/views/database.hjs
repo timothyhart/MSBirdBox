@@ -1,0 +1,319 @@
+<style>
+    #entryName {
+        display: inline-block;
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    #entrySpeciesName {
+        display: inline-block;
+        vertical-align: bottom;
+        margin-left: 10px;
+        font-size: 24px;
+        font-style: italic;
+    }
+
+    #entryDetails {
+        padding-left: 0;
+        height: 330px;
+        overflow-y: auto;
+    }
+
+    #entryDetails h4 {
+        margin-bottom: 4px;
+    }
+
+    #entryDescription {
+        margin-top: 8px;
+        text-justify: inter-word;
+    }
+
+    #entryTags {
+        padding-left: 24px;
+    }
+
+    #entryTags li {
+        font-size: 14px;
+    }
+
+    #entrySources {
+        padding-left: 12px;
+        list-style-type: none;
+    }
+
+    #entrySources li {
+        font-size: 12px;
+    }
+
+    #entryViewPhoto {
+        height: 260px;
+        padding: 10px;
+    }
+
+    #entryViewPhoto img {
+        display: block;
+        margin: 0 auto;
+        height: 260px;
+    }
+
+    #entryViewClip {
+        height: 260px;
+        padding: 10px;
+    }
+
+    #entryViewClipWaveform {
+        width: 300px;
+        height: 64px;
+        margin: 0 auto 10px auto;
+    }
+
+    #entryViewSpectrogram {
+        height: 260px;
+        padding: 10px;
+    }
+
+    #entryViewSpectrogram img {
+        display: block;
+        margin: 0 auto;
+        height: 260px;
+    }
+
+
+</style>
+
+<div id="layout">
+    <div id="main">
+    <div class="header">
+        <h1> Database </h1>
+    </div>
+    <div id="content">
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12" style="padding-left: 0; padding-right: 0;">
+            <div style="border-bottom: 1px solid #eee;">
+            <br><br>
+                <div id="entryName"></div>
+                <div id="entrySpeciesName"></div>
+                <br><br>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- LHS -->
+        <div id="entryDetails" class="col-xs-6">
+
+            <!--<h4>Description</h4>-->
+            <div id="entryDescription">
+            </div>
+
+            <h4>Tags</h4>
+            <ul id="entryTags">
+            </ul>
+
+            <h4>Sources</h4>
+            <ul id="entrySources">
+            </ul>
+
+        </div>
+
+        <!-- RHS -->
+        <div class="col-xs-6" style="padding-right: 0; margin-top: 4px;">
+
+            <ul class="nav nav-pills">
+                <li class="active"><a href="#entryViewPhoto" data-toggle="tab">Photo</a></li>
+                <li><a href="#entryViewClip" data-toggle="tab">Clip</a></li>
+                <li><a href="#entryViewSpectrogram" data-toggle="tab">Spectrogram</a></li>
+            </ul>
+
+            <div class="tab-content">
+
+                <div id="entryViewPhoto" class="tab-pane fade in active">
+                    <img src="/images/no-image-available.png" alt="bird photo" />
+                </div>
+
+                <div id="entryViewClip" class="tab-pane fade">
+                    <div id="entryViewClipUnavailable">
+                        <h4>No clip specified</h4>
+                    </div>
+                    <div id="entryViewClipAvailable" style="display: none;">
+                        <div id="entryViewClipWaveform">
+                        </div>
+                        <div>
+                            <button type="button" id="entryViewClipPlay" class="btn btn-primary"><span class="glyphicon glyphicon-play"></span>&nbsp;Play</button>
+                        </div>
+                        <div>Source: <span id="entryViewClipSource"></span></div>
+                    </div>
+                </div>
+
+                <div id="entryViewSpectrogram" class="tab-pane fade">
+                    <img src="/images/no-image-available.png" alt="spectrogram image" />
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Database Navigation -->
+    <div class="row" style="margin-bottom: 10px;">
+        <div class="col-xs-12">
+            <div class="text-center">
+                <form class="form form-inline">
+                    <button type="button" id="previousEntry" class="btn btn-sm btn-primary" href="/segment/{{previousSegment}}"><span class="glyphicon glyphicon-backward"></span></button>
+
+                    <select id="entrySelect" class="form-control">
+                    </select>
+
+                    <button type="button" id="nextEntry" class="btn btn-sm btn-primary" href="/segment/{{nextSegment}}"><span class="glyphicon glyphicon-forward"></span></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+</div>
+</div>
+
+<script src="/js/wavesurfer.min.js"></script>
+<script>
+    var g_entries = null;
+    var g_currentSelection = -1;
+    var g_waveSurfer = WaveSurfer.create({
+        container: "#entryViewClipWaveform",
+        height: 64,
+        waveColor: "#337ab7"
+    });
+
+    function populateSelection() {
+        var entrySelect = $("#entrySelect");
+        entrySelect.empty();
+        for (var i = 0; i < g_entries.length; i++) {
+            var entry = g_entries[i];
+            $("<option />").attr("value", i).text(entry.name).appendTo(entrySelect);
+        }
+    }
+
+    function viewEntry(index) {
+        if (g_currentSelection == index)
+            return;
+
+        var entry = g_entries[index];
+        g_currentSelection = index;
+
+        // Populate lhs fields
+        $("#entryName").text(entry.name);
+        $("#entrySpeciesName").text("(" + entry.speciesName + ")");
+        $("#entryDescription").text(entry.description);
+        $("#entrySelect").val(index);
+
+        // Populate tags
+        var entryTags = $("#entryTags");
+        entryTags.empty();
+        if (entry.tags) {
+            for (var i = 0; i < entry.tags.length; i++) {
+                $("<li />").text(entry.tags[i]).appendTo(entryTags);
+            }
+        } else if (entry.tag) {
+            $("<li />").text(entry.tag).appendTo(entryTags);
+        }
+
+        // Populate sources
+        var entrySources = $("#entrySources");
+        entrySources.empty();
+        if (entry.sources) {
+            for (var i = 0; i < entry.sources.length; i++) {
+                $("<a>").attr("href", entry.sources[i]).text(entry.sources[i]).appendTo($("<li />").appendTo(entrySources));
+            }
+        } else if (entry.source) {
+            $("<a>").attr("href", entry.source).text(entry.source).appendTo($("<li />").appendTo(entrySources));
+        }
+
+        // Setup photo
+        if (entry.photo) {
+            $("#entryViewPhoto img").attr("src", "/database/photos/" + entry.photo);
+            $("<a>").attr("href", entry.photoSource).text(entry.photoSource).appendTo($("<li />").text("Image: ").appendTo(entrySources));
+        } else {
+            $("#entryViewPhoto img").attr("src", "/images/no-image-available.png");
+        }
+
+        // Setup clip
+        if (entry.clip) {
+            $("#entryViewSpectrogram img").attr("src", "/database/spectrograms/" + entry.clip + ".png");
+            $("#entryViewClipUnavailable").hide();
+            $("#entryViewClipAvailable").show();
+            g_waveSurfer.load("/database/clips/" + entry.clip);
+            $("#entryViewClipSource").empty();
+            $("<a>").attr("href", entry.clipSource).text(entry.clipSource).appendTo($("#entryViewClipSource"));
+        } else {
+            $("#entryViewSpectrogram img").attr("src", "/images/no-image-available.png");
+            $("#entryViewClipUnavailable").show();
+            $("#entryViewClipAvailable").hide();
+            if (g_waveSurfer.isPlaying()) {
+                g_waveSurfer.pause();
+            }
+        }
+
+        // Update previous/next buttons
+        if (index == (g_entries.length - 1)) {
+            $("#previousEntry").removeAttr("disabled");
+            $("#nextEntry").attr("disabled", "disabled");
+        } else if (index == 0) {
+            $("#previousEntry").attr("disabled", "disabled");
+            $("#nextEntry").removeAttr("disabled");
+        } else {
+            $("#previousEntry").removeAttr("disabled");
+            $("#nextEntry").removeAttr("disabled");
+        }
+    }
+
+    $(function() {
+        // Load database
+        $.getJSON("/database/main.json", function(entries) {
+            console.log(entries);
+            g_entries = entries;
+            populateSelection();
+
+            // was a specific index requested?
+            var index = 0;
+            if (location.hash && location.hash.substr(0, 6) == "#index") {
+                index = parseInt(location.hash.substr(6, location.hash.length - 6));
+            }
+            viewEntry(index);
+        });
+
+        // Set up event handlers
+        $("#entrySelect").change(function(e) {
+            viewEntry(parseInt(e.target.value));
+        });
+        $("#previousEntry").click(function(e) {
+            viewEntry(g_currentSelection - 1);
+            e.preventDefault();
+        });
+        $("#nextEntry").click(function(e) {
+            viewEntry(g_currentSelection + 1);
+            e.preventDefault();
+        });
+        $("#entryViewClipPlay").click(function(e) {
+            g_waveSurfer.playPause();
+            e.preventDefault();
+        });
+        g_waveSurfer.on("pause", function () {
+            $("#entryViewClipPlay").html("<span class=\"glyphicon glyphicon-play\"></span>&nbsp;Play");
+        });
+        g_waveSurfer.on("play", function () {
+            $("#entryViewClipPlay").html("<span class=\"glyphicon glyphicon-pause\"></span>&nbsp;Pause");
+        });
+
+        // Hacky solution to redraw the waveform when the tab is activated
+        // This is because when the page is displayed initially/file loaded,
+        // if the active tab is not the waveform tab, it doesn't render (bug?)
+        $('a[href="#entryViewClip"]').on("shown.bs.tab", function(e) {
+            //console.log("forcing waveform redraw");
+            g_waveSurfer.zoom(0);
+        });
+    });
+</script>
+    

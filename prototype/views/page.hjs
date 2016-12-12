@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Bird Box</title>
+        <link href="/css/bootstrap.min.css" rel="stylesheet">
+        <script src="/js/jquery-2.1.4.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <!-- Navigation bar -->
+        <nav class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
+          <a href="../prototype/Admin-panel/index.php" class="pure-menu-heading">B<sup>4</sup></a>
+          <ul class="pure-menu-list">
+                <li class="pure-menu-item"><a href="../prototype/Admin-panel/brisbanebirds.php" class="pure-menu-link">Administrate</a></li>
+                <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover pure-menu-item-alternate">
+                    <a href="#" class="pure-menu-link">Record</a>
+                    <ul class="pure-menu-children">
+                        <li class="pure-menu-item"><a href="/segment" class="pure-menu-link">Segment Viewer</a></li>
+                        <li class="pure-menu-item"><a href="/segmentlist" class="pure-menu-link">Recording List</a></li>
+                        <li class="pure-menu-item"><a href="/database" class="pure-menu-link">Database</a></li>
+                        <li class="pure-menu-item"><a href="/compare" class="pure-menu-link">Compare</a></li>
+                    </ul>
+                </li> 
+                <li class="pure-menu-item"><a href="index.html" class="pure-menu-link">Learn</a></li>
+                <li class="pure-menu-item pure-menu-item-alternate"><a href="#" class="pure-menu-link">About</a></li>
+            </ul>
+        </nav>
+        <!-- stylesheets for nav bar -->
+        <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+        <link rel="stylesheet" type="text/css" href="/css/purecss_custom.css">
+
+        {{> body}}
+
+    </body>
+</html>
+

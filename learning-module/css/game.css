@@ -1,0 +1,145 @@
+.game-view {
+
+}
+
+.game-view .score-panel {
+    width: 100%;
+    height: 45px;
+    text-transform: uppercase;
+    padding: 10px;
+    line-height: 32px;
+    font-size: 32px;
+    font-weight: 900;
+    color: #18501F;
+}
+
+.game-view .cards-container {
+    width: 100%;
+    height: 725px;
+}
+
+.game-view .cards-container::after {
+    display: table;
+    content: "";
+    clear: both;
+}
+
+.game-view .card:nth-child(1),
+.game-view .card:nth-child(5),
+.game-view .card:nth-child(9) {
+    margin-left: 50px;
+}
+
+.game-view .card:nth-child(4),
+.game-view .card:nth-child(8),
+.game-view .card:nth-child(12) {
+    margin-right: 50px;
+}
+
+.game-view .card {
+    position: relative;
+    width: 230px;
+    height: 185px;
+    margin: 10px 10px;
+    padding: 25px;
+    float: left;
+    background-image: url(../media/game/unselected-card.png);
+    background-size: 93%;
+    background-position: center;
+    cursor: pointer;
+}
+
+.game-view .selected-card {
+    background-image: url(../media/game/selected-card.png);
+    background-size: 93%;
+}
+
+.game-view .card .flipped-overlay {
+    display: none;
+}
+
+.game-view .flipped-card {
+
+}
+
+.game-view .flipped-card .flipped-overlay {
+    display: block;
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    top: 0;
+    left: 2;
+    z-index: 100;
+    background-image: url(../media/game/flipped-card.png);
+    background-size: 100%;
+    background-position: center;
+
+    cursor: default;
+}
+
+.game-view .image-card .image {
+    display: block;
+    margin: 15px;
+    border-radius: 20px;
+    width: 200px;
+    height: 200px;
+}
+
+.game-view .image-card img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.game-view .waveform-card .image {
+    display: block;
+    margin: 15px;
+    border-radius: 20px;
+    width: 200px;
+    height: 140px;
+    background-color: white;
+}
+
+.game-view .waveform-card img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.game-view .waveform-card .play-button {
+    display: block;
+    margin: 0 auto;
+    width: 45px;
+    height: 45px;
+}
+
+.game-view .spectrogram-card .image {
+    display: block;
+    margin: 15px;
+    border-radius: 20px;
+    width: 200px;
+    height: 200px;
+}
+
+.game-view .spectrogram-card img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.game-view .name-card .name {
+    width: 230px;
+    margin-top: 50px;
+    font-size: 26px;
+    font-weight: 900;
+    text-transform: uppercase;
+    text-align: center;
+    color: white;
+    word-break: keep-all;
+}
