@@ -1,6 +1,7 @@
 function GameView() {
     var view = this;
     view.container = $(".game-view");
+    view.answerContainer = view.container.find(".answer-card")
     view.cardContainer = view.container.find(".cards-container");
     view.scoreDisplay = view.container.find(".score-panel .score");
     view.level = 0;
@@ -10,6 +11,7 @@ function GameView() {
     view.waveSurfers = [];
     view.birdGuessCount = {};
     view.increasedSkillBirds = [];
+    
 
     // Hook button events
     view.container.find(".back-button").click(function (e) { view.onBackButtonPressed(); });
@@ -36,21 +38,21 @@ GameView.prototype.onLibraryButtonPressed = function()
 GameView.prototype.createNameCard = function(bird)
 {
     var card = $("<div>").attr("class", "card name-card").attr("data-id", bird.id).appendTo(this.cardContainer);
-    card.append($("<div>").attr("class", "flipped-overlay"));
+    //card.append($("<div>").attr("class", "flipped-overlay"));
     card.append($("<div>").attr("class", "name").text(bird.name));
 }
 
 GameView.prototype.createImageCard = function(bird)
 {
     var card = $("<div>").attr("class", "card image-card").attr("data-id", bird.id).appendTo(this.cardContainer);
-    card.append($("<div>").attr("class", "flipped-overlay"));
+    //card.append($("<div>").attr("class", "flipped-overlay"));
     card.append($("<div>").attr("class", "image").append($("<img>").attr("src", bird.photo).attr("alt", bird.name)));
 }
 
 GameView.prototype.createAudioCard = function(bird)
 {
-    var card = $("<div>").attr("class", "card waveform-card").attr("data-id", bird.id).appendTo(this.cardContainer);
-    card.append($("<div>").attr("class", "flipped-overlay"));
+    var card = $("<div>").attr("class", "card waveform-card").attr("data-id", bird.id).appendTo(this.answerContainer);
+    //card.append($("<div>").attr("class", "flipped-overlay"));
 
     var waveSurferElem = $("<div>").attr("class", "image").appendTo(card);
     waveSurferElem.click(function (e) {
@@ -79,7 +81,7 @@ GameView.prototype.createSpectrogramCard = function(bird)
     card.append($("<div>").attr("class", "image").append($("<img>").attr("src", bird.spectrogram).attr("alt", bird.name)));
 }
 
-GameView.prototype.createCardPair = function(sublevel, bird)
+/*GameView.prototype.createCardPair = function(sublevel, bird)
 {
     switch (sublevel)
     {
@@ -119,6 +121,11 @@ GameView.prototype.createCardPair = function(sublevel, bird)
             this.createSpectrogramCard(bird);
             break;
     }
+}*/
+
+//Creating the answer and buttons for guessing.
+GameView.prototype.createAnswerCard = function (bird){
+    this.createAudioCard(bird);
 }
 
 // level: 0-4, bird group
@@ -132,21 +139,46 @@ GameView.prototype.startGame = function (level, sublevel)
 
     // Get a new list of birds, and extract the subset of birds at this sub-level.
     var birdList = g_database.getBirdsForLevel(level);
-
+    // Create a shallow copy of the birdlist to be used for drawing answers out
+    var answerBirdList = birdList.slice();
+    
+    
     // Remove all cards from field
     this.container.find(".card").remove();
     this.birdGuessCount = {};
+    
+    //picks a random bird to be correct for this level
+    var correctBird = answerBirdList.splice([Math.floor(Math.random() * birdList.length)],1)[0];
+    
+    this.createAnswerCard(correctBird);
 
+    //creates the cards to be used for guessing
+    for (var i = 0; i < 6; i++){
+        var bird = birdList[i];
+        switch (sublevel){
+            case 1:
+                this.createImageCard(bird);
+                break;
+            case 2:
+                this.createNameCard(bird);
+                break;
+            case 3:
+                this.createSpectrogramCard(bird);
+                break;
+        }
+    }
+    
+    
     // Create 3 pairs of birds from the current set.
     // Use splice so we don't place the same bird in more than once.
     //EDITED THIS (Increased from 3 to 6)
     
-    for (var i = 0; i < 6; i++) {
+   /* for (var i = 0; i < 6; i++) {
         //var index = Math.floor(Math.random() * birdList.length);
         var bird = birdList[i];
         this.createCardPair(sublevel, bird);
         this.birdGuessCount[bird.id] = 0;
-    }
+    }*/
 
     // Shuffle the order of the cards.
     shuffleElements(this.cardContainer);
@@ -209,7 +241,7 @@ GameView.prototype.setScore = function(score)
     this.scoreDisplay.text(score);
 }
 
-GameView.prototype.matchCards = function(cardA, cardB)
+/*GameView.prototype.matchCards = function(cardA, cardB)
 {
     // Clear selected state
     cardA.removeClass("selected-card");
@@ -252,7 +284,7 @@ GameView.prototype.matchCards = function(cardA, cardB)
         this.birdGuessCount[cardAID] = this.birdGuessCount[cardAID] + 1;
         this.birdGuessCount[cardBID] = this.birdGuessCount[cardBID] + 1;
     }
-}
+}*/
 
 GameView.prototype.checkEndCondition = function()
 {
@@ -272,9 +304,21 @@ GameView.prototype.checkEndCondition = function()
 
 GameView.prototype.onCardClicked = function(card)
 {
+    if (parseInt(card.attr("data-id")) == parseInt(this.answerContainer.children("card waveform-card")[0].attr("data-id")))
+    {
+        //TODO Animations for moving bird forward
+        this.startNewRound();
+    }
+    else
+    {
+        // No match. TODO: Better feedback here.
+        alert("Not the right bird. Try again!");
+        //TODO animations for moving bird
+    }
+    
     // Same card clicked twice
     // [] needed because of dom object vs jquery object.
-    if (this.selectedCard && this.selectedCard[0] == card[0])
+    /*if (this.selectedCard && this.selectedCard[0] == card[0])
     {
         card.removeClass("selected-card");
         this.selectedCard = null;
@@ -297,7 +341,7 @@ GameView.prototype.onCardClicked = function(card)
     {
         // First of the pair
         this.selectedCard = card;
-    }
+    }*/
 }
 
 g_views.gameView = new GameView();
