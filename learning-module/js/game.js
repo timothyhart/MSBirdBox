@@ -4,6 +4,7 @@ function GameView() {
     view.answerContainer = view.container.find(".answer-card")
     view.cardContainer = view.container.find(".cards-container");
     view.scoreDisplay = view.container.find(".score-panel .score");
+    view.canvas = view.container.find("bird-box-canvas");
     view.level = 0;
     view.subLevel = 0;
     view.score = 0;
@@ -11,6 +12,9 @@ function GameView() {
     view.waveSurfers = [];
     view.birdGuessCount = {};
     view.increasedSkillBirds = [];
+    
+    view.isBirdLoaded = false;
+    view.img;
     
 
     // Hook button events
@@ -342,6 +346,25 @@ GameView.prototype.onCardClicked = function(card)
         // First of the pair
         this.selectedCard = card;
     }*/
+    
+}
+
+GameView.prototype.animateBird = function (){
+    if (!isBirdLoaded){
+        img = new Image(50,50);
+        img.src = "..\media\game\22079.jpg";
+        img.onload = function (){
+            isBirdLoaded = true;
+            this.animateBird();
+        }
+    }
+    if (view.canvas && isBirdLoaded){
+        var ctx = view.canvas.getContext("2d");
+        ctx.clearRect(0, 0, view.canvas.width, view.canvas.height);
+        var x = (view.canvas.width /6) * pos;
+        var y = view.canvas.height - 100;
+        ctx.drawImage(img, x, y);
+    }
 }
 
 g_views.gameView = new GameView();
