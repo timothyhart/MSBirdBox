@@ -4,7 +4,7 @@ function GameView() {
     view.answerContainer = view.container.find(".answer-card")
     view.cardContainer = view.container.find(".cards-container");
     view.scoreDisplay = view.container.find(".score-panel .score");
-    view.canvas = view.container.find("bird-box-canvas");
+    view.canvas = new fabric.Canvas('bird-box-canvas');
     view.level = 0;
     view.subLevel = 0;
     view.score = 0;
@@ -12,11 +12,10 @@ function GameView() {
     view.waveSurfers = [];
     view.birdGuessCount = {};
     view.increasedSkillBirds = [];
+    view.lives = 2;
     
-    view.isBirdLoaded = false;
     view.img;
     
-
     // Hook button events
     view.container.find(".back-button").click(function (e) { view.onBackButtonPressed(); });
     view.container.find(".library-button").click(function (e) { view.onLibraryButtonPressed(); });
@@ -137,6 +136,7 @@ GameView.prototype.createAnswerCard = function (bird){
 GameView.prototype.startGame = function (level, sublevel)
 {
     var view = this;
+    view.loadBirdImage();
     console.log("startGame level", level, "sublevel", sublevel);
     view.level = level;
     view.subLevel = sublevel;
@@ -310,16 +310,17 @@ GameView.prototype.onCardClicked = function(card)
 {
     if (parseInt(card.attr("data-id")) == parseInt(this.answerContainer.children("card waveform-card")[0].attr("data-id")))
     {
-        //TODO Animations for moving bird forward
+        lives++;
         this.startNewRound();
     }
     else
     {
         // No match. TODO: Better feedback here.
         alert("Not the right bird. Try again!");
-        //TODO animations for moving bird
+        lives--;
     }
     
+    this.animateBird();
     // Same card clicked twice
     // [] needed because of dom object vs jquery object.
     /*if (this.selectedCard && this.selectedCard[0] == card[0])
@@ -349,22 +350,27 @@ GameView.prototype.onCardClicked = function(card)
     
 }
 
-GameView.prototype.animateBird = function (){
-    if (!isBirdLoaded){
-        img = new Image(50,50);
-        img.src = "..\media\game\22079.jpg";
-        img.onload = function (){
-            isBirdLoaded = true;
-            this.animateBird();
+GameView.prototype.loadBirdImage = function(){
+        fabric.Image.fromURL(('rat.png'), function(oImg){
+                console.log("Loaded image");
+                oImg.set({width: 50, 
+                          height: 50, 
+                          left: (this.canvas.width/6 * this.lives), 
+                          top : this.canvas.height - 100,
+                          selectable: false
+                          });
+                this.canvas.add(oImg);
+            });
         }
-    }
-    if (view.canvas && isBirdLoaded){
-        var ctx = view.canvas.getContext("2d");
-        ctx.clearRect(0, 0, view.canvas.width, view.canvas.height);
-        var x = (view.canvas.width /6) * pos;
-        var y = view.canvas.height - 100;
-        ctx.drawImage(img, x, y);
-    }
 }
+
+GameView.prototype.animateBird = function (){  
+        var newLeft = this.canvas.width/6 * this.lives;
+        this.canvas.item(0).animate('left', newLeft, {
+            onChange: this.canvas.renderAll.bind(this.canvas),
+            duration: 1000,
+            easing: fabric.util.ease.easeInBounce
+        });
+    }
 
 g_views.gameView = new GameView();
