@@ -18,6 +18,7 @@ function GameView() {
     // Hook button events
     view.container.find(".back-button").click(function (e) { view.onBackButtonPressed(); });
     view.container.find(".library-button").click(function (e) { view.onLibraryButtonPressed(); });
+    console.log("\'view\' is loaded");
 }
 
 GameView.prototype.onBackButtonPressed = function ()
@@ -134,11 +135,14 @@ GameView.prototype.createAnswerCard = function (bird){
 // sublevel: 0 - name/pic, 1 - name/waveform, etc...
 GameView.prototype.startGame = function (level, sublevel)
 {
-    //var view = this;
+    console.log(this);
+    var view = this;
     view.loadBirdImage();
     console.log("startGame level", level, "sublevel", sublevel);
     view.level = level;
     view.subLevel = sublevel;
+    
+    console.log(view.level);
 
     // Get a new list of birds, and extract the subset of birds at this sub-level.
     view.birdList = g_database.getBirdsForLevel(level);
@@ -357,16 +361,16 @@ GameView.prototype.onCardClicked = function(card)
 }
 
 GameView.prototype.loadBirdImage = function(){
-    console.log(view.canvas);
+    var view = this;
     fabric.Image.fromURL(/*TODO find and bird image*/"something.jpg", function(oImg){
             console.log("Loaded image");
             oImg.set({width: 50, 
                       height: 50, 
-                      left: (view.canvas.getWidth()/6 * this.lives), 
+                      left: (view.canvas.width/6 * this.lives), 
                       top : view.canvas.height - 100,
                       selectable: false,
                       });
-            this.canvas.add(oImg);
+            view.canvas.add(oImg);
     });
 }
 
