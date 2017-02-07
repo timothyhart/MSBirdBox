@@ -143,3 +143,8 @@
     color: white;
     word-break: keep-all;
 }
+
+.game-view .answer-card {
+    width: 100%;
+    height: 200px;
+}

@@ -362,7 +362,7 @@ GameView.prototype.onCardClicked = function(card)
 
 GameView.prototype.loadBirdImage = function(){
     var view = this;
-    fabric.Image.fromURL(/*TODO find and bird image*/"something.jpg", function(oImg){
+    fabric.Image.fromURL("../learning-module-assets/Lori.png", function(oImg){
             console.log("Loaded image");
             oImg.set({width: 50, 
                       height: 50, 

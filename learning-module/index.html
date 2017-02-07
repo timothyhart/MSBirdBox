@@ -194,7 +194,7 @@
         <div class="base-view game-view">
             <div class="view-header">
                 <button class="left-button back-button"></button>
-                <div class="view-title">Match the pairs</div>
+                <div class="view-title">Identify the birdcall!</div>
                 <button class="right-button library-button"></button>
             </div>
 
@@ -205,11 +205,12 @@
                 
                 <div class="answer-card"></div>
                 <!-- populated by JS-->
+                <canvas id="bird-box-canvas"></canvas>
+                <!-- Canvas for the drawing/animating of bird -->
                 <div class="cards-container">
                     <!-- Populated by JS -->
                 </div>
-                <canvas id="bird-box-canvas"></canvas>
-                <!-- Canvas for the drawing/animating of bird -->
+                
             </div>
         </div>
 
@@ -291,7 +292,7 @@
 
     <script>
         // Change to the view you are working on when developing
-        switchView(g_views.titleView);
+        switchView(g_views.gameView);
         //setTimeout(function () { g_views.gameView.startGame(0, 0) }, 100);
         //setTimeout(function () { g_views.libraryView.open(); }, 100);
         //setTimeout(function () { g_views.libraryView.openPopup(g_database.getBirdList()[0]); }, 100);
