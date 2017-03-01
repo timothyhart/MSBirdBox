@@ -27,7 +27,7 @@
 <body>
     <!-- Navigation bar -->
     <nav class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
-      <a href="../prototype/Admin-panel/index.php" class="pure-menu-heading">B<sup>4</sup></a>
+      <a href="../prototype/Admin-panel/index.php" class="pure-menu-heading">AB<sup>3</sup></a>
       <ul class="pure-menu-list">
             <li class="pure-menu-item"><a href="../prototype/Admin-panel/brisbanebirds.php" class="pure-menu-link">Administrate</a></li>
             <li class="pure-menu-item pure-menu-item-alternate"><a href="" class="pure-menu-link">Record</a></li>
@@ -202,10 +202,10 @@
                 <div class="score-panel">
                     Score: <span class="score"></span>
                 </div>
-                
+                <canvas id="bird-box-canvas"></canvas>
                 <div class="answer-card"></div>
                 <!-- populated by JS-->
-                <canvas id="bird-box-canvas"></canvas>
+                
                 <!-- Canvas for the drawing/animating of bird -->
                 <div class="cards-container">
                     <!-- Populated by JS -->
@@ -292,7 +292,7 @@
 
     <script>
         // Change to the view you are working on when developing
-        switchView(g_views.gameView);
+        switchView(g_views.titleView);
         //setTimeout(function () { g_views.gameView.startGame(0, 0) }, 100);
         //setTimeout(function () { g_views.libraryView.open(); }, 100);
         //setTimeout(function () { g_views.libraryView.openPopup(g_database.getBirdList()[0]); }, 100);

@@ -7,7 +7,8 @@
 // set global variables
 $GLOBALS['config'] = array(
     'mysql' => array(
-        'host' => '127.0.0.1:20000',
+        'host' => 'localhost',
+        'port' => '3306',
         'username' => 'birdbox',
         'password' => 'birdbox',
         'db' => 'birdbox'

@@ -14,6 +14,7 @@ function GameView() {
     view.increasedSkillBirds = [];
     view.lives = 2;
     view.answerBirdList = {};
+    view.answerBird = 0;
         
     // Hook button events
     view.container.find(".back-button").click(function (e) { view.onBackButtonPressed(); });
@@ -72,6 +73,7 @@ GameView.prototype.createAudioCard = function(bird)
 
     var playButton = $("<button>").attr("class", "play-button").appendTo(card);
     playButton.click(function (e) {
+console.log("should be playing");
         e.stopPropagation();
         waveSurfer.playPause();
     });
@@ -141,8 +143,6 @@ GameView.prototype.startGame = function (level, sublevel)
     console.log("startGame level", level, "sublevel", sublevel);
     view.level = level;
     view.subLevel = sublevel;
-    
-    console.log(view.level);
 
     // Get a new list of birds, and extract the subset of birds at this sub-level.
     view.birdList = g_database.getBirdsForLevel(level);
@@ -151,8 +151,10 @@ GameView.prototype.startGame = function (level, sublevel)
     
     
     // Remove all cards from field
-    this.container.find(".card").remove();
+    
     this.birdGuessCount = {};
+    
+    view.startNewRound();
         
     /*// Create 3 pairs of birds from the current set.
     // Use splice so we don't place the same bird in more than once.
@@ -168,22 +170,25 @@ GameView.prototype.startGame = function (level, sublevel)
 
 GameView.prototype.startNewRound = function(){
     
+    var view = this;
+this.container.find(".card").remove();
     //picks a random bird to be correct for this level
-    var correctBird = answerBirdList.splice([Math.floor(Math.random() * birdList.length)],1)[0];
-    
+    var correctBird = this.answerBirdList.splice([Math.floor(Math.random() * this.birdList.length)],1)[0];
+    view.answerBird = correctBird.id;
     this.createAnswerCard(correctBird);
 
     //creates the cards to be used for guessing
     for (var i = 0; i < 6; i++){
-        var bird = birdList[i];
-        switch (this.sublevel){
-            case 1:
+        var bird = this.birdList[i];
+        switch (view.subLevel){
+            case 0:
+console.log("making bird image card")
                 this.createImageCard(bird);
                 break;
-            case 2:
+            case 1:
                 this.createNameCard(bird);
                 break;
-            case 3:
+            case 2:
                 this.createSpectrogramCard(bird);
                 break;
         }
@@ -297,8 +302,9 @@ GameView.prototype.setScore = function(score)
 
 GameView.prototype.checkEndCondition = function()
 {
+    var view = this;
     // Simple, check to see if all birds have been answered
-    if (answerBirdList.length <= 0)
+    if (view.answerBirdList.length <= 0)
     {
         
         // DEBUG: dump out guesses for each bird
@@ -314,20 +320,23 @@ GameView.prototype.checkEndCondition = function()
 }
 
 GameView.prototype.onCardClicked = function(card)
-{
-    if (parseInt(card.attr("data-id")) == parseInt(this.answerContainer.children("card waveform-card")[0].attr("data-id")))
+{ 
+    var view = this;
+    console.log(view.answerBird);
+    if (parseInt(card.attr("data-id")) == view.answerBird)
     {
-        lives++;
+        this.lives++;
         this.animateBird();
+	this.animateBird();
         this.checkEndCondition();
     }
     else
     {
         // No match. TODO: Better feedback here.
         alert("Not the right birb. Try again!");
-        lives--;
+        this.lives--;
         this.animateBird();
-        card.attr("selectable") = false;
+        //card.attr("selectable") = false;
     }
     
     
@@ -362,11 +371,11 @@ GameView.prototype.onCardClicked = function(card)
 
 GameView.prototype.loadBirdImage = function(){
     var view = this;
-    fabric.Image.fromURL("../learning-module-assets/Lori.png", function(oImg){
-            console.log("Loaded image");
-            oImg.set({width: 50, 
-                      height: 50, 
-                      left: (view.canvas.width/6 * this.lives), 
+    fabric.Image.fromURL("../learning-module/media/game/22079.jpg", function(oImg){
+            console.log(view.lives);
+            oImg.set({width: 100, 
+                      height: 100, 
+                      left: (view.canvas.width/6 * view.lives), 
                       top : view.canvas.height - 100,
                       selectable: false,
                       });
@@ -375,7 +384,9 @@ GameView.prototype.loadBirdImage = function(){
 }
 
 GameView.prototype.animateBird = function (){  
-    var newLeft = this.canvas.width/6 * this.lives;
+    var view = this;
+    var newLeft = this.canvas.width/6 * view.lives;
+console.log(this.canvas.item(0));
     this.canvas.item(0).animate('left', newLeft, {
         onChange: this.canvas.renderAll.bind(this.canvas),
         duration: 1000,

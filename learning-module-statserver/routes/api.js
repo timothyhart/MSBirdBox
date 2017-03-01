@@ -3,7 +3,7 @@ var express = require('express');
 var router = express.Router();
 
 // GET: /api/session
-router.get('/session', function(req, res) {
+router.get('/session', function(req, res, err) {
     // Populate state.
     var state = {};
     state.loggedIn = req.isAuthenticated();
@@ -12,6 +12,7 @@ router.get('/session', function(req, res) {
     }
 
     res.json(state);
+	console.log(err);
 });
 
 // GET: /api/birdskill
