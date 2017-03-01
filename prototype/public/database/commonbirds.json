@@ -1,0 +1,72 @@
+[
+    {
+        "birdID": "4",
+        "name": "Australian Magpie",
+        "speciesName": "Cracticus tibicen",
+        "description": "The Australian Magpie is a medium-sized black and white bird native to Australia and southern New Guinea The adult Australian magpie is a fairly robust bird ranging from 37 to 43 cm in length. With its long legs, the Australian magpie walks rather than waddles or hops and spends much time on the ground.",
+        "source1": "https:\/\/en.wikipedia.org\/wiki\/Australian_magpie",
+        "source2": "",
+        "photo": "australian-magpie.jpg",
+        "photoSource": "'Australian Magpie RWD' by DickDaniels (http:\/\/carolinabirds.org\/) - Own work. Licensed under CC BY-SA 3.0 via Wikimedia Commons - https:\/\/commons.wikimedia.org\/wiki\/File:Australian_Magpie_RWD.jpg#\/media\/File:Australian_Magpie_RWD.jpg",
+        "trophycall": "_blank.ogg",
+        "trophycallSource": "By Marc Anderson [CC BY-NC-ND], via http:\/\/www.xeno-canto.org\/269668",
+        "envirocall": null,
+        "common": "1"
+    },
+    {
+        "birdID": "9",
+        "name": "Common Myna",
+        "speciesName": "Acridotheres tristis",
+        "description": "The Common Myna is an omnivorous open woodland bird with a strong territorial, instinct, the Common Myna has adapted extremely well to urban environments. The Common Myna is readily identified by the brown body, black hooded head and bare yellow patch behind the eye. The average body length is 23 cm.",
+        "source1": "https:\/\/en.wikipedia.org\/wiki\/Common_myna",
+        "source2": "http:\/\/www.birdsinbackyards.net\/species\/Sturnus-tristis",
+        "photo": "common-myna.jpg",
+        "photoSource": "'Acridotheres tristis'. Licensed under CC BY-SA 2.5 via Wikimedia Commons - https:\/\/commons.wikimedia.org\/wiki\/File:Acridotheres_tristis.jpg#\/media\/File:Acridotheres_tristis.jpg",
+        "trophycall": "Common-Myna.ogg",
+        "trophycallSource": "By Krzysztof Deoniziak [CC BY-NC-ND], via http:\/\/www.xeno-canto.org\/269911",
+        "envirocall": null,
+        "common": "1"
+    },
+    {
+        "birdID": "12",
+        "name": "Grey Butcherbird",
+        "speciesName": "Cracticus torquatus",
+        "description": "The Grey Butcherbird is native to Australia. It can be encountered in the suburbs of many Australian cities including Sydney and Brisbane. The Grey Butcherbird preys on small vertebrates including other birds.",
+        "source1": "https:\/\/en.wikipedia.org\/wiki\/Grey_butcherbird",
+        "source2": "http:\/\/www.birdsinbackyards.net\/species\/Cracticus-torquatus",
+        "photo": "grey-butcherbird.jpg",
+        "photoSource": "By Tatiana Gerus (originally posted to Flickr as Grey butcherbird) [CC BY 2.0 (http:\/\/creativecommons.org\/licenses\/by\/2.0)], via Wikimedia Commons - https:\/\/commons.wikimedia.org\/wiki\/File%3AGrey_butcherbird_2.jpg",
+        "trophycall": "Grey-Butcherbird.ogg",
+        "trophycallSource": "By Marc Anderson [CC BY-NC-ND], via http:\/\/www.xeno-canto.org\/269686",
+        "envirocall": null,
+        "common": "1"
+    },
+    {
+        "birdID": "17",
+        "name": "Rainbow Lorikeet",
+        "speciesName": "Trichoglossus moluccanus",
+        "description": "The Rainbow Lorikeet is a species of parrot found in Australia. It is a medium-sized parrot with the length ranging from 25 to 30 cm (including the tail). The plumage is very bright and colourful.",
+        "source1": "https:\/\/en.wikipedia.org\/wiki\/Rainbow_lorikeet",
+        "source2": "http:\/\/www.birdsinbackyards.net\/species\/Trichoglossus-haematodus",
+        "photo": "rainbow-lorikeet.jpg",
+        "photoSource": "'Green-NapedLorikeet' by User:Cacophony - Own work. Licensed under CC BY 2.5 via Wikimedia Commons - https:\/\/commons.wikimedia.org\/wiki\/File:Green-NapedLorikeet.jpg#\/media\/File:Green-NapedLorikeet.jpg",
+        "trophycall": "Rainbow-Lorikeet.ogg",
+        "trophycallSource": "By Marc Anderson [CC BY-NC-ND], via http:\/\/www.xeno-canto.org\/283310",
+        "envirocall": null,
+        "common": "1"
+    },
+    {
+        "birdID": "21",
+        "name": "Sulphur-crested Cockatoo",
+        "speciesName": "Cacatua galerita",
+        "description": "The Sulphur-crested Cockatoo is a large white cockatoo found in wooded habitats in Australia and New Guinea and some of the islands of Indonesia. It has a total length of 44 to 55 cm. The plumage is overall white with a yellow crest.",
+        "source1": "https:\/\/en.wikipedia.org\/wiki\/Sulphur-crested_cockatoo",
+        "source2": "http:\/\/www.birdsinbackyards.net\/species\/Cacatua-galerita",
+        "photo": "sulphur-crested-cockatoo.jpg",
+        "photoSource": "By Greg Ebbott, aka Greg ebbott at en.wikipedia (Own work) [Public domain], via Wikimedia Commons - https:\/\/commons.wikimedia.org\/wiki\/File%3ASulphur-crested_Cockatoo_1.jpg",
+        "trophycall": "Sulphur-crested-Cockatoo.ogg",
+        "trophycallSource": "By Krzysztof Deoniziak [CC BY-NC-ND], via http:\/\/www.xeno-canto.org\/269917",
+        "envirocall": null,
+        "common": "1"
+    }
+]

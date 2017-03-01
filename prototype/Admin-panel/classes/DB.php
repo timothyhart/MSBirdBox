@@ -11,7 +11,7 @@ class DB{
     // creates PDO object based on global db variables (see init.php)
     private function __construct(){
         try{
-            $this->_pdo = new PDO('mysql:host=' . Config::get('mysql/host') . ';dbname=' . Config::get('mysql/db'),
+            $this->_pdo = new PDO('mysql:host=' . Config::get('mysql/host') . ';port=' . Config::get('mysql/port') . ';dbname=' . Config::get('mysql/db'),
                 Config::get('mysql/username'),
                 Config::get('mysql/password'));
         }catch(PDOException $e){
