@@ -164,6 +164,8 @@ GameView.prototype.startGame = function (level, sublevel)
         this.createCardPair(sublevel, bird);
         this.birdGuessCount[bird.id] = 0;
     }*/
+    
+    switchView(g_views.gameView);
 }
 
 GameView.prototype.startNewRound = function(){
