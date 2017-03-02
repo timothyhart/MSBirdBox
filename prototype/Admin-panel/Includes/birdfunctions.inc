@@ -68,7 +68,7 @@ function getMostCommonbirds(&$birdIds, &$birdPhotos, &$birdNames, &$birdSpeciesN
 			$birdsArray[] = $birds->results()[$bird];
 		}
         
-        console.log("Inside include file")
+      
 
 		// Apparently there are malformed characters in the data we're getting back.
 		// This causes json_encode to return an empty string, (and hide an error in json_last_error()).

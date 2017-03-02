@@ -2,10 +2,10 @@
 module.exports = {
     'connection': {
         'host': 'localhost',
-        'user': 'bbstats',
-        'password': 'bbstats'
+        'user': 'birdbox',
+        'password': 'birdbox'
     },
-	'database': 'bbstats',
+	'database': 'birdbox',
     'users_table': 'users'
 };
 
