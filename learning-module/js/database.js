@@ -7,8 +7,6 @@ Database.prototype.load = function ()
     var baseUrl = "../prototype/public/database";
     var listUrl = "../prototype/Admin-panel/exportdata.php";
     var birds = this.birds;
-console.log("DATABASE:");
-console.log(g_database.getBirdList());
     $.getJSON(listUrl, function (data) {
         $.each(data, function (key, value) {
             // temporary rename until these field names are synced w/ database
