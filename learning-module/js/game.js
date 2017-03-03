@@ -394,6 +394,8 @@ GameView.prototype.loadGameImages = function(){
                  });
         view.canvas.add(oImg);
     });
+    
+    view.canvas.renderAll();
 }
 
 GameView.prototype.animateBird = function (){  
