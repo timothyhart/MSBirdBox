@@ -140,7 +140,7 @@ GameView.prototype.startGame = function (level, sublevel)
 {
     console.log(this);
     var view = this;
-    view.loadBirdImage();
+    view.loadGameImages();
     console.log("startGame level", level, "sublevel", sublevel);
     view.level = level;
     view.subLevel = sublevel;
@@ -372,10 +372,9 @@ GameView.prototype.onCardClicked = function(card)
     
 }
 
-GameView.prototype.loadBirdImage = function(){
+GameView.prototype.loadGameImages = function(){
     var view = this;
     fabric.Image.fromURL("../learning-module/media/game/22079.jpg", function(oImg){
-            console.log(view.lives);
             oImg.set({width: 100, 
                       height: 100, 
                       left: (view.canvas.width/6 * view.lives), 
@@ -384,6 +383,16 @@ GameView.prototype.loadBirdImage = function(){
                       });
             view.canvas.add(oImg);
     });
+    
+    fabric.Image.fromURL("../learning-modue/media/game/mango.svg", function  (oImg){
+        oImg.set({width: 70,
+                  height: 100,
+                  right: view.canvas.width,
+                  bottom: view.canvas.height,
+                  selectable: false
+                 });
+        view.canvas.add(oImg);
+    })
 }
 
 GameView.prototype.animateBird = function (){  
