@@ -388,8 +388,8 @@ GameView.prototype.loadGameImages = function(){
         oImg.set({
                   width: 70,
                   height: 100,
-                  right: view.canvas.width,
-                  bottom: view.canvas.height,
+                  right: 0,
+                  bottom: 0,
                   selectable: false
                  });
         view.canvas.add(oImg);
