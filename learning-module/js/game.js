@@ -1,7 +1,8 @@
 function GameView() {
     var view = this;
     view.canvas = new fabric.Canvas('bird-box-canvas');
-    view.canvas.setDimensions({width: 100%, height: 200});
+    view.canvas.setHeight(200);
+    view.canvas.setWidth(window.innerWidth);
     view.container = $(".game-view");
     view.answerContainer = view.container.find(".answer-card")
     view.cardContainer = view.container.find(".cards-container");
