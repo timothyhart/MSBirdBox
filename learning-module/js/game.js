@@ -331,6 +331,7 @@ GameView.prototype.onCardClicked = function(card)
     if (parseInt(card.attr("data-id")) == view.answerBird)
     {
         this.lives++;
+        this.lives = this.lives >= 7 ? 6 : this.lives;
         this.animateBird();
 	this.animateBird();
         this.checkEndCondition();
