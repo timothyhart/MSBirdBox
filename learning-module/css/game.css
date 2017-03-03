@@ -149,4 +149,5 @@
 .game-view .answer-card {
     width: 100%;
     height: 200px;
+    padding-top: 50px;
 }
