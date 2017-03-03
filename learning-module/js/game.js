@@ -385,7 +385,7 @@ GameView.prototype.loadGameImages = function(){
     });
     
     fabric.Image.fromURL("../learning-module/media/game/mango.png", function(oImg){
-        var oImg.set({
+        oImg.set({
                   width: 70,
                   height: 100,
                   right: view.canvas.width,
