@@ -385,7 +385,7 @@ GameView.prototype.loadGameImages = function(){
             view.canvas.add(oImg);
     });
     
-    fabric.loadSVGfromURL("../learning-modue/media/game/mango.svg", function  (objects){
+    fabric.loadSVGFromURL("../learning-modue/media/game/mango.svg", function  (objects){
         var group = new fabric.PathGroup(objects,
                  {width: 70,
                   height: 100,
