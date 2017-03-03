@@ -186,7 +186,6 @@ this.container.find(".card").remove();
         var bird = this.birdList[i];
         switch (view.subLevel){
             case 0:
-console.log("making bird image card")
                 this.createImageCard(bird);
                 break;
             case 1:
@@ -396,7 +395,7 @@ GameView.prototype.loadGameImages = function(){
         view.canvas.add(objects);
         view.canvas.renderAll();
     });*/
-    fabric.loadSVGFromString("../learning-modue/media/game/mango.svg", function(objects, options) {
+    fabric.loadSVGFromString("../learning-module/media/game/mango.svg", function(objects, options) {
     var obj = fabric.util.groupSVGElements(objects, options);
     view.canvas.add(obj).renderAll();
   });
