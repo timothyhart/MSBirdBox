@@ -178,6 +178,7 @@ GameView.prototype.startNewRound = function(){
 this.container.find(".card").remove();
     //picks a random bird to be correct for this level
     var correctBird = this.answerBirdList.splice([Math.floor(Math.random() * this.birdList.length)],1)[0];
+    console.log(correctBird.name);
     view.answerBird = correctBird.id;
     this.createAnswerCard(correctBird);
 
@@ -307,6 +308,7 @@ GameView.prototype.checkEndCondition = function()
 {
     var view = this;
     // Simple, check to see if all birds have been answered
+    console.log(view.answerBirdList.length);
     if (view.answerBirdList.length <= 0)
     {
         
@@ -324,8 +326,8 @@ GameView.prototype.checkEndCondition = function()
 
 GameView.prototype.onCardClicked = function(card)
 { 
+    
     var view = this;
-    console.log(view.answerBird);
     if (parseInt(card.attr("data-id")) == view.answerBird)
     {
         this.lives++;
@@ -388,8 +390,8 @@ GameView.prototype.loadGameImages = function(){
         oImg.set({
                   width: 70,
                   height: 100,
-                  right: 0,
-                  bottom: 0,
+                  left: view.canvas.width - 70,
+                  top: view.canvas.height - 100,
                   selectable: false
                  });
         view.canvas.add(oImg);
@@ -401,7 +403,6 @@ GameView.prototype.loadGameImages = function(){
 GameView.prototype.animateBird = function (){  
     var view = this;
     var newLeft = this.canvas.width/6 * view.lives;
-console.log(this.canvas.item(0));
     this.canvas.item(0).animate('left', newLeft, {
         onChange: this.canvas.renderAll.bind(this.canvas),
         duration: 1000,
