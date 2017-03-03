@@ -385,15 +385,16 @@ GameView.prototype.loadGameImages = function(){
             view.canvas.add(oImg);
     });
     
-    fabric.Image.fromURL("../learning-modue/media/game/mango.svg", function  (oImg){
-        oImg.set({width: 70,
+    fabric.loadSVGfromURL("../learning-modue/media/game/mango.svg", function  (objects){
+        var group = new fabric.PathGroup(objects,
+                 {width: 70,
                   height: 100,
                   right: view.canvas.width,
                   bottom: view.canvas.height,
                   selectable: false
                  });
-        view.canvas.add(oImg);
-    })
+        view.canvas.add(objects);
+    });
 }
 
 GameView.prototype.animateBird = function (){  
