@@ -177,7 +177,7 @@ GameView.prototype.startNewRound = function(){
     var view = this;
 this.container.find(".card").remove();
     //picks a random bird to be correct for this level
-    var randBirdIndex = Math.floor(Math.random() * this.birdList.length)
+    var randBirdIndex = Math.floor(Math.random() * (this.birdList.length-1));
     console.log(randBirdIndex);
     var correctBird = this.answerBirdList.splice(randBirdIndex,1)[0];
     console.log(correctBird);
