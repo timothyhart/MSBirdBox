@@ -394,6 +394,7 @@ GameView.prototype.loadGameImages = function(){
                   selectable: false
                  });
         view.canvas.add(objects);
+        view.canvas.renderAll();
     });
 }
 
