@@ -384,21 +384,16 @@ GameView.prototype.loadGameImages = function(){
             view.canvas.add(oImg);
     });
     
-    fabric.loadSVGFromURL("../learning-module/media/game/mango.svg", function  (objects){
-        var group = new fabric.PathGroup(objects,
-                 {width: 70,
+    fabric.Image.fromURL("../learning-module/media/game/mango.png", function(oImg){
+        var oImg.set({
+                  width: 70,
                   height: 100,
                   right: view.canvas.width,
                   bottom: view.canvas.height,
                   selectable: false
                  });
-        view.canvas.add(objects);
-        view.canvas.renderAll();
+        view.canvas.add(oImg);
     });
-/*    fabric.loadSVGFromString("../learning-module/media/game/mango.svg", function(objects, options) {
-    var obj = fabric.util.groupSVGElements(objects, options);
-    view.canvas.add(obj).renderAll();
-  });*/
 }
 
 GameView.prototype.animateBird = function (){  
