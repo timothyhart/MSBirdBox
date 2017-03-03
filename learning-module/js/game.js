@@ -398,7 +398,7 @@ GameView.prototype.loadGameImages = function(){
     });*/
     fabric.loadSVGFromString("../learning-modue/media/game/mango.svg", function(objects, options) {
     var obj = fabric.util.groupSVGElements(objects, options);
-    canvas.add(obj).renderAll();
+    view.canvas.add(obj).renderAll();
   });
 }
 
