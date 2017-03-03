@@ -384,7 +384,7 @@ GameView.prototype.loadGameImages = function(){
             view.canvas.add(oImg);
     });
     
-/*    fabric.loadSVGFromURL("../learning-modue/media/game/mango.svg", function  (objects){
+    fabric.loadSVGFromURL("../learning-module/media/game/mango.svg", function  (objects){
         var group = new fabric.PathGroup(objects,
                  {width: 70,
                   height: 100,
@@ -394,11 +394,11 @@ GameView.prototype.loadGameImages = function(){
                  });
         view.canvas.add(objects);
         view.canvas.renderAll();
-    });*/
-    fabric.loadSVGFromString("../learning-module/media/game/mango.svg", function(objects, options) {
+    });
+/*    fabric.loadSVGFromString("../learning-module/media/game/mango.svg", function(objects, options) {
     var obj = fabric.util.groupSVGElements(objects, options);
     view.canvas.add(obj).renderAll();
-  });
+  });*/
 }
 
 GameView.prototype.animateBird = function (){  
