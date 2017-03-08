@@ -178,7 +178,7 @@ GameView.prototype.startNewRound = function(){
 this.container.find(".card").remove();
     //picks a random bird to be correct for this level
     var randBirdIndex = Math.floor(Math.random() * (this.birdList.length-1));
-    console.log(randBirdIndex);
+    console.log(this.answerBirdList[randBirdIndex]);
     var correctBird = this.answerBirdList.splice(randBirdIndex,1)[0];
     console.log(correctBird);
     view.answerBird = correctBird.id;
@@ -335,7 +335,8 @@ GameView.prototype.onCardClicked = function(card)
         this.lives++;
         this.lives = this.lives >= 7 ? 6 : this.lives;
         this.animateBird();
-	this.animateBird();
+        this.destroyWaveSurfers();
+        this.setScore(this.score + (10*this.lives));
         this.checkEndCondition();
     }
     else
@@ -344,6 +345,9 @@ GameView.prototype.onCardClicked = function(card)
         alert("Not the right birb. Try again!");
         this.lives--;
         this.animateBird();
+        if(this.lives <= 0){
+            this.endGame(false);
+        }
         //card.attr("selectable") = false;
     }
     
