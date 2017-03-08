@@ -9,6 +9,13 @@ body {
     display: none;
 }
 
+.superscript{
+font-size:80%;
+position:super;
+vertical-align:top;
+}
+
+
 .active-view {
     display: block;
 }

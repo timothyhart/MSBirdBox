@@ -4,12 +4,12 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>B4 Recording Box</title>
+	<title>AB³ Recording Box</title>
         <link href="css/ext/bootstrap.min.css" rel="stylesheet">
         <link href="css/ext/toastr.min.css" rel="stylesheet">
         <link href="css/ext/font-awesome.min.css" rel="stylesheet">
-        <link href="css/view.css" rel="stylesheet">
         <script src="js/ext/jquery-2.2.0.min.js"></script>
+	<link href="css/view.css" rel="stylesheet">
         <script src="js/ext/bootstrap.min.js"></script>
         <script src="js/ext/bootbox.min.js"></script>
         <script src="js/ext/moment-with-locales.min.js"></script>
@@ -33,7 +33,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a id="nav-status-page" class="navbar-brand" href="#status-page">B<sup>4</sup></a>
+                    <a id="nav-status-page" class="navbar-brand" href="#status-page">AB<sup>3</sup></a>
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
@@ -41,6 +41,7 @@
                         <li id="nav-recording-viewer"><a href="#recording-viewer">Recording Viewer</a></li>
                         <li id="nav-database-page"><a href="#database">Database</a></li>
                         <li id="nav-settings-page"><a href="#settings/tab=recording">Settings</a></li>
+			<li id="nav-settings-page"><a href="MSBirdBox" onclick="javascript:event.target.port=80">Back To Game Module</a></li>
                     </ul>
                 </div>
             </div>
@@ -54,15 +55,15 @@
                         <div class="col-md-12">
                             <div class="summary">
                                 <div class="status-perfect">
-                                    Your B<sup>4</sup> box is <strong>currently recording.</strong>
+                                    Your AB<sup>3</sup> box is <strong>currently recording.</strong>
                                 </div>
                                 
                                 <div class="status-reduced">
-                                    Your B<sup>4</sup> box is <strong>currently idle.</strong> There is a recording scheduled, however.
+                                    Your AB<sup>3</sup> box is <strong>currently idle.</strong> There is a recording scheduled, however.
                                 </div>
                                 
                                 <div class="status-critical">
-                                    Your B<sup>4</sup> box is <strong>currently idle.</strong> There is no schedule defined, so no recording will occur unless manually initiated.<br>
+                                    Your AB<sup>3</sup> box is <strong>currently idle.</strong> There is no schedule defined, so no recording will occur unless manually initiated.<br>
                                     You can change this by altering the <a href="#settings/tab=schedule">schedule</a>.
                                 </div>
                             </div>
@@ -356,7 +357,7 @@
                                 <div class="tab-content">
                                     <!-- Recording settings tab -->
                                     <div class="tab-pane active recording">
-                                        <h5>These options control the behavior of the B<sup>4</sup> box when it is recording audio.</h5>
+                                        <h5>These options control the behavior of the AB<sup>3</sup> box when it is recording audio.</h5>
                                         
                                         <div class="form-horizontal">
                                             <div class="form-group sm-bottom-margin">
@@ -437,7 +438,7 @@
                                     
                                     <!-- Advanced tab -->
                                     <div class="tab-pane advanced">
-                                        <h5>These options control advanced behavior of the B<sup>4</sup> box. Do not change unless you are sure what you are doing.</h5>
+                                        <h5>These options control advanced behavior of the AB<sup>3</sup> box. Do not change unless you are sure what you are doing.</h5>
                                         
                                         <div class="form-horizontal">                                           
                                             <div class="form-group sm-bottom-margin">
