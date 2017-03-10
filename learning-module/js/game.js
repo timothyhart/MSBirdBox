@@ -51,8 +51,9 @@ GameView.prototype.createImageCard = function(bird)
 {
     var card = $("<div>").attr("class", "card image-card").attr("data-id", bird.id).appendTo(this.cardContainer);
     //card.append($("<div>").attr("class", "flipped-overlay"));
-    card.append($("<div>").attr("class", "image").append($("<img>").attr("src", bird.photo).attr("alt", bird.name)));
     card.append($("<div>").attr("class", "name").text(bird.name));
+    card.append($("<div>").attr("class", "image").append($("<img>").attr("src", bird.photo).attr("alt", bird.name)));
+    
 }
 
 GameView.prototype.createAudioCard = function(bird)
