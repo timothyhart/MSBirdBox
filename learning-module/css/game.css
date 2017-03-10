@@ -154,3 +154,14 @@
     margin-right: 0 auto;
     margin-left: 0 auto;
 }
+
+.game-view .name {
+    width: 230px;
+    margin-top: 50px;
+    font-size: 26px;
+    font-weight: 900;
+    text-transform: uppercase;
+    text-align: center;
+    color: yellow;
+    word-break: keep-all;
+}
