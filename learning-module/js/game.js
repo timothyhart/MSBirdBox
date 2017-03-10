@@ -21,7 +21,6 @@ function GameView() {
     // Hook button events
     view.container.find(".back-button").click(function (e) { view.onBackButtonPressed(); });
     view.container.find(".library-button").click(function (e) { view.onLibraryButtonPressed(); });
-    console.log("\'view\' is loaded");
 }
 
 GameView.prototype.onBackButtonPressed = function ()
@@ -53,7 +52,7 @@ GameView.prototype.createImageCard = function(bird)
     var card = $("<div>").attr("class", "card image-card").attr("data-id", bird.id).appendTo(this.cardContainer);
     //card.append($("<div>").attr("class", "flipped-overlay"));
     card.append($("<div>").attr("class", "image").append($("<img>").attr("src", bird.photo).attr("alt", bird.name)));
-    card.append($("<div>").attr("class", "name".text(bird.name)));
+    card.append($("<div>").attr("class", "name").text(bird.name));
 }
 
 GameView.prototype.createAudioCard = function(bird)
