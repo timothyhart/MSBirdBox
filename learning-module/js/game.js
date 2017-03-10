@@ -88,47 +88,6 @@ GameView.prototype.createSpectrogramCard = function(bird)
     card.append($("<div>").attr("class", "image").append($("<img>").attr("src", bird.spectrogram).attr("alt", bird.name)));
 }
 
-/*GameView.prototype.createCardPair = function(sublevel, bird)
-{
-    switch (sublevel)
-    {
-        // Bird Name <-> Photo
-        case 0:
-            this.createNameCard(bird);
-            this.createImageCard(bird);
-            break;
-
-        // Bird Image<->Audio
-        case 1:
-            this.createImageCard(bird);
-            this.createAudioCard(bird);
-            break;
-
-        // Bird Name<->Audio
-        case 2:
-            this.createNameCard(bird);
-            this.createAudioCard(bird);
-            break;
-
-        // Bird Image<->Spectrogram
-        case 3:
-            this.createImageCard(bird);
-            this.createSpectrogramCard(bird);
-            break;
-
-        // Bird Name<->Spectrogram
-        case 4:
-            this.createNameCard(bird);
-            this.createSpectrogramCard(bird);
-            break;
-
-            // Bird Audio<->Spectrogram
-        case 5:
-            this.createAudioCard(bird);
-            this.createSpectrogramCard(bird);
-            break;
-    }
-}*/
 
 //Creating the answer and buttons for guessing.
 GameView.prototype.createAnswerCard = function (bird){
@@ -178,12 +137,9 @@ GameView.prototype.startNewRound = function(){
     this.container.find(".card").remove();
     //picks a random bird to be correct for this level
     var randBirdIndex = Math.floor(Math.random() * (view.birdList.length-1));
-    console.log("Bef " + randBirdIndex);
     
     //to ensure there is no out of bounds exceptions
     randBirdIndex = randBirdIndex >= view.answerBirdList.length ? view.answerBirdList.length - 1 : randBirdIndex;
-     console.log(randBirdIndex >= view.answerBirdList.length);
-    console.log("Aft " + randBirdIndex);
     var correctBird = view.answerBirdList.splice(randBirdIndex,1)[0];
     console.log(correctBird);
     view.answerBird = correctBird.id;
@@ -353,37 +309,8 @@ GameView.prototype.onCardClicked = function(card)
         if(this.lives <= 0){
             this.endGame(false);
         }
-        //card.attr("selectable") = false;
-    }
-    
-    
-    // Same card clicked twice
-    // [] needed because of dom object vs jquery object.
-    /*if (this.selectedCard && this.selectedCard[0] == card[0])
-    {
-        card.removeClass("selected-card");
-        this.selectedCard = null;
-        return;
-    }
-
-    // Mark as selected
-    card.addClass("selected-card");
-    
-    // Have a card selected?
-    if (this.selectedCard != null)
-    {
-        // Match the cards
-        var cardA = this.selectedCard;
-        var cardB = card;
-        this.selectedCard = null;
-        this.matchCards(cardA, cardB);
-    }
-    else
-    {
-        // First of the pair
-        this.selectedCard = card;
-    }*/
-    
+        card.append($("<div>").attr("class", "flipped-overlay"));
+    }    
 }
 
 GameView.prototype.loadGameImages = function(){
