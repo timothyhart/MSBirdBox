@@ -309,6 +309,7 @@ GameView.prototype.onCardClicked = function(card)
         if(this.lives <= 0){
             this.endGame(false);
         }
+        card.empty();
         card.append($("<div>").attr("class", "selected-card"));
     }    
 }
@@ -327,9 +328,9 @@ GameView.prototype.loadGameImages = function(){
     
     fabric.Image.fromURL("../learning-module/media/game/mango.png", function(oImg){
         oImg.set({
-                  width: 70,
+                  width: 90,
                   height: 100,
-                  left: view.canvas.width - 70,
+                  left: view.canvas.width - 90,
                   top: view.canvas.height - 100,
                   selectable: false
                  });
