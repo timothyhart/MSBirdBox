@@ -177,14 +177,14 @@ GameView.prototype.startNewRound = function(){
     var view = this;
     this.container.find(".card").remove();
     //picks a random bird to be correct for this level
-    var randBirdIndex = Math.floor(Math.random() * (this.birdList.length-1));
+    var randBirdIndex = Math.floor(Math.random() * (view.birdList.length-1));
     console.log("Bef " + randBirdIndex);
     
     //to ensure there is no out of bounds exceptions
-    randBirdIndex = randBirdIndex <= this.answerBirdList.length ? randBirdIndex-- : randBirdIndex;
-    
+    randBirdIndex = randBirdIndex <= view.answerBirdList.length ? randBirdIndex-- : randBirdIndex;
+     console.log(view.answerBirdList.length);
     console.log("Aft " + randBirdIndex);
-    var correctBird = this.answerBirdList.splice(randBirdIndex,1)[0];
+    var correctBird = view.answerBirdList.splice(randBirdIndex,1)[0];
     console.log(correctBird);
     view.answerBird = correctBird.id;
     this.createAnswerCard(correctBird);
