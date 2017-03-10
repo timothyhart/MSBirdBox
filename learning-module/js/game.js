@@ -309,7 +309,7 @@ GameView.prototype.onCardClicked = function(card)
         if(this.lives <= 0){
             this.endGame(false);
         }
-        card.append($("<div>").attr("class", "flipped-card flipped-overlay"));
+        card.append($("<div>").attr("class", "selected-card"));
     }    
 }
 
