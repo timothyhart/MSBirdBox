@@ -181,7 +181,7 @@ GameView.prototype.startNewRound = function(){
     console.log("Bef " + randBirdIndex);
     
     //to ensure there is no out of bounds exceptions
-    randBirdIndex = randBirdIndex >= view.answerBirdList.length ? randBirdIndex-- : randBirdIndex;
+    randBirdIndex = randBirdIndex >= view.answerBirdList.length ? randBirdIndex - 1 : randBirdIndex;
      console.log(randBirdIndex >= view.answerBirdList.length);
     console.log("Aft " + randBirdIndex);
     var correctBird = view.answerBirdList.splice(randBirdIndex,1)[0];
