@@ -199,12 +199,13 @@ GameView.prototype.endGame = function(gameWon)
 {
     // Set up summary screen if the game was a win
     // Otherwise, return to level select screen
-    if (gameWon)
+    if (gameWon) {
         g_views.levelCompleteView.displaySummary(this.level, this.subLevel, this.score, this.increasedSkillBirds);
-    else
+    }
+    else {
         g_views.gameView = new GameView();
         switchView(g_views.levelSelectView);
-
+    }
     // Clean up any timers we have going
 
     // Clean up wavesurfer players
