@@ -202,6 +202,7 @@ GameView.prototype.endGame = function(gameWon)
     if (gameWon)
         g_views.levelCompleteView.displaySummary(this.level, this.subLevel, this.score, this.increasedSkillBirds);
     else
+        g_views.gameView = new GameView();
         switchView(g_views.levelSelectView);
 
     // Clean up any timers we have going
@@ -294,24 +295,24 @@ GameView.prototype.onCardClicked = function(card)
     var view = this;
     if (parseInt(card.attr("data-id")) == view.answerBird)
     {
-        this.lives++;
-        this.lives = this.lives >= 7 ? 6 : this.lives;
-        this.animateBird();
-        this.destroyWaveSurfers();
-        this.setScore(this.score + (10*this.lives));
-        this.checkEndCondition();
+        view.lives++;
+        view.lives = view.lives >= 7 ? 6 : view.lives;
+        view.animateBird();
+        view.destroyWaveSurfers();
+        view.setScore(this.score + (10*this.lives));
+        view.checkEndCondition();
     }
     else
     {
         // No match. TODO: Better feedback here.
         alert("Not the right birb. Try again!");
-        this.lives--;
-        this.animateBird();
-        if(this.lives <= 0){
-            this.endGame(false);
+        view.lives--;
+        view.animateBird();
+        if(view.lives <= 0){
+            view.endGame(false);
         }
         card.empty();
-        card.append($("<div>").attr("class", "selected-card"));
+        card.append($("<div>").attr("class", "flipped-card flipped-overlay"));
     }    
 }
 
