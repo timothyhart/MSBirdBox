@@ -24,7 +24,7 @@
     clear: both;
 }
 
-.game-view .card:nth-child(1),
+/*.game-view .card:nth-child(1),
 .game-view .card:nth-child(5),
 .game-view .card:nth-child(9) {
     margin-left: 50px;
@@ -34,7 +34,7 @@
 .game-view .card:nth-child(8),
 .game-view .card:nth-child(12) {
     margin-right: 50px;
-}
+}*/
 
 .game-view .card {
     position: relative;
