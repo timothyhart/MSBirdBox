@@ -226,7 +226,7 @@ GameView.prototype.setScore = function(score)
     var view = this;
     console.log(view.score)
     view.score += score;
-    view.scoreDisplay.score.innerHTML = "Score: " + view.score;
+    view.scoreDisplay.innerHTML = "Score: " + view.score;
 }
 
 /*GameView.prototype.matchCards = function(cardA, cardB)
@@ -323,7 +323,7 @@ GameView.prototype.onCardClicked = function(card)
 
 GameView.prototype.loadGameImages = function(){
     var view = this;
-    fabric.Image.fromURL("../learning-module/media/game/22079.jpg", function(oImg){
+    fabric.Image.fromURL("../learning-module/media/game/loribird.png", function(oImg){
             oImg.set({width: 100, 
                       height: 100, 
                       left: (view.canvas.width/6 * view.lives), 
