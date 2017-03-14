@@ -92,10 +92,11 @@
     object-fit: cover;
 }
 .game-view .card .waveform-card {
+    display: block;
     padding-bottom: 100px;
     margin-right: 0 auto;
     margin-left: 0 auto;
-    width: 400px;
+    width: 400px;    
 }
 .game-view .waveform-card .image {
     display: block;
