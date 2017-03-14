@@ -91,7 +91,7 @@
     max-height: 100%;
     object-fit: cover;
 }
-.game-view .card .waveform-card {
+.game-view .waveform-card {
     display: block;
     padding-bottom: 100px;
     margin-right: 0 auto;
