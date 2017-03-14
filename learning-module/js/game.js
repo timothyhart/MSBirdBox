@@ -69,7 +69,7 @@ GameView.prototype.createAudioCard = function(bird)
     var waveSurfer = WaveSurfer.create({
         container: waveSurferElem[0],
         waveColor: "#595959",
-        height: 140,
+        height: 160,
         width: 200,
     });
     this.waveSurfers.push(waveSurfer);
@@ -222,9 +222,11 @@ GameView.prototype.endGame = function(gameWon)
 }
 
 GameView.prototype.setScore = function(score)
-{
-    this.score = score;
-    this.scoreDisplay.text(score);
+{   
+    var view = this;
+    console.log(view.score)
+    view.score = score;
+    view.scoreDisplay.text(score);
 }
 
 /*GameView.prototype.matchCards = function(cardA, cardB)
