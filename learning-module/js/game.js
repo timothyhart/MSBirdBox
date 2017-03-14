@@ -58,7 +58,7 @@ GameView.prototype.createImageCard = function(bird)
 
 GameView.prototype.createAudioCard = function(bird)
 {
-    var card = $("<div>").attr("class", "card waveform-card").attr("data-id", bird.id).appendTo(this.answerContainer);
+    var card = $("<div>").attr("class", "waveform-card").attr("data-id", bird.id).appendTo(this.answerContainer);
     //card.append($("<div>").attr("class", "flipped-overlay"));
 
     var waveSurferElem = $("<div>").attr("class", "image").appendTo(card);
