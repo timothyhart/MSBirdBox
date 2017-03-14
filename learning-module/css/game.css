@@ -1,6 +1,5 @@
 .game-view {
-    display:none;
-    width:100%;
+    width:99%;
 }
 
 .game-view .score-panel {
