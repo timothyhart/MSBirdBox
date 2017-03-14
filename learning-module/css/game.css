@@ -93,8 +93,8 @@
 }
 .game-view .waveform-card {
     padding-bottom: 100px;
-    margin-right: 0 auto;
-    margin-left: 0 auto;
+    margin-right: auto;
+    margin-left: auto;
     width: 400px;
     height: 250px;
     text-align: center;
