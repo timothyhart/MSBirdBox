@@ -6,7 +6,7 @@ function GameView() {
     view.container = $(".game-view");
     view.answerContainer = view.container.find(".answer-card")
     view.cardContainer = view.container.find(".cards-container");
-    view.scoreDisplay = view.container.find(".score-panel .score");
+    view.scoreDisplay = view.container.find(".score-panel");
     view.level = 0;
     view.subLevel = 0;
     view.score = 0;
@@ -226,7 +226,7 @@ GameView.prototype.setScore = function(score)
     var view = this;
     console.log(view.score)
     view.score += score;
-    view.scoreDisplay.innerHTML = "Score: " + view.score;
+    view.scoreDisplay.score.innerHTML = "Score: " + view.score;
 }
 
 /*GameView.prototype.matchCards = function(cardA, cardB)
