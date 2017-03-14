@@ -95,7 +95,8 @@
     padding-bottom: 100px;
     margin-right: 0 auto;
     margin-left: 0 auto;
-    width: 50%;    
+    width: 50%;  
+    text-align: center;
 }
 .game-view .waveform-card .image {
     display: block;
