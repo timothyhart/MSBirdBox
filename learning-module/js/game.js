@@ -225,7 +225,7 @@ GameView.prototype.setScore = function(score)
 {   
     var view = this;
     console.log(view.score)
-    view.score = score;
+    view.score += score;
     view.scoreDisplay.text(score);
 }
 
@@ -304,7 +304,7 @@ GameView.prototype.onCardClicked = function(card)
         view.lives = view.lives >= 7 ? 6 : view.lives;
         view.animateBird();
         view.destroyWaveSurfers();
-        view.setScore(this.score + (10*this.lives));
+        view.setScore(10*this.lives);
         view.checkEndCondition();
     }
     else
