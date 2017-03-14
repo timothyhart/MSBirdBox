@@ -8,7 +8,7 @@ body {
 
 .base-container {
     position: relative;
-    width: 1280px;
+    width: 100%;
     height: 960px;
 }
 

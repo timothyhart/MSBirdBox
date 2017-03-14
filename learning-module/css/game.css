@@ -120,6 +120,7 @@
     margin: 0 auto;
     width: 45px;
     height: 45px;
+    top: -45px;
 }
 
 .game-view .spectrogram-card .image {
