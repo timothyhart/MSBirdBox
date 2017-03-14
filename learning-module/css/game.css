@@ -106,16 +106,17 @@
 }
 .game-view .waveform-card .image {
     display: block;
+    padding-top: 40px;
     margin: 15px;
     border-radius: 20px;
-    width: 90%;
+    width: 85%;
     height: 160px;
     background-color: white;
 }
 
 .game-view .waveform-card img {
     display: block;
-    margin: 0 auto;
+    margin: auto;
     max-width: 100%;
     max-height: 100%;
     object-fit: cover;
