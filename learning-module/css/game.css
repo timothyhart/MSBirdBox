@@ -106,7 +106,7 @@
 }
 .game-view .waveform-card .image {
     display: block;
-    padding-top: 70px;
+    padding-top: 100px;
     margin: auto;
     border-radius: 20px;
     width: 85%;
@@ -125,7 +125,7 @@
 .game-view .waveform-card .play-button {
     display: block;
     margin: 0 auto;
-    padding-top: 30px;
+    margin-top: 30px;
     width: 45px;
     height: 45px;
     top: -45px;
