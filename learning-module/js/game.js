@@ -226,7 +226,7 @@ GameView.prototype.setScore = function(score)
     var view = this;
     console.log(view.score)
     view.score += score;
-    view.scoreDisplay.text(score);
+    view.scoreDisplay.score.innerHTML = "Score: " + view.score;
 }
 
 /*GameView.prototype.matchCards = function(cardA, cardB)
