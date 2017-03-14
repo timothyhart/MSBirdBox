@@ -69,7 +69,8 @@ GameView.prototype.createAudioCard = function(bird)
     var waveSurfer = WaveSurfer.create({
         container: waveSurferElem[0],
         waveColor: "#595959",
-        height: 140
+        height: 140,
+        width: 200,
     });
     this.waveSurfers.push(waveSurfer);
     waveSurfer.load(bird.clip);
