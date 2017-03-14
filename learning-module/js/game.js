@@ -224,7 +224,7 @@ GameView.prototype.endGame = function(gameWon)
 GameView.prototype.setScore = function(score)
 {   
     var view = this;
-    console.log(view.score)
+    console.log(view.scoreDisplay.innerHTML);
     view.score += score;
     view.scoreDisplay.innerHTML = "Score: " + view.score;
 }
