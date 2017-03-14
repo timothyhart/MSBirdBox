@@ -44,9 +44,8 @@
     padding: 25px;
     float: left;
     background-image: url(../media/game/unselected-card.png);
-    background-size: 93%;
+    background-size: cover;
     background-position: center;
-    background: no-repeat;
     cursor: pointer;
 }
 
@@ -74,7 +73,6 @@
     background-image: url(../media/game/flipped-card.png);
     background-size: 100%;
     background-position: center;
-    background: no-repeat;
     cursor: default;
 }
 
