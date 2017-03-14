@@ -226,7 +226,7 @@ GameView.prototype.setScore = function(score)
     var view = this;
     console.log(view.scoreDisplay.innerHTML);
     view.score += score;
-    view.container.find(".score-panel").innerHTML = "Score: " + view.score;
+    document.getElementById("score-panel").innerHTML = "Score: " + view.score;
 }
 
 /*GameView.prototype.matchCards = function(cardA, cardB)
@@ -350,7 +350,7 @@ GameView.prototype.loadGameImages = function(){
 GameView.prototype.animateBird = function (){  
     var view = this;
     var newLeft = this.canvas.width/6 * view.lives;
-    this.canvas.item(0).animate('left', newLeft, {
+    this.canvas.item(1).animate('left', newLeft, {
         onChange: this.canvas.renderAll.bind(this.canvas),
         duration: 1000,
         easing: fabric.util.ease.easeInBounce
