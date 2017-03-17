@@ -357,7 +357,7 @@ GameView.prototype.loadGameImages = function(){
 GameView.prototype.animateBird = function (){  
     var view = this;
     var newLeft = this.canvas.width/6 * view.lives;
-    console.log(this.canvas.getObjects())
+    console.log(newLeft)
     var index = this.getBirdImageIndex();                 
     this.canvas.item(index).animate('left', newLeft, {
         onChange: this.canvas.renderAll.bind(this.canvas),
