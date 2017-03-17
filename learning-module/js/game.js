@@ -53,6 +53,12 @@ GameView.prototype.createImageCard = function(bird)
     //card.append($("<div>").attr("class", "flipped-overlay"));
     card.append($("<div>").attr("class", "name").text(bird.name));
     card.append($("<div>").attr("class", "image").append($("<img>").attr("src", bird.photo).attr("alt", bird.name)));
+    card.append($("<audio>").attr("id", "audio-player").attr("src", bird.clip).attr("type", "audio/ogg"));
+    var playButton = $("<button>").attr("class", "play-button").appendTo(card);
+    playButton.click(function (e) {
+        document.getElementById("audio-player").paused ? document.getElementById("audio-player").play() : document.getElementById("audio-player").pause();
+    });
+}
     
 }
 
@@ -77,7 +83,6 @@ GameView.prototype.createAudioCard = function(bird)
 
     var playButton = $("<button>").attr("class", "play-button").appendTo(card);
     playButton.click(function (e) {
-console.log("should be playing");
         e.stopPropagation();
         waveSurfer.playPause();
     });
