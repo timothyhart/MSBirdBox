@@ -357,7 +357,7 @@ GameView.prototype.loadGameImages = function(){
 GameView.prototype.animateBird = function (){  
     var view = this;
     var newLeft = this.canvas.width/6 * view.lives;
-    this.canvas.forEachObject(function(obj)){
+    this.canvas.forEachObject(function(obj){
         if(obj.name.equals("bird")){                      
             obj.animate('left', newLeft, {
             onChange: this.canvas.renderAll.bind(this.canvas),
@@ -366,7 +366,7 @@ GameView.prototype.animateBird = function (){
             });
     
         }
-    }
+    });
 }
 
 g_views.gameView = new GameView();
