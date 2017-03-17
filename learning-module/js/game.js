@@ -2,7 +2,7 @@ function GameView() {
     var view = this;
     view.canvas = new fabric.Canvas('bird-box-canvas');
     view.canvas.setHeight(200);
-    view.canvas.setWidth(window.innerWidth);
+    view.canvas.setWidth(window.innerWidth-100);
     view.container = $(".game-view");
     view.answerContainer = view.container.find(".answer-card")
     view.cardContainer = view.container.find(".cards-container");
@@ -356,7 +356,7 @@ GameView.prototype.loadGameImages = function(){
 
 GameView.prototype.animateBird = function (){  
     var view = this;
-    var newLeft = this.canvas.width/6 * view.lives;
+    var newLeft = (this.canvas.width/6) * view.lives;
     console.log(newLeft)
     var index = this.getBirdImageIndex();                 
     this.canvas.item(index).animate('left', newLeft, {
