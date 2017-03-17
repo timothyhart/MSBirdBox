@@ -358,7 +358,7 @@ GameView.prototype.animateBird = function (){
     var view = this;
     var newLeft = this.canvas.width/6 * view.lives;
     this.canvas.forEachObject(function(obj){
-        if(obj.name.equals("bird")){                      
+        if(obj.name === "bird"){                      
             obj.animate('left', newLeft, {
             onChange: this.canvas.renderAll.bind(this.canvas),
             duration: 1000,
