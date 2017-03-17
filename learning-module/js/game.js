@@ -300,7 +300,7 @@ GameView.prototype.onCardClicked = function(card, e)
 { 
     
     var view = this;
-    console.log(e.target.tagName);
+    console.log(typeof(e.target.tagName));
     if (!e.target.tagName === "BUTTON"){
         if (parseInt(card.attr("data-id")) == view.answerBird)
         {
