@@ -361,7 +361,7 @@ GameView.prototype.animateBird = function (){
     var index = this.getBirdImageIndex();                 
     this.canvas.item(index).animate('left', newLeft, {
         onChange: this.canvas.renderAll.bind(this.canvas),
-        duration: 1000,
+        duration: 1500,
         easing: fabric.util.ease.easeInBounce                      
     });
 }

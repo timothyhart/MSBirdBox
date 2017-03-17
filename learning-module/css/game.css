@@ -186,3 +186,7 @@
     color: yellow;
     word-break: keep-all;
 }
+
+.game-view .canvas-container {
+    width: 100%;
+}
