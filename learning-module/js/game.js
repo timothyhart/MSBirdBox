@@ -335,6 +335,7 @@ GameView.prototype.loadGameImages = function(){
                       top : view.canvas.height - 100,
                       selectable: false,
                       });
+            oImg.name = "bird";
             view.canvas.add(oImg);
     });
     
@@ -346,6 +347,7 @@ GameView.prototype.loadGameImages = function(){
                   top: view.canvas.height - 100,
                   selectable: false
                  });
+        oImg.name = "mango";
         view.canvas.add(oImg);
     });
     
@@ -355,11 +357,16 @@ GameView.prototype.loadGameImages = function(){
 GameView.prototype.animateBird = function (){  
     var view = this;
     var newLeft = this.canvas.width/6 * view.lives;
-    this.canvas.item(1).animate('left', newLeft, {
-        onChange: this.canvas.renderAll.bind(this.canvas),
-        duration: 1000,
-        easing: fabric.util.ease.easeInBounce
-    });
+    this.canvas.forEachObject(function(obj)){
+        if(obj.name.equals("bird")){                      
+            obj.animate('left', newLeft, {
+            onChange: this.canvas.renderAll.bind(this.canvas),
+            duration: 1000,
+            easing: fabric.util.ease.easeInBounce                      
+            });
+    
+        }
+    }
 }
 
 g_views.gameView = new GameView();
