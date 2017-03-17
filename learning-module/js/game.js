@@ -300,27 +300,29 @@ GameView.prototype.onCardClicked = function(card)
 { 
     
     var view = this;
-    if (parseInt(card.attr("data-id")) == view.answerBird)
-    {
-        view.lives++;
-        view.lives = view.lives >= 6 ? 6 : view.lives;
-        view.animateBird();
-        view.destroyWaveSurfers();
-        view.setScore(10*this.lives);
-        view.checkEndCondition();
-    }
-    else
-    {
-        // No match. TODO: Better feedback here.
-        alert("Not the right birb. Try again!");
-        view.lives--;
-        view.animateBird();
-        if(view.lives <= 0){
-            view.endGame(false);
+    if (document.getElementById("audio-player" + card.attr("data-id")).paused){
+        if (parseInt(card.attr("data-id")) == view.answerBird)
+        {
+            view.lives++;
+            view.lives = view.lives >= 6 ? 6 : view.lives;
+            view.animateBird();
+            view.destroyWaveSurfers();
+            view.setScore(10*this.lives);
+            view.checkEndCondition();
         }
-        card.empty();
-        card.append($("<div>").attr("class", "flipped-card flipped-overlay"));
-    }    
+        else
+        {
+            // No match. TODO: Better feedback here.
+            alert("Not the right birb. Try again!");
+            view.lives--;
+            view.animateBird();
+            if(view.lives <= 0){
+                view.endGame(false);
+            }
+            card.empty();
+            card.append($("<div>").attr("class", "flipped-card flipped-overlay"));
+        }
+    }
 }
 
 GameView.prototype.loadGameImages = function(){
