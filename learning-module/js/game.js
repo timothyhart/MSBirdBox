@@ -171,7 +171,7 @@ GameView.prototype.startNewRound = function(){
     shuffleElements(this.cardContainer);
         
     // Reassign event handlers to cards
-    this.container.find(".card").click(function (e) { view.onCardClicked($(this)); });
+    this.container.find(".card").click(function (e) { view.onCardClicked($(this),e); });
     makeNonClickable(this.container.find(".flipped-overlay"));
 
     // Reset score (also updates display)
@@ -296,11 +296,12 @@ GameView.prototype.checkEndCondition = function()
     }
 }
 
-GameView.prototype.onCardClicked = function(card)
+GameView.prototype.onCardClicked = function(card, e)
 { 
     
     var view = this;
-    if (document.getElementById("audio-player" + card.attr("data-id")).paused){
+    console.log(e.currentTarget);
+    if (e.currentTarget){
         if (parseInt(card.attr("data-id")) == view.answerBird)
         {
             view.lives++;
