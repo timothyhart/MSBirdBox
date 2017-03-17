@@ -343,7 +343,7 @@ GameView.prototype.loadGameImages = function(){
         oImg.set({
                   width: 90,
                   height: 100,
-                  left: view.canvas.width - 90,
+                  left: document.getElementById("bird-box-canvas").width - 90,
                   top: view.canvas.height - 100,
                   selectable: false
                  });
