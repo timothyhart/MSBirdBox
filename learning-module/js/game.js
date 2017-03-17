@@ -331,7 +331,7 @@ GameView.prototype.loadGameImages = function(){
     fabric.Image.fromURL("../learning-module/media/game/loribird.png", function(oImg){
             oImg.set({width: 100, 
                       height: 100, 
-                      left: (view.canvas.width/6 * view.lives), 
+                      left: (document.getElementById("bird-box-canvas").width/6 * view.lives), 
                       top : view.canvas.height - 100,
                       selectable: false,
                       });
@@ -356,7 +356,7 @@ GameView.prototype.loadGameImages = function(){
 
 GameView.prototype.animateBird = function (){  
     var view = this;
-    var newLeft = (this.canvas.width/6) * view.lives;
+    var newLeft = document.getElementById("bird-box-canvas").width/6 * view.lives;
     console.log(newLeft)
     var index = this.getBirdImageIndex();                 
     this.canvas.item(index).animate('left', newLeft, {
