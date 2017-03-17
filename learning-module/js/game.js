@@ -59,8 +59,6 @@ GameView.prototype.createImageCard = function(bird)
         document.getElementById("audio-player").paused ? document.getElementById("audio-player").play() : document.getElementById("audio-player").pause();
     });
 }
-    
-}
 
 GameView.prototype.createAudioCard = function(bird)
 {
