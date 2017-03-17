@@ -147,7 +147,7 @@ GameView.prototype.startNewRound = function(){
     //to ensure there is no out of bounds exceptions
     randBirdIndex = randBirdIndex >= view.answerBirdList.length ? view.answerBirdList.length - 1 : randBirdIndex;
     var correctBird = view.answerBirdList.splice(randBirdIndex,1)[0];
-    console.log(correctBird);
+    //console.log(correctBird);
     view.answerBird = correctBird.id;
     this.createAnswerCard(correctBird);
 
@@ -280,7 +280,7 @@ GameView.prototype.checkEndCondition = function()
 {
     var view = this;
     // Simple, check to see if all birds have been answered
-    console.log(view.answerBirdList.length);
+    //console.log(view.answerBirdList.length);
     if (view.answerBirdList.length <= 0)
     {
         
