@@ -300,7 +300,7 @@ GameView.prototype.onCardClicked = function(card, e)
 { 
     
     var view = this;
-    console.log(e.currentTarget);
+    console.log(e.target);
     if (e.currentTarget){
         if (parseInt(card.attr("data-id")) == view.answerBird)
         {
