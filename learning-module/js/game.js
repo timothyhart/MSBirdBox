@@ -53,10 +53,10 @@ GameView.prototype.createImageCard = function(bird)
     //card.append($("<div>").attr("class", "flipped-overlay"));
     card.append($("<div>").attr("class", "name").text(bird.name));
     card.append($("<div>").attr("class", "image").append($("<img>").attr("src", bird.photo).attr("alt", bird.name)));
-    card.append($("<audio>").attr("id", "audio-player").attr("src", bird.clip).attr("type", "audio/ogg"));
+    card.append($("<audio>").attr("id", "audio-player" + bird.id).attr("src", bird.clip).attr("type", "audio/ogg"));
     var playButton = $("<button>").attr("class", "play-button").appendTo(card);
     playButton.click(function (e) {
-        document.getElementById("audio-player").paused ? document.getElementById("audio-player").play() : document.getElementById("audio-player").pause();
+        document.getElementById("audio-player" + bird.id).paused ? document.getElementById("audio-player" + bird.id).play() : document.getElementById("audio-player" + bird.id).pause();
     });
 }
 
@@ -227,7 +227,6 @@ GameView.prototype.endGame = function(gameWon)
 GameView.prototype.setScore = function(score)
 {   
     var view = this;
-    console.log(view.scoreDisplay.innerHTML);
     view.score += score;
     document.getElementById("score-panel").innerHTML = "Score: " + view.score;
 }
@@ -304,7 +303,7 @@ GameView.prototype.onCardClicked = function(card)
     if (parseInt(card.attr("data-id")) == view.answerBird)
     {
         view.lives++;
-        view.lives = view.lives >= 7 ? 6 : view.lives;
+        view.lives = view.lives >= 6 ? 6 : view.lives;
         view.animateBird();
         view.destroyWaveSurfers();
         view.setScore(10*this.lives);
