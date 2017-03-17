@@ -369,7 +369,7 @@ GameView.prototype.animateBird = function (){
 GameView.prototype.getBirdImageIndex = function () {
     var view = this;
     var index = -1;
-    var images = this.canvas.getObjects;
+    var images = this.canvas.getObjects();
     for (var i = 0; i <= images.length; i++){
         if(images[i].name === "bird"){
             index = i;
