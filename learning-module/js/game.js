@@ -358,16 +358,25 @@ GameView.prototype.animateBird = function (){
     var view = this;
     var newLeft = this.canvas.width/6 * view.lives;
     console.log(this.canvas.getObjects())
-    //this.canvas.forEachObject(function(obj){
-  /*      if(obj.name === "bird"){                      
-            obj.animate('left', newLeft, {
-            onChange: this.canvas.renderAll.bind(this.canvas),
-            duration: 1000,
-            easing: fabric.util.ease.easeInBounce                      
-            });
-    
+    var index = this.getBirdImageIndex();                 
+    this.canvas.item(index).animate('left', newLeft, {
+        onChange: this.canvas.renderAll.bind(this.canvas),
+        duration: 1000,
+        easing: fabric.util.ease.easeInBounce                      
+    });
+}
+
+GameView.prototype.getBirdImageIndex = function () {
+    var view = this;
+    var index = -1;
+    var images = this.canvas.getObjects;
+    for (var i = 0; i <= images.length; i++){
+        if(images[i].name === "bird"){
+            index = i;
         }
-    });*/
+    }
+    return index;
+            
 }
 
 g_views.gameView = new GameView();
