@@ -152,7 +152,8 @@ router.get("/delete", function(req, res, next) {
 
 // GET: /recordings/start-manual-recording
 router.get("/start-manual-recording", function(req, res, next) {
-    var title = req.query.title;
+
+var title = req.query.title;
     var hours = req.query.hours;
     var minutes = req.query.minutes;
     var seconds = req.query.seconds;
@@ -176,13 +177,14 @@ router.get("/start-manual-recording", function(req, res, next) {
         next(new Error("Invalid duration."));
         return;
     }
-    
+  
     // Calculate duration
     var duration = hours * 3600 + minutes * 60 + seconds;
     var data;
     try {
         app.recorderController.startManualRecording(title, duration);
         data = {
+
             result: true,
             name: app.recorderController.getCurrentRecordingName(),
             title: app.recorderController.getCurrentRecordingTitle()
@@ -191,6 +193,7 @@ router.get("/start-manual-recording", function(req, res, next) {
         data = {
             result: false,
             error: err.toString()
+
         };
     }
     

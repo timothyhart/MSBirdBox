@@ -237,10 +237,12 @@ RecorderController.prototype.startRecording = function(name, title, duration) {
         "-p", app.config.getRMSPeriod(),
         "-T", app.config.getNoiseThreshold()
     ];
-    
+    console.log("debugging: ");
+console.log(app.config.getRecordingDeviceId());
+console.log(app.config.getAnalyserProgramPath());
     // Spawn the child process
     recorder.currentRecordingProcess = child_process.spawn(app.config.getRecorderProgramPath(), childArgs);
-    
+	
     // Set up callbacks
     recorder.currentRecordingProcess.on("close", function(code) { recorder.onRecorderProcessClosed(code); });
     recorder.currentRecordingProcess.on("error", function(err) { recorder.onRecorderProcessError(err); });
@@ -264,7 +266,7 @@ RecorderController.prototype.onRecorderProcessClosed = function(code) {
 }
 
 RecorderController.prototype.onRecorderProcessError = function(err) {
-    console.log("Recorder process error: ", err);
+    console.log("Recorder process error: ", err.stack);
     this.currentRecordingProcess = null;
     this.currentRecordingStartTime = null;
     this.currentRecordingName = "";
