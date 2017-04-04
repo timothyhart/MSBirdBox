@@ -94,8 +94,9 @@ router.get("/segment-audio", function (req, res, next) {
             
         res.setHeader("Content-disposition", "attachment; filename=" + fileName);
     }
-    
+	
     app.splitterInterface.sendSegmentAudio(name, startTime, duration, format, res);
+
 });
 
 // GET: /recordings/segment-spectrogram?name=foo&startTime=0&duration=10&format=wav
@@ -114,8 +115,9 @@ router.get("/segment-spectrogram", function (req, res, next) {
         next(new Error("Invalid parameters."));
         return;
     }
-
+	
     app.splitterInterface.sendSegmentSpectrogram(name, startTime, duration, res);
+
 });
 
 // GET: /recordings/download?name=foo

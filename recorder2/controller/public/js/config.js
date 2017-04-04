@@ -2,7 +2,7 @@
 var BACKEND_URL = "";
 
 // Set to the URL of your central server
-var CENTRAL_URL = "http://mov-r0.xyz/birdbox";
+var CENTRAL_URL = "MSBirdBox";
 
 // TODO: Improve these URLs..
 var CENTRAL_DATABASE_JSON_URL = CENTRAL_URL + "/prototype/Admin-panel/exportdata.php";

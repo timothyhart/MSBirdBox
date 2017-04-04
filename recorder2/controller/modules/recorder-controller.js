@@ -237,9 +237,6 @@ RecorderController.prototype.startRecording = function(name, title, duration) {
         "-p", app.config.getRMSPeriod(),
         "-T", app.config.getNoiseThreshold()
     ];
-    console.log("debugging: ");
-console.log(app.config.getRecordingDeviceId());
-console.log(app.config.getAnalyserProgramPath());
     // Spawn the child process
     recorder.currentRecordingProcess = child_process.spawn(app.config.getRecorderProgramPath(), childArgs);
 	

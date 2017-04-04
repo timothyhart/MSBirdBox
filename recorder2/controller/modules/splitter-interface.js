@@ -65,7 +65,10 @@ SplitterInterface.prototype.sendSegmentAudio = function(recordingName, startTime
 
     var recordingPath = app.recordingHelpers.getRecordingAudioPath(recordingName);
     var childArgs = [ recordingPath, startTime, duration, op ];
-    var child = child_process.spawn(app.config.getSplitterProgramPath(), childArgs);
+    
+console.log("first spawn ------------------------------------");
+console.log(app.config.getSplitterProgramPath());
+var child = child_process.spawn(app.config.getSplitterProgramPath(), childArgs);
 
     SendSplitterProcessOutputToClient(child, contentType, response);
 }
@@ -75,7 +78,7 @@ SplitterInterface.prototype.sendSegmentSpectrogram = function (recordingName, st
     var recordingPath = app.recordingHelpers.getRecordingAudioPath(recordingName);
     var childArgs = [ recordingPath, startTime, duration, "spectrogram" ];
     var child = child_process.spawn(app.config.getSplitterProgramPath(), childArgs);
-
+	console.log("second spawn ------------------------------------");
     SendSplitterProcessOutputToClient(child, "image/png", response);
 }
 
