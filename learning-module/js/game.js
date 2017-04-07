@@ -160,7 +160,7 @@ GameView.prototype.startNewRound = function(){
         var bird = this.birdList[i];
         this.createImageCard(bird);
         }
-    }
+    
     
     // Shuffle the order of the cards.
     shuffleElements(this.cardContainer);
