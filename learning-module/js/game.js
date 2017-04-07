@@ -96,7 +96,11 @@ GameView.prototype.createSpectrogramCard = function(bird)
 
 //Creating the answer and buttons for guessing.
 GameView.prototype.createAnswerCard = function (bird){
-    this.createAudioCard(bird);
+    var view = this;
+    if (view.subLevel === 0)
+        this.createAudioCard(bird);
+    else if (view.subLevel === 1)
+        this.createSpectrogramCard(bird);
 }
 
 // level: 0-4, bird group
@@ -154,16 +158,7 @@ GameView.prototype.startNewRound = function(){
     //creates the cards to be used for guessing
     for (var i = 0; i < 6; i++){
         var bird = this.birdList[i];
-        switch (view.subLevel){
-            case 0:
-                this.createImageCard(bird);
-                break;
-            case 1:
-                this.createNameCard(bird);
-                break;
-            case 2:
-                this.createSpectrogramCard(bird);
-                break;
+        this.createImageCard(bird);
         }
     }
     
@@ -357,7 +352,7 @@ GameView.prototype.loadGameImages = function(){
 GameView.prototype.animateBird = function (){  
     var view = this;
     var newLeft = document.getElementById("bird-box-canvas").width/6 * view.lives;
-    console.log(newLeft)
+    //console.log(newLeft)
     var index = this.getBirdImageIndex();                 
     this.canvas.item(index).animate('left', newLeft, {
         onChange: this.canvas.renderAll.bind(this.canvas),
