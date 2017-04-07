@@ -18,7 +18,8 @@ Database.prototype.load = function (callback) {
     $.getJSON(CENTRAL_DATABASE_JSON_URL, function (data) {
         $.each(data, function (key, value) {
             // temporary rename until these field names are synced w/ database
-            var origClipName = value.trophycall;
+            var origClipName = value.clip;
+            origClipName = origClipName.replace("mp3", "ogg");
             value.id = value.birdID;
             value.photo = CENTRAL_DATABASE_BASE_URL + "/photos/" + value.photo;
             value.clip = CENTRAL_DATABASE_BASE_URL + "/clips/" + origClipName;

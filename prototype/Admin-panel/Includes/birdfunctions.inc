@@ -8,7 +8,8 @@
 	    	$birdPhotos[$bird] = $birds->results()[$bird]->photo;
 	    	$birdNames[$bird] = $birds->results()[$bird]->name;
 	    	$birdSpeciesNames[$bird] = $birds->results()[$bird]->speciesName;
-	    	$birdTrophyCalls[$bird] = $birds->results()[$bird]->trophycall;
+	    	$birdTrophyCalls[$bird] = $birds->results()[$bird]->clip;
+		$birdTrophyCalls[$bird] = str_replace("mp3", "ogg",$birdTrophyCalls[$bird]);
 	    	$birdEnviroCalls[$bird] = $birds->results()[$bird]->envirocall;
 	    	$birdDescriptions[$bird] = $birds->results()[$bird]->description;
 	    	$birdPhotoSources[$bird] = $birds->results()[$bird]->photoSource;
@@ -20,21 +21,21 @@
 
 function getMostCommonbirds(&$birdIds, &$birdPhotos, &$birdNames, &$birdSpeciesNames, &$birdTrophyCalls, &$birdDescriptions, &$birdPhotoSources, &$birdClipSources, &$birdSources1, &$birdSources2, $db){
 
-	$birds = $db->get('birdinfo', array('common', '=', 1));
-	for ($bird=0; $bird < $birds->count(); $bird++){
-		$birdIds[$bird] = $birds->results()[$bird]->birdID;
-		$birdPhotos[$bird] = $birds->results()[$bird]->photo;
-		$birdNames[$bird] = $birds->results()[$bird]->name;
-		$birdSpeciesNames[$bird] = $birds->results()[$bird]->speciesName;
-		$birdTrophyCalls[$bird] = $birds->results()[$bird]->trophycall;
-		$birdEnviroCalls[$bird] = $birds->results()[$bird]->envirocall;
-		$birdDescriptions[$bird] = $birds->results()[$bird]->description;
-		$birdPhotoSources[$bird] = $birds->results()[$bird]->photoSource;
-		$birdClipSources[$bird] = $birds->results()[$bird]->clipSource;
-		$birdSources1[$bird] = $birds->results()[$bird]->source1;
-		$birdSources2[$bird] = $birds->results()[$bird]->source2;
+	$birds = $db->get('birdinfo', array('birdID', '>', 0));
+	    for ($bird=0; $bird < $birds->count(); $bird++){
+	    	$birdIds[$bird] = $birds->results()[$bird]->birdID;
+	    	$birdPhotos[$bird] = $birds->results()[$bird]->photo;
+	    	$birdNames[$bird] = $birds->results()[$bird]->name;
+	    	$birdSpeciesNames[$bird] = $birds->results()[$bird]->speciesName;
+	    	$birdTrophyCalls[$bird] = $birds->results()[$bird]->clip;
+	    	$birdEnviroCalls[$bird] = $birds->results()[$bird]->envirocall;
+	    	$birdDescriptions[$bird] = $birds->results()[$bird]->description;
+	    	$birdPhotoSources[$bird] = $birds->results()[$bird]->photoSource;
+	    	$birdClipSources[$bird] = $birds->results()[$bird]->clipSource;
+			$birdSources1[$bird] = $birds->results()[$bird]->source1;
+			$birdSources2[$bird] = $birds->results()[$bird]->source2;
+  		}
 	}
-}
 
 	function getBird($birdId, $db){
 		$bird = $db->get('birdinfo', array('birdID', '=', $birdId));
@@ -78,8 +79,10 @@ function getMostCommonbirds(&$birdIds, &$birdPhotos, &$birdNames, &$birdSpeciesN
 	}
 
 function commonBirdDataExport($db){
-	$birds = $db->get('birdinfo', array('common', '=', 1));
+//Common Birds is not fully implemented so it does the exact same as birdDataExport for now	
+//$birds = $db->get('birdinfo', array('common', '=', 1));
 
+	$birds = $db->get('birdinfo', array('birdID', '>', 0));
 	$birdsArray = array();
 	for ($bird=0; $bird < $birds->count(); $bird++){
 		$birdsArray[] = $birds->results()[$bird];

@@ -9,7 +9,7 @@
 	<div id="layout">
 		<div id="main">
 			<div class="header">
-				<h1> Brisbane Bird Data </h1>
+				<h1> Australian Bird Data </h1>
 				<h2> Currently showing all stored birds.</h2>
 			</div>
 			<div class="content">
@@ -60,12 +60,9 @@
 							echo '<td> 
 										<audio class="audioplayer" controls>
 											<source src="../public/database/clips/'.$birdTrophyCalls[$bird].'" type="audio/ogg">
-											<source src="'.$birdTrophyCalls[$bird].'" type="audio/mpeg">
+											<source src="../public/database/clips/'.$birdTrophyCalls[$bird].'" type="audio/mpeg">
 										</audio>
-										<audio class="audioplayer" controls>
-											<source src="../public/database/clips/'.$birdEnviroCalls[$bird].'" type="audio/ogg">
-											<source src="'.$birdEnviroCalls[$bird].'" type="audio/mpeg">
-										</audio>
+										
 								</td>';
 							echo '<td>'.$birdDescriptions[$bird].'</td>';
 							echo '<td> 
