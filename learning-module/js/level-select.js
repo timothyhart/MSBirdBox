@@ -108,7 +108,11 @@ LevelSelectView.prototype.populateView = function(level)
 {
     this.cardsContainer.empty();
 
-    // First tier - Image<->Name
+    var levelContainer = this.createLevelContainer(2);
+    this.createLevelCard(levelContainer, level, 0, 0, 10);
+    this.createLevelCard(levelContainer, level, 1, 10, 20);
+    
+   /* // First tier - Image<->Name
     var levelContainer = this.createLevelContainer(1);
     this.createLevelCard(levelContainer, level, 0, 0, 10);
 
@@ -124,7 +128,7 @@ LevelSelectView.prototype.populateView = function(level)
     
     // Fourth tier - Audio<->Spectrogram
     levelContainer = this.createLevelContainer(1);
-    this.createLevelCard(levelContainer, level, 5, 30, 40);
+    this.createLevelCard(levelContainer, level, 5, 30, 40);*/
 
     // Make disabled cards unclickable
     makeNonClickable(this.cardsContainer.find(".disabled-overlay"));
