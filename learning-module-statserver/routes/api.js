@@ -5,6 +5,7 @@ var router = express.Router();
 // GET: /api/session
 router.get('/session', function(req, res, err) {
     // Populate state.
+    console.log("trying to get seshin");
     var state = {};
     state.loggedIn = req.isAuthenticated();
     if (state.loggedIn) {
