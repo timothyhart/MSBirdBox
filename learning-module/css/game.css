@@ -15,7 +15,7 @@
 
 .game-view .cards-container {
     width: 100%;
-    height: 725px;
+    height: 100%;
 }
 
 .game-view .cards-container::after {
