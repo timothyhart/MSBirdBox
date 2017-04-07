@@ -142,6 +142,19 @@
     top: -45px;
 }
 
+.game-view .spectrogram-card {
+    position: relative;
+    padding-bottom: 100px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 400px;
+    height: 250px;
+    text-align: center;
+    background-image: url(../media/game/unselected-card.png);
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+}
 .game-view .spectrogram-card .image {
     display: block;
     margin: 15px;

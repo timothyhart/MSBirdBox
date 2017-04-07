@@ -88,7 +88,7 @@ GameView.prototype.createAudioCard = function(bird)
 
 GameView.prototype.createSpectrogramCard = function(bird)
 {
-    var card = $("<div>").attr("class", "card spectrogram-card").attr("data-id", bird.id).appendTo(this.answerContainer);
+    var card = $("<div>").attr("class", "spectrogram-card").attr("data-id", bird.id).appendTo(this.answerContainer);
     //card.append($("<div>").attr("class", "flipped-overlay"));
     card.append($("<div>").attr("class", "image").append($("<img>").attr("src", bird.spectrogram).attr("alt", bird.name)));
 }
