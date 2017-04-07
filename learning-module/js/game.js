@@ -145,6 +145,7 @@ GameView.prototype.startNewRound = function(){
     var view = this;
     this.container.find(".card").remove();
     this.container.find(".waveform-card").remove();
+    this.container.find(".spectrogram-card")
     //picks a random bird to be correct for this level
     var randBirdIndex = Math.floor(Math.random() * (view.birdList.length-1));
     
