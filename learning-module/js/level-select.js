@@ -69,7 +69,7 @@ LevelSelectView.prototype.createLevelContainer = function(numCards)
 LevelSelectView.prototype.createLevelCard = function(levelContainer, level, sublevel, requiredSkillLevel, nextLevelSkill)
 {
     var view = this;
-    var isLocked = !g_stats.hasSkillLevelForBirdsAtLevel(level, requiredSkillLevel);
+    var isLocked = false;//!g_stats.hasSkillLevelForBirdsAtLevel(level, requiredSkillLevel);
 
     var cardContainer = $("<div>").appendTo(levelContainer);
     cardContainer.addClass("card-container");
@@ -91,7 +91,7 @@ LevelSelectView.prototype.createLevelCard = function(levelContainer, level, subl
     // This is kinda slow, all the extra copies. Use a cached list instead.
     var innerBirdList = $("<ul>").attr("class", "unlock-list").appendTo(card);
     $.each(g_database.getBirdsForLevel(level), function(index, bird) {
-        var hasNextLevelSkill = g_stats.hasSkillLevelForBird(bird.id, nextLevelSkill);
+        var hasNextLevelSkill = false; //g_stats.hasSkillLevelForBird(bird.id, nextLevelSkill);
         innerBirdList.append($("<li>").text(bird.name + " (" + (hasNextLevelSkill ? "yes" : "no") + ")"));
     });
 
