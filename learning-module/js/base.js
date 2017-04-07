@@ -45,8 +45,8 @@ var g_database = new Database();
 g_database.load();
 
 // Load stats
-var g_stats = new Stats();
-g_stats.load();
+/*var g_stats = new Stats();
+g_stats.load();*/
 
 // Make all modals non-clickable
 makeNonClickable($(".base-modal"));
