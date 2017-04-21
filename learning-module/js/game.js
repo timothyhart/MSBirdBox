@@ -17,7 +17,7 @@ function GameView() {
     view.lives = 2;
     view.answerBirdList = {};
     view.answerBird = 0;
-        
+
     // Hook button events
     view.container.find(".back-button").click(function (e) { view.onBackButtonPressed(); });
     view.container.find(".library-button").click(function (e) { view.onLibraryButtonPressed(); });
@@ -118,37 +118,37 @@ GameView.prototype.startGame = function (level, sublevel)
     view.birdList = g_database.getBirdsForLevel(level);
     // Create a shallow copy of the birdlist to be used for drawing answers out
     view.answerBirdList = view.birdList.slice();
-    
-    
+
+
     // Remove all cards from field
-    
+
     this.birdGuessCount = {};
-    
+
     view.startNewRound();
-        
+
     /*// Create 3 pairs of birds from the current set.
     // Use splice so we don't place the same bird in more than once.
     //EDITED THIS (Increased from 3 to 6)
-    
+
    for (var i = 0; i < 6; i++) {
         //var index = Math.floor(Math.random() * birdList.length);
         var bird = birdList[i];
         this.createCardPair(sublevel, bird);
         this.birdGuessCount[bird.id] = 0;
     }*/
-    
+
     switchView(g_views.gameView);
 }
 
 GameView.prototype.startNewRound = function(){
-    
+
     var view = this;
     this.container.find(".card").remove();
     this.container.find(".waveform-card").remove();
-    this.container.find(".spectrogram-card")
+    this.container.find(".spectrogram-card").remove();
     //picks a random bird to be correct for this level
     var randBirdIndex = Math.floor(Math.random() * (view.birdList.length-1));
-    
+
     //to ensure there is no out of bounds exceptions
     randBirdIndex = randBirdIndex >= view.answerBirdList.length ? view.answerBirdList.length - 1 : randBirdIndex;
     var correctBird = view.answerBirdList.splice(randBirdIndex,1)[0];
@@ -161,17 +161,17 @@ GameView.prototype.startNewRound = function(){
         var bird = this.birdList[i];
         this.createImageCard(bird);
         }
-    
-    
+
+
     // Shuffle the order of the cards.
     shuffleElements(this.cardContainer);
-        
+
     // Reassign event handlers to cards
     this.container.find(".card").click(function (e) { view.onCardClicked($(this),e); });
     makeNonClickable(this.container.find(".flipped-overlay"));
 
     // Reset score (also updates display)
-    this.setScore(0);    
+    this.setScore(0);
 
     // Bring everything into view
     switchView(g_views.gameView);
@@ -221,7 +221,7 @@ GameView.prototype.endGame = function(gameWon)
 }
 
 GameView.prototype.setScore = function(score)
-{   
+{
     var view = this;
     view.score += score;
     document.getElementById("score-panel").innerHTML = "Score: " + view.score;
@@ -279,7 +279,7 @@ GameView.prototype.checkEndCondition = function()
     //console.log(view.answerBirdList.length);
     if (view.answerBirdList.length <= 0)
     {
-        
+
         // DEBUG: dump out guesses for each bird
         $.each(this.birdGuessCount, function (birdId, attemptCount) {
             console.log("guesses:", birdId, attemptCount);
@@ -293,8 +293,8 @@ GameView.prototype.checkEndCondition = function()
 }
 
 GameView.prototype.onCardClicked = function(card, e)
-{ 
-    
+{
+
     var view = this;
     console.log();
     if (e.target.tagName !== "BUTTON" ){
@@ -325,16 +325,16 @@ GameView.prototype.onCardClicked = function(card, e)
 GameView.prototype.loadGameImages = function(){
     var view = this;
     fabric.Image.fromURL("../learning-module/media/game/loribird.png", function(oImg){
-            oImg.set({width: 100, 
-                      height: 100, 
-                      left: (document.getElementById("bird-box-canvas").width/6 * view.lives), 
+            oImg.set({width: 100,
+                      height: 100,
+                      left: (document.getElementById("bird-box-canvas").width/6 * view.lives),
                       top : view.canvas.height - 100,
                       selectable: false,
                       });
             oImg.name = "bird";
             view.canvas.add(oImg);
     });
-    
+
     fabric.Image.fromURL("../learning-module/media/game/mango.png", function(oImg){
         oImg.set({
                   width: 90,
@@ -346,19 +346,19 @@ GameView.prototype.loadGameImages = function(){
         oImg.name = "mango";
         view.canvas.add(oImg);
     });
-    
+
     view.canvas.renderAll();
 }
 
-GameView.prototype.animateBird = function (){  
+GameView.prototype.animateBird = function (){
     var view = this;
     var newLeft = document.getElementById("bird-box-canvas").width/6 * view.lives;
     //console.log(newLeft)
-    var index = this.getBirdImageIndex();                 
+    var index = this.getBirdImageIndex();
     this.canvas.item(index).animate('left', newLeft, {
         onChange: this.canvas.renderAll.bind(this.canvas),
         duration: 1500,
-        easing: fabric.util.ease.easeInBounce                      
+        easing: fabric.util.ease.easeInBounce
     });
 }
 
@@ -373,7 +373,7 @@ GameView.prototype.getBirdImageIndex = function () {
         }
     }
     return index;
-            
+
 }
 
 g_views.gameView = new GameView();
