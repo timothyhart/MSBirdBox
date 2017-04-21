@@ -145,7 +145,6 @@
 .game-view .spectrogram-card {
     position: relative;
     padding-bottom: 100px;
-    padding-top: 100px;
     margin-right: auto;
     margin-left: auto;
     width: 400px;
@@ -158,6 +157,7 @@
 }
 .game-view .spectrogram-card .image {
     display: block;
+    padding-top: 75px;
     margin: 15px;
     border-radius: 20px;
     width: 92%;
