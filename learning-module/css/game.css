@@ -145,6 +145,7 @@
 .game-view .spectrogram-card {
     position: relative;
     padding-bottom: 100px;
+    padding-top: 100px;
     margin-right: auto;
     margin-left: auto;
     width: 400px;
