@@ -17,6 +17,8 @@ function GameView() {
     view.lives = 2;
     view.answerBirdList = {};
     view.answerBird = 0;
+    view.hasGuessedThisRound = false;
+    view.identifiedBirdandTime = [];
 
     // Hook button events
     view.container.find(".back-button").click(function (e) { view.onBackButtonPressed(); });
@@ -241,6 +243,10 @@ GameView.prototype.onCardClicked = function(card, e)
             view.animateBird();
             view.destroyWaveSurfers();
             view.setScore(10*this.lives);
+            var date = new Date();
+            if(!view.hasGuessedThisRound){
+              identifiedBirdandTime.push({"UserID", card.attr("data-id"), date});
+            }
             view.checkEndCondition();
         }
         else
@@ -248,10 +254,13 @@ GameView.prototype.onCardClicked = function(card, e)
             // No match. TODO: Better feedback here.
             alert("Not the right birb. Try again!");
             view.lives--;
-            view.animateBird();
             if(view.lives <= 0){
                 view.endGame(false);
             }
+
+            view.animateBird();
+            view.hasGuessedThisRound = true;
+
             card.empty();
             card.append($("<div>").attr("class", "flipped-card flipped-overlay"));
         }
