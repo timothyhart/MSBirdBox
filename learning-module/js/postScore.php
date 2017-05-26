@@ -1,4 +1,5 @@
 <?php
+require_once ("../../Admin-panel/classes/DB.php");
 $db = DB::getInstance();
 $userID = $_POST['userID'];
 $score = $_POST['score'];
