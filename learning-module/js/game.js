@@ -187,6 +187,7 @@ GameView.prototype.resumeGame = function()
 
 GameView.prototype.endGame = function(gameWon)
 {
+    var view = this;
     // Set up summary screen if the game was a win
     // Otherwise, return to level select screen
     var data = {"userID": 1,
