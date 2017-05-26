@@ -251,7 +251,7 @@ GameView.prototype.onCardClicked = function(card, e)
             view.setScore(10*view.sublevel*this.lives);
             var date = new Date();
             if(!view.hasGuessedThisRound){
-              identifiedBirdandTime.push({"UserID", card.attr("data-id"), date});
+              //identifiedBirdandTime.push({"UserID", card.attr("data-id"), date});
             }
             view.checkEndCondition();
         }
