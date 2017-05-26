@@ -40,7 +40,7 @@ LevelSelectView.prototype.onPlayButtonPressed = function (button)
     // Find the card container, this contains our data attributes.
     var cardContainer = $(button).parent();
     var level = parseInt(cardContainer.attr("data-level"));
-    var sublevel = parseInt(cardContainer.attr("data-level"))+1;
+    var sublevel = parseInt(cardContainer.attr("data-sublevel"));
     //console.log("Play level " + level + ", sublevel " + sublevel);
     g_views.gameView.startGame(level, sublevel);
 }
