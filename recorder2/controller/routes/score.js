@@ -18,3 +18,5 @@ router.post('/updateScore', function (req, res){
 
   connection.query(sql);
 });
+
+module.exports = router;
