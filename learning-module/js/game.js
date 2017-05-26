@@ -189,8 +189,14 @@ GameView.prototype.endGame = function(gameWon)
 {
     // Set up summary screen if the game was a win
     // Otherwise, return to level select screen
+    var data = {"userID": 1,
+                "score": view.score};
+
     if (gameWon) {
         g_views.levelCompleteView.displaySummary(this.level, this.subLevel, this.score, this.increasedSkillBirds);
+        $.post("postScore.php", data, (data, textStatus) => {
+          console.log(textStatus);
+        });
     }
     else {
         g_views.gameView = new GameView();
