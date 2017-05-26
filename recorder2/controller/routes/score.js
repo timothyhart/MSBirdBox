@@ -13,7 +13,7 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
-router.post('/updateScore', (req, res)=>{
+router.post('/updateScore', function (req, res){
   var sql = "UPDATE User SET points = points + " + req.score + "WHERE userID = " + req.userID;
 
   connection.query(sql);
