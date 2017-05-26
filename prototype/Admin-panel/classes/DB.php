@@ -135,10 +135,10 @@ class DB{
    //Actual proper update function
    public function updateScore($score, $userID){
 	$sql = "UPDATE User SET points= points + $score WHERE userID = $userID";
-	if(!this->query($sql, null) ->error()){
-	return true;
-	}
-	return false;
+	if(!$this->query($sql)->error()){
+            return true;
+        }
+        return false;
 }
 
     // gets result set
