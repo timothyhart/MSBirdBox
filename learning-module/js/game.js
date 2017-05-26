@@ -17,6 +17,8 @@ function GameView() {
     view.lives = 2;
     view.answerBirdList = {};
     view.answerBird = 0;
+    view.hasGuessedThisRound = false;
+    view.identifiedBirdandTime = [];
 
     // Hook button events
     view.container.find(".back-button").click(function (e) { view.onBackButtonPressed(); });
@@ -119,23 +121,10 @@ GameView.prototype.startGame = function (level, sublevel)
     // Create a shallow copy of the birdlist to be used for drawing answers out
     view.answerBirdList = view.birdList.slice();
 
-
-    // Remove all cards from field
-
     this.birdGuessCount = {};
 
     view.startNewRound();
 
-    /*// Create 3 pairs of birds from the current set.
-    // Use splice so we don't place the same bird in more than once.
-    //EDITED THIS (Increased from 3 to 6)
-
-   for (var i = 0; i < 6; i++) {
-        //var index = Math.floor(Math.random() * birdList.length);
-        var bird = birdList[i];
-        this.createCardPair(sublevel, bird);
-        this.birdGuessCount[bird.id] = 0;
-    }*/
 
     switchView(g_views.gameView);
 }
@@ -227,51 +216,6 @@ GameView.prototype.setScore = function(score)
     document.getElementById("score-panel").innerHTML = "Score: " + view.score;
 }
 
-/*GameView.prototype.matchCards = function(cardA, cardB)
-{
-    // Clear selected state
-    cardA.removeClass("selected-card");
-    cardB.removeClass("selected-card");
-
-    // Compare IDs of cards
-    var cardAID = parseInt(cardA.attr("data-id"));
-    var cardBID = parseInt(cardB.attr("data-id"));
-    if (cardAID == cardBID)
-    {
-        // Look up bird in database
-        var bird = g_database.getBirdById(cardAID);
-
-        // Increment attempt counter (but only once, since it's a match)
-        var attemptCount = this.birdGuessCount[bird.id] + 1;
-        this.birdGuessCount[bird.id] = attemptCount;
-        console.log("match for bird", bird.id, "after", attemptCount, "attempts");
-
-        // Points = maximum of 300 points per pair, divided by attempt count
-        var pointsToAdd = Math.floor(300 / attemptCount);
-        this.setScore(this.score + pointsToAdd);
-
-        // Add skill points for bird
-        if (g_stats.addSkillPointsForBird(bird.id, this.subLevel, attemptCount))
-            this.increasedSkillBirds.push(bird);
-
-        // Flip cards over
-        cardA.removeClass("selected-card");
-        cardA.addClass("flipped-card");
-        cardB.removeClass("selected-card");
-        cardB.addClass("flipped-card");
-        this.checkEndCondition();
-    }
-    else
-    {
-        // No match. TODO: Better feedback here.
-        alert("Not a match");
-
-        // Increment attempt counter for both birds
-        this.birdGuessCount[cardAID] = this.birdGuessCount[cardAID] + 1;
-        this.birdGuessCount[cardBID] = this.birdGuessCount[cardBID] + 1;
-    }
-}*/
-
 GameView.prototype.checkEndCondition = function()
 {
     var view = this;
@@ -279,12 +223,6 @@ GameView.prototype.checkEndCondition = function()
     //console.log(view.answerBirdList.length);
     if (view.answerBirdList.length <= 0)
     {
-
-        // DEBUG: dump out guesses for each bird
-        $.each(this.birdGuessCount, function (birdId, attemptCount) {
-            console.log("guesses:", birdId, attemptCount);
-        });
-
         // Display win summary.
         this.endGame(true);
     } else {
@@ -301,10 +239,14 @@ GameView.prototype.onCardClicked = function(card, e)
         if (parseInt(card.attr("data-id")) == view.answerBird)
         {
             view.lives++;
-            view.lives = view.lives >= 6 ? 6 : view.lives;
+            view.lives = view.lives > 6 ? 6 : view.lives;
             view.animateBird();
             view.destroyWaveSurfers();
-            view.setScore(10*this.lives);
+            view.setScore(10*view.sublevel*this.lives);
+            var date = new Date();
+            if(!view.hasGuessedThisRound){
+              identifiedBirdandTime.push({"UserID", card.attr("data-id"), date});
+            }
             view.checkEndCondition();
         }
         else
@@ -312,10 +254,13 @@ GameView.prototype.onCardClicked = function(card, e)
             // No match. TODO: Better feedback here.
             alert("Not the right birb. Try again!");
             view.lives--;
-            view.animateBird();
             if(view.lives <= 0){
                 view.endGame(false);
             }
+
+            view.animateBird();
+            view.hasGuessedThisRound = true;
+
             card.empty();
             card.append($("<div>").attr("class", "flipped-card flipped-overlay"));
         }

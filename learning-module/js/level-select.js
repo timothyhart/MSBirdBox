@@ -40,7 +40,7 @@ LevelSelectView.prototype.onPlayButtonPressed = function (button)
     // Find the card container, this contains our data attributes.
     var cardContainer = $(button).parent();
     var level = parseInt(cardContainer.attr("data-level"));
-    var sublevel = parseInt(cardContainer.attr("data-sublevel"));
+    var sublevel = parseInt(cardContainer.attr("data-level"))+1;
     //console.log("Play level " + level + ", sublevel " + sublevel);
     g_views.gameView.startGame(level, sublevel);
 }
@@ -59,7 +59,7 @@ LevelSelectView.prototype.createLevelContainer = function(numCards)
             levelContainer = $("<div>").attr("class", "double-level");
             break;
     }
-    
+
     if (levelContainer)
         levelContainer.appendTo(this.cardsContainer);
 
@@ -87,7 +87,7 @@ LevelSelectView.prototype.createLevelCard = function(levelContainer, level, subl
     var card = $("<div>").attr("class", "card").appendTo(cardContainer);
     card.append($("<img>").attr("src", "media/placeholders/bird.png").attr("alt", "placeholder image"));
     card.append($("<label>").text("Level " + (sublevel + 1)));
-    
+
     // This is kinda slow, all the extra copies. Use a cached list instead.
     var innerBirdList = $("<ul>").attr("class", "unlock-list").appendTo(card);
     $.each(g_database.getBirdsForLevel(level), function(index, bird) {
@@ -111,7 +111,7 @@ LevelSelectView.prototype.populateView = function(level)
     var levelContainer = this.createLevelContainer(2);
     this.createLevelCard(levelContainer, level, 0, 0, 10);
     this.createLevelCard(levelContainer, level, 1, 10, 20);
-    
+
    /* // First tier - Image<->Name
     var levelContainer = this.createLevelContainer(1);
     this.createLevelCard(levelContainer, level, 0, 0, 10);
@@ -125,7 +125,7 @@ LevelSelectView.prototype.populateView = function(level)
     levelContainer = this.createLevelContainer(2);
     this.createLevelCard(levelContainer, level, 3, 20, 30);
     this.createLevelCard(levelContainer, level, 4, 20, 30);
-    
+
     // Fourth tier - Audio<->Spectrogram
     levelContainer = this.createLevelContainer(1);
     this.createLevelCard(levelContainer, level, 5, 30, 40);*/
