@@ -242,7 +242,7 @@ GameView.prototype.onCardClicked = function(card, e)
             view.lives = view.lives > 6 ? 6 : view.lives;
             view.animateBird();
             view.destroyWaveSurfers();
-            view.setScore(10*this.lives);
+            view.setScore(10*view.sublevel*this.lives);
             var date = new Date();
             if(!view.hasGuessedThisRound){
               identifiedBirdandTime.push({"UserID", card.attr("data-id"), date});
