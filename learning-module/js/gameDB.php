@@ -1,6 +1,6 @@
 <?php
-$userID = intval($_POST['userID']);
-$score = intval($_POST['score']);
+$userID = intval($_POST["userID"]);
+$score = intval($_POST["score"]);
 
 $dump = var_dump($_POST);
 echo $dump;
@@ -13,7 +13,7 @@ if (!$con) {
 
 $sql="UPDATE User SET points = points+$score WHERE userID = '".$userID."'";
 $result = mysqli_query($con,$sql);
-
+echo $result;
 $con->close();
 
  ?>
