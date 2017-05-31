@@ -9,8 +9,8 @@ if (!$con) {
     die('Could not connect: ' . mysqli_error($con));
 }
 
-switch ($method):
-  case "updateScore":
+switch ($method) {
+    case "updateScore":
     $sql="UPDATE User SET points = points+$score WHERE userID = '".$userID."'";
     $result = mysqli_query($con,$sql);
     break;
@@ -18,6 +18,7 @@ switch ($method):
     $sql="UPDATE User SET level = IF(level < $level, $level, level) WHERE userID = $userID";
     $result = mysqli_query($son, $sql);
     break;
+  }
 
 $con->close();
 
