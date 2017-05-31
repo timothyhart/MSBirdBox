@@ -10,7 +10,7 @@ if (!$con) {
 
 $sql="UPDATE User SET points = points+$score WHERE userID = '".$userID."'";
 $result = mysqli_query($con,$sql);
-
+echo "<script>console.log($result)</script>;"
 $con->close();
 
  ?>
