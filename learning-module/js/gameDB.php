@@ -1,6 +1,10 @@
 <?php
 $userID = intval($_POST['userID']);
 $score = intval($_POST['score']);
+echo '<pre>';
+var_dump($_POST);
+echo '</pre>';
+
 var_dump($_POST);
 $con = mysqli_connect('localhost','birdbox','birdbox','birdbox');
 if (!$con) {
@@ -10,7 +14,7 @@ if (!$con) {
 
 $sql="UPDATE User SET points = points+$score WHERE userID = '".$userID."'";
 $result = mysqli_query($con,$sql);
-echo "<script>console.log($result)</script>;";
+echo "<script>console.log('$result')</script>;";
 $con->close();
 
  ?>
