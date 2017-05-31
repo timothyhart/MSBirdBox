@@ -165,7 +165,7 @@ GameView.prototype.startNewRound = function(){
     // Bring everything into view
     switchView(g_views.gameView);
 
-    endGame(true);
+    this.endGame(true);
 }
 
 // destroy wavesurfer (player) objects
