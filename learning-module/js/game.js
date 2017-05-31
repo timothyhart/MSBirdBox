@@ -204,7 +204,7 @@ GameView.prototype.endGame = function(gameWon)
                   alert(msg);
                 }
               });
-
+              
         data.method = "updateLevel";
         $.ajax({url: "js/gameDB.php",
                 method: 'POST',

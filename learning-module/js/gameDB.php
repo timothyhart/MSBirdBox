@@ -1,7 +1,7 @@
 <?php
 $userID = intval($_POST["userID"]);
 $score = intval($_POST["score"]);
-$method = intval($_POST["method"]);
+$method = $_POST["method"];
 $level = intval($_POST["level"]);
 
 $con = mysqli_connect('localhost','birdbox','birdbox','birdbox');
