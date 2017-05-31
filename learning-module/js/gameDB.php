@@ -8,7 +8,7 @@ if (!$con) {
 }
 
 
-$sql="UPDATE User SET points = points+$score WHERE userID = '".userID."'";
+$sql="UPDATE User SET points = points+$score WHERE userID = '".$userID."'";
 $result = mysqli_query($con,$sql);
 
 $con->close();
