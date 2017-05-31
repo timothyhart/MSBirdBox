@@ -13,10 +13,12 @@ switch ($method) {
     case "updateScore":
     $sql="UPDATE User SET points = points+$score WHERE userID = '".$userID."'";
     $result = mysqli_query($con,$sql);
+    echo "score updated";
     break;
   case "updateLevel":
     $sql="UPDATE User SET level = $level WHERE userID = $userID";
     $result = mysqli_query($son, $sql);
+    echo "level updated";
     break;
   }
 
