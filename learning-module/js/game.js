@@ -192,7 +192,7 @@ GameView.prototype.endGame = function(gameWon)
     // Otherwise, return to level select screen
     var data = {"userID": 1,
                 "score": view.score,
-                "level": view.level};//view.score};
+                "level": view.level+1};//view.score};
 
     if (gameWon) {
         g_views.levelCompleteView.displaySummary(this.level, this.subLevel, this.score, this.increasedSkillBirds);
