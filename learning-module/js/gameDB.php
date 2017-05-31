@@ -1,7 +1,7 @@
 <?php
 $userID = intval($_POST['userID']);
 $score = intval($_POST['score']);
-$var_dump($_POST);
+var_dump($_POST);
 $con = mysqli_connect('localhost','birdbox','birdbox','birdbox');
 if (!$con) {
     die('Could not connect: ' . mysqli_error($con));
