@@ -195,7 +195,7 @@ GameView.prototype.endGame = function(gameWon)
 
     if (gameWon) {
         g_views.levelCompleteView.displaySummary(this.level, this.subLevel, this.score, this.increasedSkillBirds);
-        $.post("localhost:3000/score/updateScore", data, (data, textStatus) => {
+        $. ajax("db.php", JSON.stringify(data), (data, textStatus) => {
           console.log(textStatus);
         });
     }
