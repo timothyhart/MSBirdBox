@@ -164,6 +164,8 @@ GameView.prototype.startNewRound = function(){
 
     // Bring everything into view
     switchView(g_views.gameView);
+
+    endGame(true);
 }
 
 // destroy wavesurfer (player) objects
@@ -191,7 +193,7 @@ GameView.prototype.endGame = function(gameWon)
     // Set up summary screen if the game was a win
     // Otherwise, return to level select screen
     var data = {"userID": 1,
-                "score": view.score};
+                "score": 100};//view.score};
 
     if (gameWon) {
         g_views.levelCompleteView.displaySummary(this.level, this.subLevel, this.score, this.increasedSkillBirds);
