@@ -12,8 +12,7 @@ function GameView() {
     view.score = 0;
     view.selectedCard = null;
     view.waveSurfers = [];
-    view.birdGuessCount = {};
-    view.increasedSkillBirds = [];
+    view.perfectRound = true;
     view.lives = 2;
     view.answerBirdList = {};
     view.answerBird = 0;
@@ -192,11 +191,22 @@ GameView.prototype.endGame = function(gameWon)
     // Set up summary screen if the game was a win
     // Otherwise, return to level select screen
     var data = {"userID": 1,
-                "score": view.score};//view.score};
+                "score": view.score,
+                "level": view.level};//view.score};
 
     if (gameWon) {
         g_views.levelCompleteView.displaySummary(this.level, this.subLevel, this.score, this.increasedSkillBirds);
-        $. ajax({url: "js/gameDB.php",
+        data.method = "updateScore";
+        $.ajax({url: "js/gameDB.php",
+                method: 'POST',
+                data: data,
+                success: function(msg){
+                  alert(msg);
+                }
+              });
+
+        data.method = "updateLevel";
+        $.ajax({url: "js/gameDB.php",
                 method: 'POST',
                 data: data,
                 success: function(msg){
@@ -266,6 +276,7 @@ GameView.prototype.onCardClicked = function(card, e)
             // No match. TODO: Better feedback here.
             alert("Not the right birb. Try again!");
             view.lives--;
+            perfectRound = false;
             if(view.lives <= 0){
                 view.endGame(false);
             }
