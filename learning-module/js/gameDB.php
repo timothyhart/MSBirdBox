@@ -15,7 +15,7 @@ switch ($method) {
     $result = mysqli_query($con,$sql);
     break;
   case "updateLevel":
-    $sql="UPDATE User SET level = IF(level < $level, $level, level) WHERE userID = $userID";
+    $sql="UPDATE User SET level = $level WHERE userID = $userID";
     $result = mysqli_query($son, $sql);
     break;
   }
