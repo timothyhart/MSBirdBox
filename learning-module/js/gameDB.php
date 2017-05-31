@@ -16,7 +16,7 @@ switch ($method) {
     echo "score updated";
     break;
   case "updateLevel":
-    $sql="UPDATE User SET level = $level WHERE userID = $userID";
+    $sql="UPDATE User SET level = $level WHERE userID = '".$userID."'";
     $result = mysqli_query($son, $sql);
     echo "level updated";
     break;
