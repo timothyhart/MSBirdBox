@@ -195,9 +195,10 @@ GameView.prototype.endGame = function(gameWon)
 
     if (gameWon) {
         g_views.levelCompleteView.displaySummary(this.level, this.subLevel, this.score, this.increasedSkillBirds);
-        $. ajax("js/gameDB.php", JSON.stringify(data), (data, textStatus) => {
-          console.log(textStatus);
-        });
+        $. ajax({url: "js/gameDB.php",
+                type: 'POST',
+                data: JSON.stringify(data)
+              });
     }
     else {
         g_views.gameView = new GameView();
