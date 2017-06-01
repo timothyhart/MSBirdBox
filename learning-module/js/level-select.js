@@ -69,7 +69,7 @@ LevelSelectView.prototype.createLevelContainer = function(numCards)
 LevelSelectView.prototype.createLevelCard = function(levelContainer, level, sublevel, requiredSkillLevel, nextLevelSkill)
 {
     var view = this;
-    var isLocked = false;//!g_stats.hasSkillLevelForBirdsAtLevel(level, requiredSkillLevel);
+    var isLocked = sessionStorage.getItem("level") < level ? true : false;
 
     var cardContainer = $("<div>").appendTo(levelContainer);
     cardContainer.addClass("card-container");
@@ -77,7 +77,7 @@ LevelSelectView.prototype.createLevelCard = function(levelContainer, level, subl
     cardContainer.attr("data-sublevel", sublevel);
 
     if (isLocked) {
-        var lockedText = "Reach " + requiredSkillLevel + " skill level on all birds";
+        var lockedText = "Beat level" + level + " to unlock these birds";
         cardContainer.addClass("disabled-card-container");
 
         var disabledOverlay = $("<div>").attr("class", "disabled-overlay").appendTo(cardContainer);
