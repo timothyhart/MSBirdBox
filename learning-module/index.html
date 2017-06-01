@@ -47,7 +47,20 @@
     <div style="height: 32px;"></div>
 
     <div class="base-container">
+        <div class="base-view login-view">
+          <div class="base-view title-view">
+              <div class="logo">
+                  <img src="media/title/logo.png" alt="logo" />
+              </div>
+              <div class="login">
+                  <label>Username </label>
+                  <input type="text" class="username" placeholder="Enter Username" required />
+                  <label>Password: </label>
+                  <input type="password" class="password" placeholder="Enter Password" required />
+                  <button class="login-button" name="login">Let's Go!</button>
 
+              </div>
+        </div>
         <!-- Title view-->
         <div class="base-view title-view">
             <div class="logo">
@@ -283,7 +296,7 @@
 
     <script>
         // Change to the view you are working on when developing
-        switchView(g_views.titleView);
+        switchView(g_views.loginView);
         //setTimeout(function () { g_views.gameView.startGame(0, 0) }, 100);
         //setTimeout(function () { g_views.libraryView.open(); }, 100);
         //setTimeout(function () { g_views.libraryView.openPopup(g_database.getBirdList()[0]); }, 100);

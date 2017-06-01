@@ -204,15 +204,16 @@ GameView.prototype.endGame = function(gameWon)
                   alert(msg);
                 }
               });
-              
-        data.method = "updateLevel";
-        $.ajax({url: "js/gameDB.php",
-                method: 'POST',
-                data: data,
-                success: function(msg){
-                  alert(msg);
-                }
-              });
+        if (perfectRound){
+          data.method = "updateLevel";
+          $.ajax({url: "js/gameDB.php",
+                  method: 'POST',
+                  data: data,
+                  success: function(msg){
+                    alert(msg);
+                  }
+                });
+            }
     }
     else {
         g_views.gameView = new GameView();

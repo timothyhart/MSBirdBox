@@ -4,7 +4,7 @@ $score = intval($_POST["score"]);
 $method = $_POST["method"];
 $level = intval($_POST["level"]);
 
-echo var_dump($_POST);
+//echo var_dump($_POST);
 $con = mysqli_connect('localhost','birdbox','birdbox','birdbox');
 if (!$con) {
     die('Could not connect: ' . mysqli_error($con));
