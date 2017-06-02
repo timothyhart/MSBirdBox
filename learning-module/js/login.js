@@ -16,7 +16,7 @@ LoginView.prototype.onLoginButtonPressed = function () {
   var loginURL = "js/login.php";
   $.ajax({
     url: loginURL,
-    method: "POST",
+    method: 'POST',
     data: data,
     success: function(res){
       if(res.userID !== null){
