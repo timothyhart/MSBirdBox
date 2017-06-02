@@ -1,0 +1,19 @@
+.login-view {
+
+}
+
+.login-view .logo {
+    width: 100%;
+    height: 390px;
+    position: relative;
+    background-color: #8BC34A;
+}
+
+.login-view .logo img {
+    display: block;
+    position: absolute;
+    top: 125px;
+    left: 155px;
+    width: 985px;
+    height: 245px;
+}
