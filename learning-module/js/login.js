@@ -18,9 +18,9 @@ LoginView.prototype.onLoginButtonPressed = function () {
     data: data,
     success: function(res){
       if(res.userID !== null){
-        sessionStorage.setItem('userID': res.userID);
-        sessionStorage.setItem('level': res.level);
-        sessionStorage.setItem('isAdmin': res.isAdmin);
+        sessionStorage.setItem('userID', res.userID);
+        sessionStorage.setItem('level', res.level);
+        sessionStorage.setItem('isAdmin', res.isAdmin);
         console.log(res);
         switchView(g_views.titleView);
       }
