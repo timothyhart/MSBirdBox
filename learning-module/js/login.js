@@ -11,7 +11,9 @@ LoginView.prototype.onLoginButtonPressed = function () {
   var userID = view.container.find(".username").value;
   var password = view.container.find(".password").value;
 
-  var data = {"userID": userID, "password": password }
+
+  var data = {"userID": userID, "password": password };
+  console.log(data);
 
   var loginURL = "js/login.php";
   $.ajax({
