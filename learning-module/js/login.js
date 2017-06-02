@@ -6,6 +6,8 @@ function LoginView(){
 
 LoginView.prototype.onLoginButtonPressed = function () {
 
+  var view = this;
+
   var userID = view.container.find(".username").value;
   var password = view.container.find(".password").value;
 
