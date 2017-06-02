@@ -22,7 +22,7 @@ LoginView.prototype.onLoginButtonPressed = function () {
         sessionStorage.setItem('level': res.level);
         sessionStorage.setItem('isAdmin': res.isAdmin);
         console.log(res);
-        switchView(titleView);
+        switchView(g_views.titleView);
       }
     }
   })
