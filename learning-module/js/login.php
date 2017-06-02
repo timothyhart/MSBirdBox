@@ -2,7 +2,7 @@
 $userID = intval($_POST["userID"]);
 $pwd = $_POST["password"];
 
-//echo var_dump($_POST);
+echo var_dump($_POST);
 $con = mysqli_connect('localhost','birdbox','birdbox','birdbox');
 if (!$con) {
     die('Could not connect: ' . mysqli_error($con));
