@@ -10,9 +10,13 @@ if (!$con) {
 
 $sql = "SELECT * FROM User WHERE userID = '".$userID."' AND password = $pwd";
 
-$result = mysqli_query($con, $sql);
+ if(mysqli_query($con, $sql)){
+   echo "worked";
+ } else {
+   die ('did not work ' . mysqli_error($con));
+ }
 
- echo $result;
+ //echo $result;
 
 $con->close();
 
