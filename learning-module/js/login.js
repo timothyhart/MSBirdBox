@@ -2,14 +2,16 @@ function LoginView(){
   var view = this;
     view.container = $(".login-view");
     view.container.find(".login-button").click(function (e){ view.onLoginButtonPressed(); });
+    var IDTextField = view.container.find(".username");
+    var pwdTextField = view.container.find(".password");
 }
 
 LoginView.prototype.onLoginButtonPressed = function () {
 
   var view = this;
 
-  var userID = view.container.find(".username").value;
-  var password = view.container.find(".password").value;
+  var userID = IDTextField.value;
+  var password = pwdTextField.value;
 
 
   var data = {"userID": userID, "password": password };
