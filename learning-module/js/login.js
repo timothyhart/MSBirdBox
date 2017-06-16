@@ -2,21 +2,20 @@ function LoginView(){
   var view = this;
     view.container = $(".login-view");
     view.container.find(".login-button").click(function (e){ view.onLoginButtonPressed(); });
-    var loginForm = view.container.find(".login");
-    var IDTextField = login.find(".username");
-    var pwdTextField = login.find(".password");
+    view.loginForm = view.container.find(".login");
+    view.IDTextField = view.loginForm.find(".username");
+    view.pwdTextField = view.loginForm.find(".password");
 }
 
 LoginView.prototype.onLoginButtonPressed = function () {
 
   var view = this;
-
-  var userID = IDTextField.value;
-  var password = pwdTextField.value;
+  var userID = view.IDTextField.val();
+  var password = view.pwdTextField.val();
 
 
   var data = {"userID": userID, "password": password };
-  console.log(data);
+  
 
   var loginURL = "js/login.php";
   $.ajax({
@@ -24,13 +23,17 @@ LoginView.prototype.onLoginButtonPressed = function () {
     method: 'POST',
     data: data,
     success: function(res){
-      if(res.userID !== null){
+      if(res == 1){
+	alert("correct");
         sessionStorage.setItem('userID', res.userID);
         sessionStorage.setItem('level', res.level);
         sessionStorage.setItem('isAdmin', res.isAdmin);
-        console.log(res);
         switchView(g_views.titleView);
+	location.reload();
       }
+else {
+alert("Incorrect username or password");
+}
     }
   })
 };
