@@ -31,7 +31,7 @@ switch($action){
  if(!mysqli_query($con, $sql)){
    die('This went wrong: ' . mysqli_error($con));
  } else {
-   echo "EVERYTHING WENT RIGHT BUT APPRARENTLY NOT";
+   echo "You have been registered successfully. Your username is " + $maxID;
  }
 
 }
