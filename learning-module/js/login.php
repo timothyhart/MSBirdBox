@@ -13,12 +13,9 @@ $sql = "SELECT * FROM User WHERE userID = '$userID'";
 $result = mysqli_query($con, $sql);
 $row = mysqli_fetch_row($result);
 if($row[2] === $pwd){
-  $data = { "success": 1,
-            "userID": $r0w[0],
-           "level": $row[4],
-            "isAdmin": $row[5]};
+  $data = array(1, $r0w[0], $row[4], $row[5]);
 } else {
-    $data = { "success": 0}
+    $data = array(0);
 }
 echo json_encode($data);
 
