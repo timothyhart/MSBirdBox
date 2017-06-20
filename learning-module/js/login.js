@@ -23,7 +23,9 @@ LoginView.prototype.onLoginButtonPressed = function () {
     method: 'POST',
     data: data,
     success: function(res){
-      console.log(res[0]);
+      //console.log(res[0]);
+      res = json_decode(res);
+      console.log(res);
       if(res[0] === 1){
 	       //alert("correct");
         sessionStorage.setItem('userID', res[1]);
