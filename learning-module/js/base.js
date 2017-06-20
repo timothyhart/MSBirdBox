@@ -14,6 +14,7 @@ function switchView(view)
     }
     var userID = sessionStorage.getItem("userID");
     g_currentView = userID !== null ? view : g_views.loginView;
+    console.log(g_currentView);
     if (g_currentView)
     {
         g_currentView.container.addClass("active-view");
