@@ -1,7 +1,7 @@
 var g_currentView = null;
 var g_currentModal = null;
 var g_views = {};
-var userID = sessionStorage.getItem("userID");
+
 
 function switchView(view)
 {
@@ -12,7 +12,7 @@ function switchView(view)
 
         g_currentView.container.removeClass("active-view");
     }
-
+    var userID = sessionStorage.getItem("userID");
     g_currentView = userID !== null ? view : g_views.loginView;
     if (g_currentView)
     {

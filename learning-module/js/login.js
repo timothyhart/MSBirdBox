@@ -24,11 +24,11 @@ LoginView.prototype.onLoginButtonPressed = function () {
     data: data,
     success: function(res){
       console.log(res);
-      if(res == 1){
-	alert("correct");
-        sessionStorage.setItem('userID', res.userID);
-        sessionStorage.setItem('level', res.level);
-        sessionStorage.setItem('isAdmin', res.isAdmin);
+      if(res[0] == 1){
+	       //alert("correct");
+        sessionStorage.setItem('userID', res[1]);
+        sessionStorage.setItem('level', res[2]);
+        sessionStorage.setItem('isAdmin', res[3]);
         switchView(g_views.titleView);
 	location.reload();
       }
