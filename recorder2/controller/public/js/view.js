@@ -6,7 +6,7 @@ var g_currentView = null;
 function switchView(view) {
     if (g_currentView === view)
         return;
-        
+
     if (g_currentView) {
         if (Object.getPrototypeOf(g_currentView).hasOwnProperty("onDeactivate"))
             g_currentView.onDeactivate();
@@ -15,7 +15,8 @@ function switchView(view) {
         g_currentView.root.removeClass("active-view");
     }
 
-    g_currentView = view;
+    var userID = sessionStorage.getItem("userID");
+    g_currentView = userID !== null ? view : g_views.loginView; //CHANGE THIS TO CHECK IF ADMIN
     if (g_currentView)
     {
         g_currentView.navItem.addClass("active");
@@ -76,17 +77,17 @@ function endLoadingModal() {
 // Helper function for setting the position of an absolute-positioned element
 // Expects a jQuery selector as the element parameter.
 function setAbsoluteElementRect(element, left, top, width, height) {
-    element.attr("style", "left: " + left + "px; width: " + width + "px;" + "top:" + top + "px; height: " + height + "px;"); 
+    element.attr("style", "left: " + left + "px; width: " + width + "px;" + "top:" + top + "px; height: " + height + "px;");
 }
 
 // Location/hash tracker
 function LocationHashTracker() {
     var instance = this;
-    
+
     // name -> callback
     instance.actionTable = {};
     instance.hashChangeInProgress = false;
-    
+
     // Requires browser support
     window.onhashchange = function() { instance.onHashChangeEvent(); };
 }
@@ -103,7 +104,7 @@ LocationHashTracker.prototype.setAction = function(action, params) {
             hashString = hashString + "/" + key + "=" + value;
         });
     }
-    
+
     this.hashChangeInProgress = true;
     location.hash = hashString;
     this.hashChangeInProgress = false;
@@ -112,37 +113,37 @@ LocationHashTracker.prototype.setAction = function(action, params) {
 LocationHashTracker.prototype.onHashChangeEvent = function() {
     if (this.hashChangeInProgress)
         return false;
-        
+
     // Handle empty hashes.
     if (window.location.hash.length < 1)
         return false;
-        
+
     // HACK: Ignore hash changes when modal dialog is active.
     // This means that we can lose events, but better than leaving in an inconsistent state.
     if (g_loadingModalRecursionCount)
         return false;
-    
+
     var splitHash = window.location.hash.slice(1).split("/");
     var actionName = splitHash[0];
     var params = {};
-    
+
     // Parse parameters
     if (splitHash.length > 1) {
         $.each(splitHash.slice(1), function(index, value) {
             var pair = value.split("=");
             if (pair.length != 2)
                 return;
-                
+
             params[pair[0]] = pair[1];
         });
     }
-    
+
     //console.log(actionName, params);
-    
+
     var callback = this.actionTable[actionName];
     if (!callback)
         return false;
-    
+
     return callback(actionName, params);
 }
 

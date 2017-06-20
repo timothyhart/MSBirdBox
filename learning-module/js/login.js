@@ -31,7 +31,7 @@ LoginView.prototype.onLoginButtonPressed = function () {
         sessionStorage.setItem('isAdmin', res[3]);
         console.log(g_views);
         switchView(g_views.titleView);
-	//location.reload();
+	      location.reload();
       }
 else {
 alert("Incorrect username or password");
