@@ -27,7 +27,7 @@ switch($action){
   $row = mysqli_fetch_row($result);
   $maxID = $row[0] + 1;
 
-  $sql = "INSERT INTO User (userID, name, password) VALUES($maxID, $name, $pwd )";
+  $sql = "INSERT INTO User (userID, name, password) VALUES('$maxID', '$name', '$pwd' )";
  if(!mysqli_query($con, $sql)){
    die('This went wrong: ' . mysqli_error($con));
  } else {
