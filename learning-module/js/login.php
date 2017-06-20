@@ -8,14 +8,19 @@ if (!$con) {
     die('Could not connect: ' . mysqli_error($con));
 }
 
-$sql = "SELECT password FROM User WHERE userID = '$userID'";
+$sql = "SELECT * FROM User WHERE userID = '$userID'";
 
 $result = mysqli_query($con, $sql);
 $row = mysqli_fetch_row($result);
-if($row[0] === $pwd){
-echo 1;
+if($row[2] === $pwd){
+  $data = { "success": 1,
+            "userID": $r0w[0],
+           "level": $row[4],
+            "isAdmin": $row[5]};
+} else {
+    $data = { "success": 0}
 }
-
+echo json_encode($data);
 
 
 
