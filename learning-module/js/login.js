@@ -24,7 +24,7 @@ LoginView.prototype.onLoginButtonPressed = function () {
     data: data,
     success: function(res){
       //console.log(res[0]);
-      res = json_decode(res);
+      res = JSON.parse(res);
       console.log(res);
       if(res[0] === 1){
 	       //alert("correct");
