@@ -30,7 +30,7 @@ LoginView.prototype.onLoginButtonPressed = function () {
         sessionStorage.setItem('level', res[2]);
         sessionStorage.setItem('isAdmin', res[3]);
         switchView(g_views.titleView);
-	location.reload();
+	//location.reload();
       }
 else {
 alert("Incorrect username or password");
