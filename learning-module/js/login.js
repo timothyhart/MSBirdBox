@@ -7,8 +7,8 @@ function LoginView(){
     view.regForm = view.container.find(".register");
     view.IDLoginTextField = view.loginForm.find(".username");
     view.pwdLoginTextField = view.loginForm.find(".password");
-    view.nameRegTextField = view.loginForm.find(".username");
-    view.pwdRegTextField = view.loginForm.find(".password");
+    view.nameRegTextField = view.regForm.find(".name");
+    view.pwdRegTextField = view.regForm.find(".password");
 }
 
 LoginView.prototype.onLoginButtonPressed = function () {
