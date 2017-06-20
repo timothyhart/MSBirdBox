@@ -1,5 +1,5 @@
 <?php
-$userID = isset($_POST["userID") ? intval($_POST["userID"]) : null;
+$userID = isset($_POST["userID"]) ? intval($_POST["userID"]) : null;
 $pwd = isset($_POST["password"]) ? $_POST["password"] : null;
 $action = isset($_POST["action"]) ? intval($_POST["action"]) : null;
 $name = isset($_POST["name"]) ? $_POST["name"] : null;
