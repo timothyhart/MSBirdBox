@@ -66,7 +66,7 @@ else {
 alert("Incorrect username or password");
 }
     }
-  })
-}
+  });
+};
 
 g_views.loginView = new LoginView();
