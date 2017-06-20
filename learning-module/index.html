@@ -33,7 +33,7 @@
             <li class="pure-menu-item"><a href="../prototype/Admin-panel/brisbanebirds.php" class="pure-menu-link">Administrate</a></li>
             <li class="pure-menu-item pure-menu-item-alternate"><a href="../../../.." onclick="javascript:event.target.port=3000" class="pure-menu-link">Record</a></li>
             <li class="pure-menu-item"><a href="index.html" class="pure-menu-link">Learn</a></li>
-            <li class="pure-menu-item pure-menu-item-alternate"><a href="#" class="pure-menu-link">About</a></li>
+            <li class="pure-menu-item pure-menu-item-alternate"><a href="javascript:switchView(loginView)" class="pure-menu-link">Login/Register</a></li>
 
             <li id="login-nav-box" class="pure-menu-item" style="display: none">
                 <span class="login-name">Login Name</span>
@@ -53,13 +53,19 @@
                   <img src="media/title/logo.png" alt="logo" />
               </div>
         <div class="login">
-            <label>Username </label>
-            <input type="text" class="username" placeholder="Enter Username" required />
-            <label>Password: </label>
-            <input type="password" class="password" placeholder="Enter Password" required />
+            <label for="username">Username </label>
+            <input type="text" id="username"class="username" placeholder="Enter Username" required />
+            <label for="password">Password: </label>
+            <input type="password" id="password" class="password" placeholder="Enter Password" required />
             <button class="login-button" name="login">Let's Go!</button>
-
-        </div>
+       </div>
+       <div class="register">
+         <label for="name">Name</label>
+         <input type="text" id="name"class="name" placeholder="Enter First and Last Name" required />
+         <label for="password">Password: </label>
+         <input type="password" id="password" class="password" placeholder="Enter Password" required />
+         <button class="register-button" name="register">Register!</button>
+       </div>
       </div>
         <!-- Title view-->
         <div class="base-view title-view">
