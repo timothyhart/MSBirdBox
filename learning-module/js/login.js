@@ -59,12 +59,7 @@ LoginView.prototype.onRegisterButtonPressed = function () {
     method: 'POST',
     data: data,
     success: function(res){
-    alert(res);
-    }
-  }
-else {
-alert("Incorrect username or password");
-}
+      alert(res);
     }
   });
 };
