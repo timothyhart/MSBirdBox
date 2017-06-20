@@ -13,7 +13,7 @@ $sql = "SELECT * FROM User WHERE userID = '$userID'";
 $result = mysqli_query($con, $sql);
 $row = mysqli_fetch_row($result);
 if($row[2] === $pwd){
-  $data = array(1, $r0w[0], $row[4], $row[5]);
+  $data = array(1, $userID, $row[4], $row[5]);
 } else {
     $data = array(0);
 }
