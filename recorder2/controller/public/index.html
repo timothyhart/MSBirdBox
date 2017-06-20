@@ -24,6 +24,17 @@
         <link href="css/settings-page.css" rel="stylesheet">
     </head>
     <body>
+<script>
+var userID = sessionStorage.getItem("userID");
+if(userID === null){
+alert("Redirecting to login page");
+var ipAddressStr = window.location.href
+var ipAddress = ipAddressStr.split(":")[1]; 
+var address = "http:" + ipAddress +":80";
+window.location.replace(address);
+}
+
+ </script>
         <nav class="navbar navbar-inverse">
             <div class="container">
                 <div class="navbar-header">

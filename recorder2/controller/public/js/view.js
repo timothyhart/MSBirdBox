@@ -16,7 +16,7 @@ function switchView(view) {
     }
 
     var userID = sessionStorage.getItem("userID");
-    g_currentView = userID !== null ? view : g_views.loginView; //CHANGE THIS TO CHECK IF ADMIN
+    g_currentView = view; //userID !== null ? view : g_views.loginView; CHANGE THIS TO CHECK IF ADMIN
     if (g_currentView)
     {
         g_currentView.navItem.addClass("active");
