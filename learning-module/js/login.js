@@ -15,7 +15,7 @@ LoginView.prototype.onLoginButtonPressed = function () {
 
 
   var data = {"userID": userID, "password": password };
-  
+
 
   var loginURL = "js/login.php";
   $.ajax({
@@ -23,6 +23,7 @@ LoginView.prototype.onLoginButtonPressed = function () {
     method: 'POST',
     data: data,
     success: function(res){
+      console.log(res);
       if(res == 1){
 	alert("correct");
         sessionStorage.setItem('userID', res.userID);
