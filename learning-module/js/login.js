@@ -23,14 +23,13 @@ LoginView.prototype.onLoginButtonPressed = function () {
     method: 'POST',
     data: data,
     success: function(res){
-      //console.log(res[0]);
       res = $.parseJSON(res);
-      console.log(res);
       if(res[0] === 1){
 	       //alert("correct");
         sessionStorage.setItem('userID', res[1]);
         sessionStorage.setItem('level', res[2]);
         sessionStorage.setItem('isAdmin', res[3]);
+        console.log(g_views);
         switchView(g_views.titleView);
 	//location.reload();
       }
