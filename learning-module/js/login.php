@@ -30,7 +30,9 @@ switch($action){
   $sql = "INSERT INTO User (userID, name, password) VALUES($maxID, $name, $pwd )";
  if(!mysqli_query($con, $sql)){
    die('This went wrong: ' . mysqli_error($con));
- };
+ } else {
+   echo "EVERYTHING WENT RIGHT BUT APPRARENTLY NOT";
+ }
 
 }
 
