@@ -1,6 +1,7 @@
 var PassSession = function(){
   console.log("Passing the session");
   if(sessionStorage.getItem("userID") === null && sessionStorage.getItem("isAdmin") === null){
+    console.log(sessionStorage.getItem("userID") === null && sessionStorage.getItem("isAdmin") === null)
     localStorage.setItem("userID", -1);
     localStorage.setItem("isAdmin", 0);
   } else {
