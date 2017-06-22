@@ -12,7 +12,7 @@ var PassSession = function(){
 var RetrieveSession = function (){
   console.log("Retrieving the session");
   if(localStorage.getItem("userID") === null && localStorage.getItem("isAdmin") === null){
-    console.log(localStorage);
+    console.log(localStorage.getItems());
     sessionStorage.setItem("userID", -1);
     sessionStorage.setItem("isAdmin", 0);
   } else {
