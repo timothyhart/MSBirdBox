@@ -27,7 +27,7 @@
     <body>
 <script>
 RetrieveSession();
-var userID = intval(sessionStorage.getItem("userID"));
+var userID = parseInt(sessionStorage.getItem("userID"));
 console.log(userID);
 if(userID === -1){
 alert("Redirecting to main page");
