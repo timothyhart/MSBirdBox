@@ -18,6 +18,7 @@
         <script src="js/ext/wavesurfer.min.js"></script>
         <script src="js/config.js"></script>
         <script src="js/view.js"></script>
+        <script src="js/sessionPasser.js"></script>
 
         <link href="css/recording-viewer.css" rel="stylesheet">
         <link href="css/database-page.css" rel="stylesheet">
@@ -25,12 +26,13 @@
     </head>
     <body>
 <script>
+RetrieveSession();
 var userID = sessionStorage.getItem("userID");
 console.log(sessionStorage.getItem("userID"));
-if(userID === null){
+if(userID === -1){
 alert("Redirecting to main page");
 var ipAddressStr = window.location.href
-var ipAddress = ipAddressStr.split(":")[1]; 
+var ipAddress = ipAddressStr.split(":")[1];
 var address = "http:" + ipAddress +":80";
 window.location.replace(address);
 }
@@ -53,7 +55,7 @@ window.location.replace(address);
                         <li id="nav-recording-viewer"><a href="#recording-viewer">Recording Viewer</a></li>
                         <li id="nav-database-page"><a href="#database">Database</a></li>
                         <li id="nav-settings-page"><a href="#settings/tab=recording">Settings</a></li>
-			<li id="nav-settings-page"><a href="MSBirdBox" onclick="javascript:event.target.port=80">Back To Game Module</a></li>
+			<li id="nav-settings-page"><a href="MSBirdBox" onclick="javascript:event.target.port=80; PassSession()">Back To Game Module</a></li>
                     </ul>
                 </div>
             </div>
@@ -69,17 +71,17 @@ window.location.replace(address);
                                 <div class="status-perfect">
                                     Your AB<sup>3</sup> box is <strong>currently recording.</strong>
                                 </div>
-                                
+
                                 <div class="status-reduced">
                                     Your AB<sup>3</sup> box is <strong>currently idle.</strong> There is a recording scheduled, however.
                                 </div>
-                                
+
                                 <div class="status-critical">
                                     Your AB<sup>3</sup> box is <strong>currently idle.</strong> There is no schedule defined, so no recording will occur unless manually initiated.<br>
                                     You can change this by altering the <a href="#settings/tab=schedule">schedule</a>.
                                 </div>
                             </div>
-                            
+
                             <div class="panel panel-primary current-recording">
                                 <div class="panel-heading">Current Recording</div>
                                 <div class="panel-body">
@@ -93,7 +95,7 @@ window.location.replace(address);
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="panel panel-primary next-recording">
                                 <div class="panel-heading">Next Recording</div>
                                 <div class="panel-body">
@@ -101,7 +103,7 @@ window.location.replace(address);
                                     You can change this by altering the <a href="#settings/tab=schedule">schedule</a>.
                                 </div>
                             </div>
-                            
+
                             <div class="panel panel-default manual-recording">
                                 <div class="panel-heading">Manual Recording</div>
                                 <div class="panel-body">
@@ -128,7 +130,7 @@ window.location.replace(address);
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="panel panel-default recent-recordings">
                                 <div class="panel-heading">Recent Recordings</div>
                                 <div class="panel-body">
@@ -152,7 +154,7 @@ window.location.replace(address);
                                     </table>
                                 </div>
                             </div>
-                            
+
                             <div class="update-status">
                                 <div class="text-right">
                                     <div class="sm-bottom-margin">
@@ -165,8 +167,8 @@ window.location.replace(address);
                         </div> <!-- col-md-12 -->
                     </div> <!-- row -->
                 </div> <!-- container -->
-            </div> <!-- status-page-view -->                                
-            
+            </div> <!-- status-page-view -->
+
             <!-- Recording list view -->
             <div id="recording-list-view" class="view">
                 <div class="container">
@@ -211,10 +213,10 @@ window.location.replace(address);
                         <div class="col-xs-12 col-sm-12 col-md-6" style="position: relative;">
                             <!-- Title -->
                             <h2 class="no-top-margin recording-name"></h4>
-                            
+
                             <!-- Recording metadata/info -->
                             <div class="recording-info sm-bottom-margin"></div>
-                            
+
                             <!-- Navigation/segment selector -->
                             <div class="navigation-info-popup"></div>
                             <div>
@@ -231,7 +233,7 @@ window.location.replace(address);
                                 </div>
                                 <div class="sm-bottom-margin"></div>
                             </div>
-                            
+
                             <!-- Selection info -->
                             <div class="segment-info-container">
                                 <h4>Segment Information</h4>
@@ -260,7 +262,7 @@ window.location.replace(address);
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- Right hand side -->
                         <div class="col-xs-12 col-sm-12 col-md-6">
                             <div class="player">
@@ -269,7 +271,7 @@ window.location.replace(address);
                                 <img class="spectrogram" ondragstart="return false;" />
                                 <div class="spectrogram-selection-bar" ondragstart="return false;"></div>
                                 <div class="spectrogram-play-bar" ondragstart="return false;"></div>
-                                
+
                                 <!-- Audio clip/wavesurfer/waveform -->
                                 <div class="waveform" ondragstart="return false;"></div>
                                 <div class="waveform-selection-bar" ondragstart="return false;"></div>
@@ -279,7 +281,7 @@ window.location.replace(address);
                     </div>
                 </div>
             </div>
-            
+
             <!-- Database view -->
             <div id="database-page-view" class="view">
                 <div class="container">
@@ -289,18 +291,18 @@ window.location.replace(address);
                             <h4><strong>Region: </strong>Brisbane</h4>
                             <div class="list-group bird-list"></div>
                         </div>
-                        
+
                         <!-- RHS -->
                         <div class="col-sm-9 bird-info-container">
                             <div class="name"></div>
                             <div class="species-name"></div>
-                            
+
                             <div id="database-image-carousel" class="carousel slide" data-ride="carousel">
                                 <ol class="carousel-indicators">
                                 </ol>
                                 <div class="carousel-inner">
                                 </div>
-                                
+
                                 <a class="left carousel-control" href="#database-image-carousel" role="button" data-slide="prev">
                                     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                                     <span class="sr-only">Previous</span>
@@ -310,7 +312,7 @@ window.location.replace(address);
                                     <span class="sr-only">Next</span>
                                 </a>
                             </div>
-                            
+
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-md-12 sm-bottom-margin">
@@ -324,10 +326,10 @@ window.location.replace(address);
                                         <select class="form-control" class="audio-selection">
                                             <option>Trophy Call</option>
                                         </select>
-                                        
+
                                         <div class="audio sm-top-margin sm-bottom-margin"></div>
                                         <button class="btn btn-sm btn-primary play-button"><i class="glyphicon glyphicon-play xs-right-margin"></i>Play</button>
-                                        
+
                                         <h4>Tags</h4>
                                         <ul class="tags"></ul>
                                     </div>
@@ -335,7 +337,7 @@ window.location.replace(address);
                                         <img class="spectrogram" />
                                     </div>
                                 </div>
-                                
+
                                 <div class="row">
                                     <div class="col-md-12">
                                         <h4>Sources</h4>
@@ -347,7 +349,7 @@ window.location.replace(address);
                     </div>
                 </div>
             </div> <!-- end database view -->
-            
+
             <!-- Settings view -->
             <div id="settings-page-view" class="view">
                 <div class="container">
@@ -365,12 +367,12 @@ window.location.replace(address);
                                     <li class="" data-tab-name="schedule"><a href="#settings/tab=schedule">Recording Schedule</a></li>
                                     <li class="" data-tab-name="advanced"><a href="#settings/tab=advanced">Advanced Settings</a></li>
                                 </ul>
-                                
+
                                 <div class="tab-content">
                                     <!-- Recording settings tab -->
                                     <div class="tab-pane active recording">
                                         <h5>These options control the behavior of the AB<sup>3</sup> box when it is recording audio.</h5>
-                                        
+
                                         <div class="form-horizontal">
                                             <div class="form-group sm-bottom-margin">
                                                 <div class="col-md-12">
@@ -379,7 +381,7 @@ window.location.replace(address);
                                                     <select class="form-control auto-width recording-device"></select>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="form-group sm-bottom-margin">
                                                 <div class="col-md-12">
                                                     <label class="control-label">Volume Boost:</label><br>
@@ -387,7 +389,7 @@ window.location.replace(address);
                                                     <input class="form-control auto-width volume-boost" type="number" min="0" max="30" value="0" step="0.1" />
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="form-group sm-bottom-margin">
                                                 <div class="col-md-12">
                                                     <label class="control-label">Segment Duration:</label><br>
@@ -396,7 +398,7 @@ window.location.replace(address);
                                                     <input class="form-control auto-width segment-length" type="number" min="10" max="60" value="0" />
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="form-group sm-bottom-margin">
                                                 <div class="col-md-12">
                                                     <label class="control-label">Overlap Duration:</label><br>
@@ -406,81 +408,81 @@ window.location.replace(address);
                                                     <input class="form-control auto-width overlap-length" type="number" min="0" max="30" value="0" />
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="form-group sm-bottom-margin">
                                                 <div class="col-md-12">
                                                     <label class="control-label">RMS Period:</label><br>
                                                     This value controls how many milliseconds of audio are used to calculate the volume levels of a recording.<br>
                                                     Smaller values will make shorter noises have more impact on volume numbers.<br>
-                                                    <input class="form-control auto-width rms-period" type="number" min="100" max="1000" value="100" />                                                   
+                                                    <input class="form-control auto-width rms-period" type="number" min="100" max="1000" value="100" />
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="form-group sm-bottom-margin">
                                                 <div class="col-md-12">
                                                     <label class="control-label">Noise Threshold:</label><br>
                                                     Determines the volume relative to 0dBFS that is considered "noise", and will add a flag to the segment.<br>
-                                                    The lower this value, the louder a sound will have to be for it to register as noise.<br> 
+                                                    The lower this value, the louder a sound will have to be for it to register as noise.<br>
                                                     <input class="form-control auto-width noise-threshold pull-left" type="number" min="-180" max="0" value="-30" step="0.1" />
-                                                    <button class="btn btn-sm btn-success pull-left sm-left-margin calibrate-noise-threshold">Calibrate</button> 
+                                                    <button class="btn btn-sm btn-success pull-left sm-left-margin calibrate-noise-threshold">Calibrate</button>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="form-group md-top-margin md-bottom-margin">
-                                                <div class="col-md-12">                                            
+                                                <div class="col-md-12">
                                                     <button class="btn btn-sm btn-primary save-button"><i class="glyphicon glyphicon-floppy-disk xs-right-margin"></i>Save Changes</button>
                                                 </div>
                                             </div>
-                                        </div>                                       
+                                        </div>
                                     </div> <!-- end recording tab -->
-                                    
+
                                     <!-- Schedule tab -->
                                     <div class="tab-pane schedule">
                                         <h5>The table below determines when your bird box will automatically create recordings.</h5>
                                         <p>A green box in the table indicates that the box will be active during this hour, and a grey box indicates inactivity.</p>
-                                        <p>Recording will begin when the time overlaps with a green box, and end when it overlaps with a grey box.</p> 
-                                        
+                                        <p>Recording will begin when the time overlaps with a green box, and end when it overlaps with a grey box.</p>
+
                                         <table class="times-table sm-top-margin sm-bottom-margin">
                                             <thead></thead>
                                             <tbody></tbody>
                                         </table>
-                                        
+
                                         <button class="btn btn-sm btn-primary save-button"><i class="glyphicon glyphicon-floppy-disk xs-right-margin"></i>Save Changes</button>
                                     </div> <!-- end scheduler tab -->
-                                    
+
                                     <!-- Advanced tab -->
                                     <div class="tab-pane advanced">
                                         <h5>These options control advanced behavior of the AB<sup>3</sup> box. Do not change unless you are sure what you are doing.</h5>
-                                        
-                                        <div class="form-horizontal">                                           
+
+                                        <div class="form-horizontal">
                                             <div class="form-group sm-bottom-margin">
                                                 <div class="col-md-12">
                                                     <label class="control-label">Base Data Directory:</label><br>
                                                     <input class="form-control data-path" type="text" />
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="form-group sm-bottom-margin">
                                                 <div class="col-md-12">
                                                     <label class="control-label">Recordings Directory:</label><br>
                                                     <input class="form-control recordings-path" type="text" />
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="form-group sm-bottom-margin">
                                                 <div class="col-md-12">
                                                     <label class="control-label">Recorder Program Path:</label><br>
                                                     <input class="form-control recorder-program-path" type="text" />
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="form-group sm-bottom-margin">
                                                 <div class="col-md-12">
                                                     <label class="control-label">Analyser Program Path:</label><br>
                                                     <input class="form-control analyser-program-path" type="text" />
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="form-group sm-bottom-margin">
                                                 <div class="col-md-12">
                                                     <label class="control-label">Splitter Program Path:</label><br>
@@ -489,14 +491,14 @@ window.location.replace(address);
                                             </div>
 
                                             <div class="form-group md-top-margin md-bottom-margin">
-                                                <div class="col-md-12">                                            
+                                                <div class="col-md-12">
                                                     <button class="btn btn-sm btn-primary save-button"><i class="glyphicon glyphicon-floppy-disk xs-right-margin"></i>Save Changes</button>
                                                 </div>
                                             </div>
-                                        </div>                                       
+                                        </div>
                                     </div> <!-- advanced tab -->
-                                    
-                                    <div class="sm-top-margin" style="border-bottom: 1px solid #ddd;"></div>                                    
+
+                                    <div class="sm-top-margin" style="border-bottom: 1px solid #ddd;"></div>
                                 </div>
                             </div>
                         </div>
@@ -504,9 +506,9 @@ window.location.replace(address);
                 </div>
             </div>
         </div> <!-- page-container -->
-        
+
         <div class="loading-modal"></div>
-        
+
         <div id="recording-viewer-compare-modal" class="modal">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -519,7 +521,7 @@ window.location.replace(address);
                             <div class="row">
                                 <div class="col-md-6 left">
                                     <div class="header">Current Selection</div>
-                                    
+
                                     <img class="spectrogram" />
                                     <div class="waveform"></div>
                                     <div class="text-center">
@@ -530,7 +532,7 @@ window.location.replace(address);
                                     <div class="header">
                                         <select class="form-control database-selection"></select>
                                     </div>
-                                    
+
                                     <img class="spectrogram" />
                                     <div class="waveform"></div>
                                     <div class="text-center">
@@ -550,7 +552,7 @@ window.location.replace(address);
         <script src="js/recording-viewer.js"></script>
         <script src="js/database-page.js"></script>
         <script src="js/settings-page.js"></script>
-        
+
         <script>
             // TEMPORARY: Force moment locale
             moment.locale("en-AU");
@@ -565,13 +567,12 @@ window.location.replace(address);
             var g_recordingViewer = new RecordingViewer($("#recording-viewer-view"), $("#nav-recording-viewer"), g_hashTracker, g_database);
             var g_databasePage = new DatabasePage($("#database-page-view"), $("#nav-database-page"), g_hashTracker, g_database);
             var g_settingsPage = new SettingsPage($("#settings-page-view"), $("#nav-settings-page"), g_hashTracker);
-                                  
+
             // Trigger hash event (if any)
             if (!g_hashTracker.onHashChangeEvent()) {
                 // No hash or invalid hash, so display the recording list by default.
                 switchView(g_statusPage);
-            }                
+            }
         </script>
     </body>
 </html>
-

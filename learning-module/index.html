@@ -14,6 +14,8 @@
     <script src="js/ext/wavesurfer.min.js"></script>
     <script src="js/ext/fabric/dist/fabric.js"></script>
 
+    <script src="js/sessionPasser.js"></script>
+
     <!-- Include view stylesheets -->
     <link href="css/base.css" type="text/css" rel="stylesheet" />
     <link href="css/title.css" type="text/css" rel="stylesheet" />
@@ -26,14 +28,17 @@
 </head>
 
 <body>
+  <script>
+  RetrieveSession();
+   </script>
     <!-- Navigation bar -->
     <nav class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
       <a href="../prototype/Admin-panel/index.php" class="pure-menu-heading">AB<sup>3</sup></a>
       <ul class="pure-menu-list">
             <li class="pure-menu-item"><a href="../prototype/Admin-panel/brisbanebirds.php" class="pure-menu-link">Administrate</a></li>
-            <li class="pure-menu-item pure-menu-item-alternate"><a href="../../../.." onclick="javascript:event.target.port=3000" class="pure-menu-link">Record</a></li>
+            <li class="pure-menu-item pure-menu-item-alternate"><a href="../../../.." onclick="javascript:event.target.port=3000; PassSession()" class="pure-menu-link">Record</a></li>
             <li class="pure-menu-item"><a href="index.html" class="pure-menu-link">Learn</a></li>
-            <li class="pure-menu-item pure-menu-item-alternate"><a href="javascript:switchView(loginView)" class="pure-menu-link">Login/Register</a></li>
+            <li class="pure-menu-item pure-menu-item-alternate"><a href="javascript:switchView(g_views.loginView)" class="pure-menu-link">Login/Register</a></li>
 
             <li id="login-nav-box" class="pure-menu-item" style="display: none">
                 <span class="login-name">Login Name</span>
