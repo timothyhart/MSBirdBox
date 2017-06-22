@@ -7,6 +7,7 @@ var PassSession = function(){
     localStorage.setItem("userID", sessionStorage.getItem("userID"));
     localStorage.setItem("isAdmin", sessionStorage.getItem("isAdmin"));
   }
+  console.log(localStorage);
 }
 
 var RetrieveSession = function (){
