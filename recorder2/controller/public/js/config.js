@@ -2,7 +2,10 @@
 var BACKEND_URL = "";
 
 // Set to the URL of your central server
-var CENTRAL_URL = "http://10.139.92.245:80/MSBirdBox";
+var ipAddressStr = window.location.href
+var ipAddress = ipAddressStr.split(":")[1]; 
+var address = "http:" + ipAddress +":80";
+var CENTRAL_URL = address+"/MSBirdBox";
 
 // TODO: Improve these URLs..
 var CENTRAL_DATABASE_JSON_URL = CENTRAL_URL + "/prototype/Admin-panel/exportdata.php";
