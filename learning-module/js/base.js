@@ -13,6 +13,7 @@ function switchView(view)
         g_currentView.container.removeClass("active-view");
     }
     var userID = sessionStorage.getItem("userID");
+    console.log(userID);
     g_currentView = userID === -1 ? view : g_views.loginView;
         if (g_currentView)
     {
