@@ -27,8 +27,8 @@
     <body>
 <script>
 RetrieveSession();
-var userID = sessionStorage.getItem("userID");
-console.log(sessionStorage.getItem("userID"));
+var userID = intval(sessionStorage.getItem("userID"));
+console.log(userID);
 if(userID === -1){
 alert("Redirecting to main page");
 var ipAddressStr = window.location.href
