@@ -63,5 +63,3 @@ LoginView.prototype.onRegisterButtonPressed = function () {
     }
   });
 };
-
-g_views.loginView = new LoginView();

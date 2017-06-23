@@ -2,6 +2,7 @@
 // Assumes that view.root and view.navName exists
 
 var g_currentView = null;
+var g_loginView = new LoginView();
 
 function switchView(view) {
     if (g_currentView === view)
@@ -15,8 +16,8 @@ function switchView(view) {
         g_currentView.root.removeClass("active-view");
     }
 
-    var userID = sessionStorage.getItem("userID");
-    g_currentView = view; //userID !== null ? view : g_views.loginView; CHANGE THIS TO CHECK IF ADMIN
+    console.log(userID);
+    g_currentView = userID !== null ? view : g_views.loginView;
     if (g_currentView)
     {
         g_currentView.navItem.addClass("active");
