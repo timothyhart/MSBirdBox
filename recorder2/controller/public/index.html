@@ -26,7 +26,7 @@
     </head>
     <body>
 <script>
-RetrieveSession();
+
 var userID = parseInt(sessionStorage.getItem("userID"));
 console.log(userID);
 if(userID === -1){
@@ -55,7 +55,7 @@ var address = "http:" + ipAddress +":80";
                         <li id="nav-recording-viewer"><a href="#recording-viewer">Recording Viewer</a></li>
                         <li id="nav-database-page"><a href="#database">Database</a></li>
                         <li id="nav-settings-page"><a href="#settings/tab=recording">Settings</a></li>
-			<li id="nav-settings-page"><a href="MSBirdBox" onclick="javascript:PassSession(); event.target.port=80; ">Back To Game Module</a></li>
+			<li id="nav-settings-page"><a href="MSBirdBox" onclick="javascript:event.target.port=80; ">Back To Game Module</a></li>
 
                     </ul>
                 </div>
@@ -63,6 +63,22 @@ var address = "http:" + ipAddress +":80";
         </nav>
 
         <div class="page-container">
+          <div class="login-view">
+          <div class="login">
+              <label for="username">Username </label>
+              <input type="text" id="username"class="username" placeholder="Enter Username" required />
+              <label for="password">Password: </label>
+              <input type="password" id="password" class="password" placeholder="Enter Password" required />
+              <button class="login-button" name="login">Let's Go!</button>
+         </div>
+         <div class="register">
+           <label for="name">Name</label>
+           <input type="text" id="name"class="name" placeholder="Enter First and Last Name" required />
+           <label for="password">Password: </label>
+           <input type="password" id="password" class="password" placeholder="Enter Password" required />
+           <button class="register-button" name="register">Register!</button>
+         </div>
+        </div>
             <!-- Status page view -->
             <div id="status-page-view" class="view">
                 <div class="container">
