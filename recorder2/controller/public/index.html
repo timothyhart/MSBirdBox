@@ -578,6 +578,12 @@
             var g_databasePage = new DatabasePage($("#database-page-view"), $("#nav-database-page"), g_hashTracker, g_database);
             var g_settingsPage = new SettingsPage($("#settings-page-view"), $("#nav-settings-page"), g_hashTracker);
             var g_loginPage = new LoginView();
+            g_views.statusPage = g_statusPage;
+            g_views.recordingList = g_recordingList;
+            g_views.recordingViewer = g_recordingViewer;
+            g_views.databasePage = g_databasePage;
+            g_views.settingsPage = g_settingsPage;
+            g_views.loginPage = g_loginPage;
             // Trigger hash event (if any)
             if (!g_hashTracker.onHashChangeEvent()) {
                 // No hash or invalid hash, so display the recording list by default.
