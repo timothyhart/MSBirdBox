@@ -74,7 +74,7 @@ app.express.use('/', require('./routes/index'));
 app.express.use('/status', require('./routes/status'));
 app.express.use('/settings', require('./routes/settings'));
 app.express.use('/recordings', require('./routes/recordings'));
-app.express.use('/score', require('./routes/score'));
+
 
 /// catch 404 and forwarding to error handler
 app.express.use(function(req, res, next) {
