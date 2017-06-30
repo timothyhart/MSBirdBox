@@ -12,8 +12,8 @@ function switchView(view) {
         if (Object.getPrototypeOf(g_currentView).hasOwnProperty("onDeactivate"))
             g_currentView.onDeactivate();
 
-        g_currentView.navItem.removeClass("active");
-        g_currentView.root.removeClass("active-view");
+        g.currentView.navItem.classList.contains("active") ? g_currentView.navItem.removeClass("active") : null;
+        g_currentView.root.classList.contains("active-view") ? g_currentView.root.removeClass("active-view") : null;
     }
 
     var userID = sessionStorage.getItem("UserID");
@@ -21,8 +21,8 @@ function switchView(view) {
     g_currentView = userID !== null ? view : g_views.loginPage;
     if (g_currentView)
     {
-        g_currentView.navItem.addClass("active");
-        g_currentView.root.addClass("active-view");
+        g.currentView.navItem.classList.contains("active") ? g_currentView.navItem.addClass("active") : null;
+        g_currentView.root.classList.contains("active-view") ? g_currentView.root.addClass("active-view") : null;
         if (Object.getPrototypeOf(g_currentView).hasOwnProperty("onActivate"))
             g_currentView.onActivate();
     }
