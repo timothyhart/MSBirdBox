@@ -21,7 +21,7 @@ LoginView.prototype.onLoginButtonPressed = function () {
   var data = {"userID": userID, "password": password, "action": 0 };
 
 
-  var loginURL = "js/login.php";
+  var loginURL = LOGIN_URL;
   $.ajax({
     url: loginURL,
     method: 'POST',
@@ -53,7 +53,7 @@ LoginView.prototype.onRegisterButtonPressed = function () {
   var data = {"name": name, "password": password, "action": 1 };
 
 
-  var loginURL = "js/login.php";
+  var loginURL = LOGIN_URL;
   $.ajax({
     url: loginURL,
     method: 'POST',
