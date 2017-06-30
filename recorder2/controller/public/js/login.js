@@ -17,7 +17,7 @@ LoginView.prototype.onLoginButtonPressed = function () {
   var userID = view.IDLoginTextField.val();
   var password = view.pwdLoginTextField.val();
 
-
+console.log("Loggin in");
   var data = {"userID": userID, "password": password, "action": 0 };
 
 
@@ -35,6 +35,7 @@ LoginView.prototype.onLoginButtonPressed = function () {
         sessionStorage.setItem('isAdmin', res[3]);
 
         switchView(g_views.statusPage);
+        console.log("Should have switched by now");
 	      //location.reload();
       }
 else {
