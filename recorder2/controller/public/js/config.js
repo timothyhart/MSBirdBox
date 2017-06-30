@@ -6,8 +6,9 @@ var ipAddressStr = window.location.href
 var ipAddress = ipAddressStr.split(":")[1]; 
 var address = "http:" + ipAddress +":80";
 var CENTRAL_URL = address+"/MSBirdBox";
-
+var PI_ID = "01";
 // TODO: Improve these URLs..
+var LOGIN_URL = CENTRAL_URL + "/learning-module/js/login.php";
 var CENTRAL_DATABASE_JSON_URL = CENTRAL_URL + "/prototype/Admin-panel/exportdata.php";
 var CENTRAL_DATABASE_COMMONBIRDS_URL = CENTRAL_URL + "/prototype/Admin-panel/exportCommonBirdsData.php";
 var CENTRAL_DATABASE_BASE_URL = CENTRAL_URL + "/prototype/public/database";
