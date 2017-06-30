@@ -18,7 +18,7 @@
         <script src="js/ext/wavesurfer.min.js"></script>
         <script src="js/config.js"></script>
         <script src="js/view.js"></script>
-        <script src="js/sessionPasser.js"></script>
+        
 
         <link href="css/recording-viewer.css" rel="stylesheet">
         <link href="css/database-page.css" rel="stylesheet">
@@ -27,15 +27,7 @@
     <body>
 <script>
 
-var userID = parseInt(sessionStorage.getItem("userID"));
-console.log(userID);
-if(userID === -1){
-alert("Redirecting to main page");
-var ipAddressStr = window.location.href
-var ipAddress = ipAddressStr.split(":")[1];
-var address = "http:" + ipAddress +":80";
-//window.location.replace(address);
-}
+
 
  </script>
         <nav class="navbar navbar-inverse">
@@ -569,6 +561,7 @@ var address = "http:" + ipAddress +":80";
         <script src="js/recording-viewer.js"></script>
         <script src="js/database-page.js"></script>
         <script src="js/settings-page.js"></script>
+	<script src="js/login.js"></script>
 
         <script>
             // TEMPORARY: Force moment locale
