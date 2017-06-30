@@ -18,7 +18,7 @@
         <script src="js/ext/wavesurfer.min.js"></script>
         <script src="js/config.js"></script>
         <script src="js/view.js"></script>
-        
+
 
         <link href="css/recording-viewer.css" rel="stylesheet">
         <link href="css/database-page.css" rel="stylesheet">
@@ -577,7 +577,7 @@
             var g_recordingViewer = new RecordingViewer($("#recording-viewer-view"), $("#nav-recording-viewer"), g_hashTracker, g_database);
             var g_databasePage = new DatabasePage($("#database-page-view"), $("#nav-database-page"), g_hashTracker, g_database);
             var g_settingsPage = new SettingsPage($("#settings-page-view"), $("#nav-settings-page"), g_hashTracker);
-
+            var g_loginPage = new LoginView();
             // Trigger hash event (if any)
             if (!g_hashTracker.onHashChangeEvent()) {
                 // No hash or invalid hash, so display the recording list by default.

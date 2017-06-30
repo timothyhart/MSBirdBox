@@ -2,7 +2,7 @@
 // Assumes that view.root and view.navName exists
 
 var g_currentView = null;
-var g_loginView = new LoginView();
+//var g_loginView = new LoginView();
 
 function switchView(view) {
     if (g_currentView === view)
@@ -16,8 +16,8 @@ function switchView(view) {
         g_currentView.root.removeClass("active-view");
     }
 
-    console.log(userID);
-    g_currentView = userID !== null ? view : g_views.loginView;
+  //  console.log(userID);
+  //  g_currentView = userID !== null ? view : ;
     if (g_currentView)
     {
         g_currentView.navItem.addClass("active");
