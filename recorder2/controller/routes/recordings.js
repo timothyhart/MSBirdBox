@@ -14,6 +14,13 @@ router.get("/list", function(req, res) {
     });
 });
 
+//GET: /recordings/saveTag
+router.get("/saveTag", function(req, res){
+console.log(req.body.birdName);
+res.send(1);
+
+});
+
 // GET: /recordings/recent
 router.get("/recent", function(req, res) {
     app.recordingHelpers.getRecordingsList(function(names) {

@@ -101,6 +101,8 @@ RecorderController.prototype.saveSchedule = function() {
     }
 }
 
+
+
 RecorderController.prototype.getNextScheduleEntryTime = function(entry) {
     // Create a date at the start of the week.
     var entryTime = moment().local().startOf("isoWeek");

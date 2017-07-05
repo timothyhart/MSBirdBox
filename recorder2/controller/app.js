@@ -28,6 +28,7 @@ var RecorderController = require("./modules/recorder-controller");
 var RecordingHelpers = require("./modules/recording-helpers");
 var SplitterInterface = require("./modules/splitter-interface");
 
+
 // Load config
 app.config = new Config();
 app.config.load();

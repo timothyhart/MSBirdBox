@@ -60,11 +60,12 @@ function RecordingViewer(root, navItem, hashTracker, database)
     
     // Modal element references
     view.compareModalRoot = $("#recording-viewer-compare-modal");
+    view.compareModalRootTagButton = view.compareModalRoot.find("#tag_btn");
     view.compareModalRoot.modal({ show: false });
     view.compareModalRoot.on("show.bs.modal", function() { setTimeout(function() { view.onCompareModalShown(); }, 100); });
     view.compareModalLeftSpectrogram = view.compareModalRoot.find(".left .spectrogram");
     view.compareModalLeftWaveform = view.compareModalRoot.find(".left .waveform");
-    view.compareModalLeftPlayButton = view.compareModalRoot.find(".left button");
+    view.compareModalLeftPlayButton = view.compareModalRoot.find("#play_left");
     view.compareModalRightSpectrogram = view.compareModalRoot.find(".right .spectrogram");
     view.compareModalRightWaveform = view.compareModalRoot.find(".right .waveform");
     view.compareModalRightPlayButton = view.compareModalRoot.find(".right button");
@@ -120,6 +121,7 @@ function RecordingViewer(root, navItem, hashTracker, database)
     view.compareModalRightWaveSurfer.on("play", function() { view.onCompareModalRightWaveSurferPlayStateChange(); });
     view.compareModalRightWaveSurfer.on("pause", function() { view.onCompareModalRightWaveSurferPlayStateChange(); });
     view.compareModalRightPlayButton.click(function() { view.compareModalRightWaveSurfer.playPause(); });
+    view.compareModalRootTagButton.click(function() { view.onTagButtonClicked(); });
 
     // Remove one level of modal block when the audio or image is loaded
     view.waveSurfer.on("ready", function () { endLoadingModal(); view.onWaveSurferAudioProcess(0.0); });
@@ -744,17 +746,39 @@ RecordingViewer.prototype.onDownloadSegmentButtonClicked = function() {
 }
 
 RecordingViewer.prototype.onTagButtonClicked = function() {
-var segStartTime = this.navigationStartSegment + 1
+var birdId = this.compareModalDatabaseSelection.val();
+var birdInfo = this.database.getBirdById(birdId);
+var segStartTime = this.navigationStartSegment + 1;
+var segEndTime = this.navigationEndSegment + 1;
 var segmentName = this.recordingName + "_SegmentStart" + segStartTime+ "_SegmentEnd" + segEndTime;
+var userID = sessionStorage.getItem("userID");
 var tagname = "ID"+userID + PI_ID + "_" + segmentName + "_TagTime" + Date.now();
-var birdname = "";
-var fs = require('fs');
-fs.writeFile("data/tags/" + tagname, birdname, function(err){
-	if(err){
-		return console.log(err);
-	}
+var birdname = birdInfo.name;
 
-	alert("tag saved");
+//route this crap to the nodejs server
+
+
+
+
+var request = $.ajax({
+
+    url : '../../recordings/saveTag',
+    type : 'GET',
+    data : {
+        'fileName' : tagname,
+	'birdName' : birdname
+    },
+    dataType:'json'
+});
+
+
+request.done(function(msg) {
+  console.log( msg );
+});
+
+request.fail(function(xhr, status, error) {
+ console.log("GET request: " request);
+console.log( "Request failed: " + xhr.responseText);
 });
 
 
@@ -786,6 +810,7 @@ RecordingViewer.prototype.openCompareModal = function() {
     beginLoadingModal();
     view.database.load(function() {
         var birdList = view.database.getBirdList();
+
         view.compareModalDatabaseSelection.empty();
         
         var optGroupElement = $("<optgroup>").attr("label", "Database Birds").appendTo(view.compareModalDatabaseSelection);
@@ -863,6 +888,7 @@ RecordingViewer.prototype.onCompareModalDatabaseSelectionChanged = function() {
     var birdId = this.compareModalDatabaseSelection.val();
     var birdInfo = this.database.getBirdById(birdId);
     //console.log("db selection", birdInfo);
+
     
     this.compareModalRightSpectrogram.attr("src", "");
     this.compareModalRightWaveSurfer.empty();
@@ -872,6 +898,8 @@ RecordingViewer.prototype.onCompareModalDatabaseSelectionChanged = function() {
     
     beginLoadingModal();
     this.compareModalRightWaveSurfer.load(birdInfo.clip);
+
+
 }
 
 RecordingViewer.prototype.onCompareModalLeftWaveSurferPlayStateChange = function() {
