@@ -87,10 +87,7 @@ DatabasePage.prototype.selectEntry = function(id) {
     view.birdInfoElement.find(".species-name").text("(" + entry.speciesName + ")");
     view.birdInfoElement.find(".description").text(entry.description);
     
-    // Tags: TODO (the admin side is not sending this..)
-    var tagsElement = view.birdInfoElement.find(".tags");
-    tagsElement.empty();
-    tagsElement.append($("<li>").text("TODO"));
+    
     
     // Sources
     var sourcesElement = view.birdInfoElement.find(".sources");
