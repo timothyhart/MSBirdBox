@@ -56,7 +56,7 @@ function RecordingViewer(root, navItem, hashTracker, database)
     view.clipSelectionStartFraction = 0.0;
     view.clipSelectionEndFraction = 0.0;
     view.clipSelectionUpdating = false;
-    view.clipInfoElement = root.find(".clip-info");
+    //view.clipInfoElement = root.find(".clip-info");
     
     // Modal element references
     view.compareModalRoot = $("#recording-viewer-compare-modal");
@@ -647,7 +647,7 @@ RecordingViewer.prototype.updateClipSelection = function() {
     this.updateClipSelectionBars();
     
     // Update info window
-    this.updateClipInformation();   
+    //this.updateClipInformation();   
 }
     
 RecordingViewer.prototype.updateClipSelectionBars = function() {
@@ -671,14 +671,14 @@ RecordingViewer.prototype.updateClipSelectionBars = function() {
     }
 }
 
-RecordingViewer.prototype.updateClipInformation = function() {
+/* RecordingViewer.prototype.updateClipInformation = function() {
     var html = "<strong>Selection Start: </strong>" + (this.clipSelectionStartFraction * this.segmentDuration).toFixed(3) + " seconds<br>" +
                "<strong>Selection End: </strong>" + (this.clipSelectionEndFraction * this.segmentDuration).toFixed(3) + " seconds<br>" +
                "<strong>Selection Duration: </strong>" + ((this.clipSelectionEndFraction - this.clipSelectionStartFraction) * this.segmentDuration).toFixed(3) + " seconds<br>";
                
     this.clipInfoElement.html(html);
 }
-
+*/
 RecordingViewer.prototype.clearClipSelection = function() {
     this.clipSelectionStartPosition = -1;
     this.clipSelectionEndPosition = -1;
@@ -741,6 +741,22 @@ RecordingViewer.prototype.onDownloadSegmentButtonClicked = function() {
                                         "&download&format=ogg";
                                          
     window.location = segmentAudioURL;    
+}
+
+RecordingViewer.prototype.onTagButtonClicked = function() {
+var segmentStartTime = this.segmentStartTime;
+var tagname = userID + PI_ID + segmentName + Date.now();
+var birdname = "";
+var fs = require('fs');
+fs.writeFile("data/tags/" + tagname, birdname, function(err){
+	if(err){
+		return console.log(err);
+	}
+
+	alert("tag saved");
+});
+
+
 }
 
 RecordingViewer.prototype.onDownloadSelectionButtonClicked = function() {
