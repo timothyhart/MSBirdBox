@@ -1,5 +1,6 @@
-function LoginView(){
+function LoginView(root){
   var view = this;
+  view.root = root;
     view.container = $(".login-view");
     view.container.find(".login-button").click(function (e){ view.onLoginButtonPressed(); });
     view.container.find(".register-button").click(function (e){ view.onRegisterButtonPressed(); });
