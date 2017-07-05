@@ -55,7 +55,7 @@
         </nav>
 
         <div class="page-container">
-          <div class="login-view" id="login-view">
+          <div class="login-view" id="login-view-page">
           <div class="login">
               <label for="username">Username </label>
               <input type="text" id="username"class="username" placeholder="Enter Username" required />
@@ -264,7 +264,7 @@
                                 <div class="text-center sm-bottom-margin">
                                     <!-- <button class="identify-selection btn btn-default btn-sm sm-right-margin" style="width: 160px;"><i class="glyphicon glyphicon-list xs-right-margin"></i>Identify Selection</button>
                                     -->
-				
+
                                 </div>
                                 <div class="text-center sm-bottom-margin">
 				<button class="compare-selection btn btn-default btn-sm sm-right-margin" style="width: 160px;"><i class="glyphicon glyphicon-eye-open xs-right-margin"></i>Tag Selection</button>
@@ -341,7 +341,7 @@
                                         <div class="audio sm-top-margin sm-bottom-margin"></div>
                                         <button class="btn btn-sm btn-primary play-button"><i class="glyphicon glyphicon-play xs-right-margin"></i>Play</button>
 
-                                       
+
                                     </div>
                                     <div class="col-md-6">
                                         <img class="spectrogram" />
@@ -536,7 +536,7 @@
                                     <div class="waveform"></div>
                                     <div class="text-center">
                                         <button class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-play xs-right-margin"></i>Play</button>
- 					
+
                                     </div>
 <button class="tag_button"><i class="glyphicon glyphicon-floppy-disk xs-right-margin"></i>Tag as:</button>
 					<div id="taggingBird"></div>
@@ -583,7 +583,7 @@
             var g_recordingViewer = new RecordingViewer($("#recording-viewer-view"), $("#nav-recording-viewer"), g_hashTracker, g_database);
             var g_databasePage = new DatabasePage($("#database-page-view"), $("#nav-database-page"), g_hashTracker, g_database);
             var g_settingsPage = new SettingsPage($("#settings-page-view"), $("#nav-settings-page"), g_hashTracker);
-            var g_loginPage = new LoginView();
+            var g_loginPage = new LoginView($("login-view-page"));
             g_views.statusPage = g_statusPage;
             g_views.recordingList = g_recordingList;
             g_views.recordingViewer = g_recordingViewer;
