@@ -744,8 +744,9 @@ RecordingViewer.prototype.onDownloadSegmentButtonClicked = function() {
 }
 
 RecordingViewer.prototype.onTagButtonClicked = function() {
-var segmentStartTime = this.segmentStartTime;
-var tagname = userID + PI_ID + segmentName + Date.now();
+var segStartTime = this.navigationStartSegment + 1
+var segmentName = this.recordingName + "_SegmentStart" + segStartTime+ "_SegmentEnd" + segEndTime;
+var tagname = "ID"+userID + PI_ID + "_" + segmentName + "_TagTime" + Date.now();
 var birdname = "";
 var fs = require('fs');
 fs.writeFile("data/tags/" + tagname, birdname, function(err){
