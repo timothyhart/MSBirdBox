@@ -70,7 +70,7 @@ function RecordingViewer(root, navItem, hashTracker, database)
     view.compareModalRightWaveform = view.compareModalRoot.find(".right .waveform");
     view.compareModalRightPlayButton = view.compareModalRoot.find(".right button");
     view.compareModalDatabaseSelection = view.compareModalRoot.find(".database-selection");
-    
+    view.compareModalRootTagLbl = view.compareModalRoot.find("#tag_btn_lbl");
     // Wavesurfer playback object
     view.waveSurfer = WaveSurfer.create({
         container: view.waveformElement[0],
@@ -737,6 +737,7 @@ RecordingViewer.prototype.onDownloadSegmentButtonClicked = function() {
     var startTime = firstSegmentInfo.startTime;
     var duration = (lastSegmentInfo.startTime + lastSegmentInfo.segmentLength) - firstSegmentInfo.startTime;
 
+
     var segmentAudioURL = BACKEND_URL + "/recordings/segment-audio?name=" + this.recordingName +
                                         "&startTime=" + startTime +
                                         "&duration=" + duration +
@@ -748,41 +749,41 @@ RecordingViewer.prototype.onDownloadSegmentButtonClicked = function() {
 RecordingViewer.prototype.onTagButtonClicked = function() {
 var birdId = this.compareModalDatabaseSelection.val();
 var birdInfo = this.database.getBirdById(birdId);
-var segStartTime = this.navigationStartSegment + 1;
-var segEndTime = this.navigationEndSegment + 1;
-var segmentName = this.recordingName + "_SegmentStart" + segStartTime+ "_SegmentEnd" + segEndTime;
+
+var firstSegmentInfo = this.metadata.segments[this.navigationStartSegment];
+    var lastSegmentInfo = this.metadata.segments[this.navigationEndSegment];
+    var startTime = firstSegmentInfo.startTime;
+    var duration = (lastSegmentInfo.startTime + lastSegmentInfo.segmentLength) - firstSegmentInfo.startTime;
+d = new Date();
+var fn = ((d.getFullYear()*100 + d.getMonth()+1)*100 + d.getDate()).toString() + (pad(d.getHours())).toString() + (pad(d.getMinutes())).toString() + (pad(d.getSeconds())).toString();
+var segmentName = this.recordingName + "_SegmentStart=" + startTime+ "_Duration=" + duration;
 var userID = sessionStorage.getItem("userID");
-var tagname = "ID"+userID + PI_ID + "_" + segmentName + "_TagTime" + Date.now();
-var birdname = birdInfo.name;
-
-//route this crap to the nodejs server
-
-
-
+var tagName = "ID=" + PI_ID + "-"+userID + "_recording=" + segmentName + "_TagTime=" + fn;
+var birdName = birdInfo.name;
 
 var request = $.ajax({
 
     url : '../../recordings/saveTag',
     type : 'GET',
     data : {
-        'fileName' : tagname,
-	'birdName' : birdname
+        'fileName' : tagName,
+	'birdName' : birdName
     },
     dataType:'json'
 });
 
 
-request.done(function(msg) {
-  console.log( msg );
-});
+
 
 request.fail(function(xhr, status, error) {
- console.log("GET request: " request);
-console.log( "Request failed: " + xhr.responseText);
+ console.log("GET request: " + JSON.stringify(request));
+console.log( "Request failed: " + JSON.stringify(xhr.responseText));
 });
 
 
 }
+
+function pad(n) {return ("0" + n).slice(-2); }
 
 RecordingViewer.prototype.onDownloadSelectionButtonClicked = function() {
     var clipStartTime = this.clipSelectionStartFraction * this.waveSurfer.getDuration();
@@ -898,7 +899,8 @@ RecordingViewer.prototype.onCompareModalDatabaseSelectionChanged = function() {
     
     beginLoadingModal();
     this.compareModalRightWaveSurfer.load(birdInfo.clip);
-
+console.log(this.compareModalRootTagLbl);
+this.compareModalRootTagLbl.html('<strong>' + birdInfo.name +'</strong>');
 
 }
 

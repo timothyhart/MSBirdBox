@@ -2,7 +2,7 @@ var express = require("express");
 var app = require("../app");
 var util = require("../modules/util");
 var router = express.Router();
-
+var fs = require('fs');
 var MetadataParser = require("../modules/metadata-parser.js");
 
 // TODO: Sanitize recording name.
@@ -16,9 +16,15 @@ router.get("/list", function(req, res) {
 
 //GET: /recordings/saveTag
 router.get("/saveTag", function(req, res){
-console.log(req.body.birdName);
-res.send(1);
+	var birdName = req.query.birdName;
+	var tagName = req.query.fileName;
+	fs.writeFile("/var/www/html/MSBirdBox/recorder2/data/tags/" + tagName, tagName, function(err) {
+   	if(err) {
+        	return console.log(err);
+    	}
 
+    console.log("Saved tag: " + tagName);
+	});
 });
 
 // GET: /recordings/recent
