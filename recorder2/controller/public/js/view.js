@@ -14,7 +14,8 @@ function switchView(view) {
 
         g_currentView.navItem !== undefined ? g_currentView.navItem.removeClass("active") : null;
         g_currentView.root !== undefined ? g_currentView.root.removeClass("active-view") : null;
-    }
+        console.log(g_currentView.root);
+      }
 
     var userID = sessionStorage.getItem("userID");
     console.log(userID);
