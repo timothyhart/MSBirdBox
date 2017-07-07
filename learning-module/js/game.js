@@ -190,7 +190,7 @@ GameView.prototype.endGame = function(gameWon)
     var view = this;
     // Set up summary screen if the game was a win
     // Otherwise, return to level select screen
-    var data = {"userID": 1,
+    var data = {"userID": sessionStorage.getItem("userID"),
                 "score": view.score,
                 "level": view.level+1};//view.score};
 
@@ -204,7 +204,7 @@ GameView.prototype.endGame = function(gameWon)
                   alert(msg);
                 }
               });
-        if (perfectRound){
+        if (view.perfectRound){
           data.method = "updateLevel";
           $.ajax({url: "js/gameDB.php",
                   method: 'POST',
