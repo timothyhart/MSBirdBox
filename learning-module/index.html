@@ -31,6 +31,7 @@
       console.log(sessionStorage.getItem("isAdmin") !== 0);
       if(sessionStorage.getItem("isAdmin")!== null || sessionStorage.getItem("isAdmin") !== 0){
         $("#admin_link").attr("href", "../prototype/Admin-panel/brisbanebirds.php");
+        return true;
       } else {
         switchView(g_views.loginView);
       }
