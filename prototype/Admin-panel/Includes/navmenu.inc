@@ -6,7 +6,7 @@ var checkBeforeLeaving = function(){
     return true;
     }
   } else {
-    $("#admin_link").attr("href", "../../");
+    $("#admin_link").attr("href", "../../learning-module/");
     return true;
   }
 }
