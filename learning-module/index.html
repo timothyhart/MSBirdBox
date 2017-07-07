@@ -26,6 +26,8 @@
 
     <script type="text/javascript">
     var checkBeforeLeaving = function(){
+      console.log("am I happening");
+      console.log(sessionStorage.getItem("isAdmin")!== null || sessionStorage.getItem("isAdmin") !== 0);
       if(sessionStorage.getItem("isAdmin")!== null || sessionStorage.getItem("isAdmin") !== 0){
         $("#admin_link").attr("href", "../prototype/Admin-panel/brisbanebirds.php");
       } else {
