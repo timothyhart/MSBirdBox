@@ -1,7 +1,7 @@
 <script type="text/javascript">
 var checkBeforeLeaving = function(){
   if(sessionStorage.getItem("isAdmin")!== null ){
-    if( sessionStorage.getItem("isAdmin") !== 0 ){
+    if( parseInt(sessionStorage.getItem("isAdmin")) !== 0 ){
     $("#admin_link").attr("href", "brisbanebirds.php");
     return true;
     }

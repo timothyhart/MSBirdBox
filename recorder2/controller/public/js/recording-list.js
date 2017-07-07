@@ -119,8 +119,7 @@ RecordingList.prototype.refreshList = function() {
                 downloadButton.attr("download", "");
                 downloadButton.appendTo(buttonColumn);
 
-                console.log(typeof(sessionStorage.getItem("isAdmin")));
-                if(sessionStorage.getItem("isAdmin") === 1){
+                if(parseInt(sessionStorage.getItem("isAdmin")) === 1){
                   var deleteButton = $("<button>").attr("class", "btn btn-sm btn-danger xs-left-margin xs-bottom-margin").html("<i class='glyphicon glyphicon-remove xs-right-margin'></i>Delete");
                   deleteButton.click(function() { view.onDeleteRecordingButtonClicked(recordingName); });
                   deleteButton.appendTo(buttonColumn);
