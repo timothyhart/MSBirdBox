@@ -177,7 +177,7 @@ StatusPage.prototype.refresh = function(wasManualRefresh) {
             // Show the manual recording box, since we're not recording.
             view.currentRecordingPanel.hide();
             if(parseInt(sessionStorage.getItem("isAdmin")) !== 1){
-              this.manualRecordingPanel.hide();
+              view.manualRecordingPanel.hide();
             } else {
               view.manualRecordingPanel.show();
             }
