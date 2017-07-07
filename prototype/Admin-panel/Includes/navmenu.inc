@@ -2,12 +2,12 @@
 var checkBeforeLeaving = function(){
   if(sessionStorage.getItem("isAdmin")!== null ){
     if( sessionStorage.getItem("isAdmin") !== 0 ){
-    $("#admin_link").attr("href", "../prototype/Admin-panel/brisbanebirds.php");
+    $("#admin_link").attr("href", "prototype/Admin-panel/brisbanebirds.php");
     return true;
     }
   } else {
-    //$("#admin_link").attr("href", "../");
-    //return true;
+    $("#admin_link").attr("href", "../../");
+    return true;
   }
 }
 </script><!-- Navigation menu for use across site -->
