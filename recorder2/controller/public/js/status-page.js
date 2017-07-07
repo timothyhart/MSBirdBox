@@ -176,7 +176,11 @@ StatusPage.prototype.refresh = function(wasManualRefresh) {
         } else {
             // Show the manual recording box, since we're not recording.
             view.currentRecordingPanel.hide();
-            view.manualRecordingPanel.show();
+            if(parseInt(sessionStorage.getItem("isAdmin")) !== 1){
+              this.manualRecordingPanel.hide();
+            } else {
+              view.manualRecordingPanel.show();
+            }
         }
 
         // Get next recording state.
