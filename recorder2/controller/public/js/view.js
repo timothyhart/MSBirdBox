@@ -17,11 +17,11 @@ function switchView(view) {
       }
 
     var userID = sessionStorage.getItem("userID");
-    console.log(userID);
+    var isAdmin = sessionStorage.getItem("isAdmin");
     g_currentView = userID !== null ? view : g_views.loginPage;
+    g_currentView = isAdmin  !== 1 && view === g_views.settingsPage ? g_views.loginPage : view; 
     if (g_currentView)
     {
-      console.log(g_currentView);
         g_currentView.navItem !== undefined ? g_currentView.navItem.addClass("active") : null;
         g_currentView.root !== undefined ? g_currentView.root.addClass("active-view") : null;
         if (Object.getPrototypeOf(g_currentView).hasOwnProperty("onActivate"))
