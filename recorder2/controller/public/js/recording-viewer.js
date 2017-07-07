@@ -773,6 +773,9 @@ var request = $.ajax({
 });
 
 
+alert("Segment tagged");
+location.reload();
+
 
 
 request.fail(function(xhr, status, error) {
