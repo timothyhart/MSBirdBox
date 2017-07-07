@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 	<title>Bird Box: Admin Panel</title>
-	<script src="../../learning-module/js/ext/jquery-2.2.0.js"></script>
 	<?php require_once 'Includes/head.inc'; ?>
 </head>
 
