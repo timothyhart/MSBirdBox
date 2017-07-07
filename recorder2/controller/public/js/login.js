@@ -35,7 +35,7 @@ console.log("Loggin in");
         sessionStorage.setItem('level', res[2]);
         sessionStorage.setItem('isAdmin', res[3]);
 
-        view.root.style = "display: none";
+        //view.root.style = "display: none";
         switchView(g_views.statusPage);
         console.log("Should have switched by now");
 	      //location.reload();
