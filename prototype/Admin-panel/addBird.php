@@ -21,16 +21,16 @@
 					'required' => true,
 				),
 				'source1' => array(
-					'required' => true,
+					'required' => false,
 				),
 				'source2' => array(
-					'required' => true,
+					'required' => false,
 				),
 				'photoSource' => array(
-					'required' => true,
+					'required' => false,
 				),
 				'clipSource' => array(
-					'required' => true,
+					'required' => false,
 				),
 			));
 
@@ -95,7 +95,7 @@
 	    	<div class="form-group">
 	            <label class="control-label col-sm-2" for="name"> Bird Name: </label>
 	            <div class="col-sm-5">
-	              <input type="text" class="form-control" name="name" id="name" value="<?php echo escape(Input::get('name'));?>" autocomplete="off" onkeypress="hide('name')">
+	              <input type="text" class="form-control" name="name" id="name" value="<?php echo escape(Input::get('name'));?>" autocomplete="off" >
 	            </div>
 	            <?php
 	            // if (isset($_POST['name'])){
@@ -110,7 +110,7 @@
           	<div class="form-group">
 	            <label class="control-label col-sm-2" for="speciesName"> Bird Species Name: </label>
 	            <div class="col-sm-5">
-	              <input type="text" class="form-control" name="speciesName" id="speciesName" value="<?php echo escape(Input::get('speciesName'));?>" autocomplete="off" onkeypress="hide('speciesName')">
+	              <input type="text" class="form-control" name="speciesName" id="speciesName" value="<?php echo escape(Input::get('speciesName'));?>" autocomplete="off" >
 	            </div>
 	            <?php
 	            // if (isset($_POST['speciesName'])){
@@ -125,7 +125,7 @@
           	<div class="form-group">
 	            <label class="control-label col-sm-2" for="description"> Description: </label>
 	            <div class="col-sm-5">
-	              <textarea name="description" class="form-control" id="description" value="<?php echo escape(Input::get('description'));?>" autocomplete="off" onkeypress="hide('description')"></textarea>
+	              <textarea name="description" class="form-control" id="description" value="<?php echo escape(Input::get('description'));?>" autocomplete="off" ></textarea>
 	            </div>
 	            <?php
 	            // if (isset($_POST['description'])){
@@ -140,7 +140,7 @@
           	<div class="form-group">
 	            <label class="control-label col-sm-2" for="source1"> Source 1: </label>
 	            <div class="col-sm-5">
-	              <input type="text" class="form-control" name="source1" id="source1" value="<?php echo escape(Input::get('source1'));?>" autocomplete="off" onkeypress="hide('source1')">
+	              <input type="text" class="form-control" name="source1" id="source1" value="<?php echo escape(Input::get('source1'));?>" autocomplete="off" >
 	            </div>
 	            <?php
 	            // if (isset($_POST['source1'])){
@@ -155,7 +155,7 @@
           	<div class="form-group">
 	            <label class="control-label col-sm-2" for="source2"> Source 2: </label>
 	            <div class="col-sm-5">
-	              <input type="text" class="form-control" name="source2" id="source2" value="<?php echo escape(Input::get('source2'));?>" autocomplete="off" onkeypress="hide('source2')">
+	              <input type="text" class="form-control" name="source2" id="source2" value="<?php echo escape(Input::get('source2'));?>" autocomplete="off" >
 	            </div>
 	            <?php
 	            // if (isset($_POST['source2'])){
@@ -176,7 +176,7 @@
           	<div class="form-group">
 	            <label class="control-label col-sm-2" for="photo"> Photo Source: </label>
 	            <div class="col-sm-5">
-	              <input type="text" class="form-control" name="photoSource" id="photoSource" value="<?php echo escape(Input::get('photoSource'));?>" autocomplete="off" onkeypress="hide('photoSource')">
+	              <input type="text" class="form-control" name="photoSource" id="photoSource" value="<?php echo escape(Input::get('photoSource'));?>" autocomplete="off" >
 	            </div>
 	            <?php
 	            // if (isset($_POST['photoSource'])){
@@ -197,7 +197,7 @@
           	<div class="form-group">
 	            <label class="control-label col-sm-2" for="photo"> Clip Source: </label>
 	            <div class="col-sm-5">
-	              <input type="text" class="form-control" name="clipSource" id="clipSource" value="<?php echo escape(Input::get('clipSource'));?>" autocomplete="off" onkeypress="hide('clipSource')">
+	              <input type="text" class="form-control" name="clipSource" id="clipSource" value="<?php echo escape(Input::get('clipSource'));?>" autocomplete="off" >
 	            </div>
 	            <?php
 	            // if (isset($_POST['clipSource'])){

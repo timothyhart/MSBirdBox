@@ -9,8 +9,7 @@
 	    	$birdNames[$bird] = $birds->results()[$bird]->name;
 	    	$birdSpeciesNames[$bird] = $birds->results()[$bird]->speciesName;
 	    	$birdTrophyCalls[$bird] = $birds->results()[$bird]->clip;
-		$birdTrophyCalls[$bird] = str_replace("mp3", "ogg",$birdTrophyCalls[$bird]);
-	    	$birdEnviroCalls[$bird] = $birds->results()[$bird]->envirocall;
+		$birdEnviroCalls[$bird] = $birds->results()[$bird]->envirocall;
 	    	$birdDescriptions[$bird] = $birds->results()[$bird]->description;
 	    	$birdPhotoSources[$bird] = $birds->results()[$bird]->photoSource;
 	    	$birdClipSources[$bird] = $birds->results()[$bird]->clipSource;

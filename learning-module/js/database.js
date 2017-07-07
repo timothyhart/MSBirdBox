@@ -12,7 +12,6 @@ Database.prototype.load = function ()
             // temporary rename until these field names are synced w/ database
 	    //console.log(value.clip)
             var origClipName = value.clip;
-            origClipName = origClipName.replace("mp3", "ogg");
             value.id = value.birdID;
             value.photo = baseUrl + "/photos/" + value.photo;
             value.clip = baseUrl + "/clips/" + origClipName;
