@@ -35,7 +35,7 @@ StatusPage.prototype.onActivate = function() {
     this.hashTracker.setAction("status-page");
 
     if(parseInt(sessionStorage.getItem("isAdmin")) !== 1){
-      view.manualRecordingPanel.hide();
+      this.manualRecordingPanel.hide();
     }
     // Refresh, or set refresh timer.
     if (this.isLoaded)
