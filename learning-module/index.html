@@ -23,6 +23,16 @@
     <link href="css/game.css" type="text/css" rel="stylesheet" />
     <link href="css/level-complete.css" type="text/css" rel="stylesheet" />
     <link href="css/login.css" type="text/css" rel="stylesheet"  />
+
+    <script type="text/javascript">
+    var checkBeforeLeaving = function(){
+      if(sessionStorage.getItem("isAdmin")!== null || sessionStorage.getItem("isAdmin") !== 0){
+        $("#admin_link").attr("href", "../prototype/Admin-panel/brisbanebirds.php");
+      } else {
+        switchView(g_views.loginView);
+      }
+    }
+    </script>
 </head>
 
 <body>
@@ -30,7 +40,7 @@
     <nav class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
       <a href="../prototype/Admin-panel/index.php" class="pure-menu-heading">AB<sup>3</sup></a>
       <ul class="pure-menu-list">
-            <li class="pure-menu-item"><a href="../prototype/Admin-panel/brisbanebirds.php" class="pure-menu-link">Administrate</a></li>
+            <li class="pure-menu-item" id="admin_link"><a href="#" onclick="checkBeforeLeaving()" class="pure-menu-link">Administrate</a></li>
             <li class="pure-menu-item pure-menu-item-alternate"><a href="../../../.." onclick="javascript: event.target.port=3000; " class="pure-menu-link">Record</a></li>
             <li class="pure-menu-item"><a href="index.html" class="pure-menu-link">Learn</a></li>
             <li class="pure-menu-item pure-menu-item-alternate"><a href="javascript:switchView(g_views.loginView)" class="pure-menu-link">Login/Register</a></li>
