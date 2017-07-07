@@ -21,7 +21,7 @@ function switchView(view) {
     g_currentView = userID !== null ? view : g_views.loginPage;
     if (g_currentView)
     {
-      console.log("Switching to this view: " + g_currentView.toString());
+      console.log(g_currentView);
         g_currentView.navItem !== undefined ? g_currentView.navItem.addClass("active") : null;
         g_currentView.root !== undefined ? g_currentView.root.addClass("active-view") : null;
         if (Object.getPrototypeOf(g_currentView).hasOwnProperty("onActivate"))
